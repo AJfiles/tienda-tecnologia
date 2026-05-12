@@ -3,38 +3,663 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Tecnología</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>AJ ICE</title>
+    <!-- Fuentes Minimalistas y Modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === VARIABLES Y DISEÑO BASE === */
+        :root {
+            --bg-color: #050914; /* Azul/Negro muy profundo */
+            --surface-color: #0a1122;
+            --accent-ice: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #8b9bb4;
+            --price-green: #00ff73;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent; /* Quita el destello azul en móviles */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* === PANTALLA DE BIENVENIDA === */
+        #welcome-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(5, 9, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .welcome-options {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .welcome-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--accent-ice);
+            color: var(--accent-ice);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .welcome-btn:hover {
+            background: var(--accent-ice);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: scale(1.05);
+        }
+
+        .welcome-all {
+            margin-top: 2rem;
+            color: var(--text-muted);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .welcome-all:hover { color: var(--text-main); }
+
+        /* === CABECERA === */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        h1.logo {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: #fff;
+            text-shadow: 0 0 15px var(--accent-glow);
+            margin: 0;
+        }
+
+        /* Menú Hamburguesa / Categorías */
+        .menu-toggle {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .menu-toggle:hover { transform: scale(1.1); color: var(--accent-ice); }
+
+        .categories-menu {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: rgba(10, 17, 34, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .categories-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .cat-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 20px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--accent-ice);
+        }
+
+        /* === CONTROLES INFERIORES A LA LÍNEA === */
+        .tools-bar {
+            display: flex;
+            justify-content: center;
+            padding: 15px 20px;
+        }
+
+        .sort-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .sort-btn:hover {
+            border-color: var(--accent-ice);
+            color: var(--accent-ice);
+        }
+
+        /* === GRILLA DE PRODUCTOS === */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 30px;
+            padding: 20px 40px 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .product-card:hover, .product-card:active {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 15px var(--accent-glow);
+        }
+
+        .product-card:hover::before { opacity: 1; }
+
+        .img-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .product-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #fff;
+            position: relative;
+        }
+
+        .product-price {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* === MODAL & GALERÍA HORIZONTAL === */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--surface-color);
+            width: 90%;
+            max-width: 450px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            /* Animación agradable de salto */
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover { background: rgba(255,255,255,0.2); }
+
+        #modal-title {
+            text-align: center;
+            padding: 20px;
+            font-weight: 500;
+            font-size: 1.4rem;
+        }
+
+        /* Galería estilo teléfono deslizable */
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #000;
+        }
+
+        .slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            width: 100%;
+            height: 100%;
+            -ms-overflow-style: none; /* Oculta scrollbar IE */
+            scrollbar-width: none; /* Oculta scrollbar Firefox */
+        }
+        
+        .slider::-webkit-scrollbar { display: none; } /* Oculta scrollbar Chrome */
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            object-fit: contain;
+        }
+
+        /* Botones de navegación de galería (para PC) */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 5;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.3); }
+        .nav-prev { left: 10px; }
+        .nav-next { right: 10px; }
+
+        .swipe-hint {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(0deg, #050914 0%, transparent 100%);
+        }
+
+        /* Animación atractiva para el precio */
+        .price-glow {
+            color: var(--price-green);
+            font-size: 2rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 115, 0.4);
+            margin-bottom: 15px;
+            animation: breathe 2s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(0, 255, 115, 0.4); }
+            50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(0, 255, 115, 0.8); }
+        }
+
+        .wp-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .wp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Animaciones base */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
 </head>
 <body>
-    <header class="header">
-        <h1 class="glitch" data-text="TECH STORE">TECH STORE</h1>
-        <div class="controls-container">
-            <div class="categories">
-                <button class="btn cat-btn active" data-cat="Todos">Todos</button>
-                <button class="btn cat-btn" data-cat="Controles">Controles</button>
-                <button class="btn cat-btn" data-cat="COOLERS">Ventiladores</button>
-            </div>
-            <button id="sort-btn" class="btn sort-btn">Ordenar: Mayor Precio ▼</button>
+
+    <!-- PANTALLA DE BIENVENIDA -->
+    <div id="welcome-screen">
+        <h2 class="welcome-title">¿En qué estás interesado?</h2>
+        <div class="welcome-options">
+            <button class="welcome-btn" onclick="selectInterest('Controles')">Controles</button>
+            <button class="welcome-btn" onclick="selectInterest('COOLERS')">Ventiladores / Coolers</button>
         </div>
+        <span class="welcome-all" onclick="selectInterest('Todos')">Ver Todo</span>
+    </div>
+
+    <!-- CABECERA PRINCIPAL -->
+    <header>
+        <h1 class="logo">AJ ICE</h1>
+        <button class="menu-toggle" onclick="toggleMenu()" title="Categorías">☰</button>
+        
+        <nav id="category-menu" class="categories-menu">
+            <button class="cat-btn active" data-cat="Todos">Todos</button>
+            <button class="cat-btn" data-cat="Controles">Controles</button>
+            <button class="cat-btn" data-cat="COOLERS">Ventiladores</button>
+        </nav>
     </header>
 
+    <!-- HERRAMIENTAS (Filtro Orden) -->
+    <div class="tools-bar">
+        <button id="sort-btn" class="sort-btn">Ordenar: Mayor Precio ▼</button>
+    </div>
+
+    <!-- CONTENEDOR DE PRODUCTOS -->
     <main id="product-grid" class="grid"></main>
 
-    <!-- Modal para el producto -->
+    <!-- MODAL DE PRODUCTO (Galeria Horizontal) -->
     <div id="product-modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2 id="modal-title">Nombre del Producto</h2>
-            <div id="modal-gallery" class="gallery"></div>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Nombre</h2>
+            
+            <div class="gallery-wrapper">
+                <button class="nav-btn nav-prev" onclick="scrollGallery(-1)">&lt;</button>
+                <div class="slider" id="modal-slider">
+                    <!-- Las imágenes se inyectan aquí -->
+                </div>
+                <button class="nav-btn nav-next" onclick="scrollGallery(1)">&gt;</button>
+            </div>
+            <p class="swipe-hint">← Desliza para ver más fotos →</p>
+
             <div class="modal-footer">
                 <p id="modal-price" class="price-glow"></p>
-                <a id="modal-whatsapp" class="btn wp-btn" href="#" target="_blank">Comprar por WhatsApp</a>
+                <a id="modal-whatsapp" class="wp-btn" href="#" target="_blank">Comprar por WhatsApp</a>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // === BASE DE DATOS ===
+        const products = [
+            // CONTROLES
+            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'] },
+            { id: 'GameSirX3Pro', name: 'GameSir X3 Pro', category: 'Controles', price: 290000, folder: 'Controles/GameSirX3Pro/', images: ['GameSirX3Pro_1.png', 'GameSirX3Pro_2.png', 'GameSirX3Pro_3.png', 'GameSirX3Pro_4.png', 'GameSirX3Pro_5.png', 'GameSirX3Pro_6.png.jpg'] },
+            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'] },
+
+            // COOLERS
+            { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'] },
+            { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'] },
+            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'] },
+            { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png', 'CX15_2_ConAgarraderas.png', 'CX15_3_DelanteSolo.png', 'CX15_4_AtrasSolo.png', 'CX15_5_CableDeCarga.png', 'CX15_6_Agarraderas.png', 'CX15_7_PlacaMagnetica.png', 'CX15_8_Todo.png'] },
+            { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'] },
+            { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png', 'K22_2_Delantesolo.png', 'K22_3_AtrasSolo.png', 'K22_4_Funciones.png', 'K22_5_PlacaMagnetica.png', 'K22_6_CableDeCarga.png', 'K22_7_Todo.png'] },
+            { id: 'K36', name: 'K36', category: 'COOLERS', price: 85000, folder: 'COOLERS/K36/', images: ['K36_1_Delante.jpg', 'K36_2_con_Agarraderas.jpg', 'K36_3_Delante_solo.png', 'K36_4_Atrás_solo.png', 'K36_5_Cable_de_carga.png', 'K36_6_Agarraderas.png', 'K36_7_Placa_Magnética.png', 'K36_8_Todo.jpg'] },
+            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'] },
+            { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'] },
+            { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'] },
+            { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'] },
+            { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png', 'S6X_2_DelanteSolo.png', 'S6X_3_AtrasSolo.png', 'S6X_4_PlacaMagnetica.png', 'S6X_5_CableDeCarga.png', 'S6X_6_Todo.png'] },
+            { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'] },
+            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'] },
+            { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'] },
+            { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'] },
+            { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'] },
+            { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'] }
+        ];
+
+        let currentCategory = 'Todos';
+        let sortDesc = true;
+        let hoverIntervals = {}; // Almacena los intervalos de animación de imágenes
+
+        const formatter = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 });
+        const grid = document.getElementById('product-grid');
+        const modalSlider = document.getElementById('modal-slider');
+
+        // === PANTALLA DE BIENVENIDA ===
+        function selectInterest(category) {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            currentCategory = category;
+            updateMenuSelection();
+            renderProducts();
+        }
+
+        // === MENÚ DE CATEGORÍAS (Hamburguesa) ===
+        function toggleMenu() {
+            document.getElementById('category-menu').classList.toggle('active');
+        }
+
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                currentCategory = e.target.getAttribute('data-cat');
+                updateMenuSelection();
+                renderProducts();
+                toggleMenu(); // Cierra el menú al seleccionar
+            });
+        });
+
+        function updateMenuSelection() {
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('active');
+                if(b.getAttribute('data-cat') === currentCategory) b.classList.add('active');
+            });
+        }
+
+        // === ORDENAR ===
+        document.getElementById('sort-btn').addEventListener('click', (e) => {
+            sortDesc = !sortDesc;
+            e.target.textContent = sortDesc ? 'Ordenar: Mayor Precio ▼' : 'Ordenar: Menor Precio ▲';
+            renderProducts();
+        });
+
+        // === RENDERIZAR PRODUCTOS ===
+        function renderProducts() {
+            grid.innerHTML = '';
+            let filtered = products.filter(p => currentCategory === 'Todos' || p.category === currentCategory);
+            filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
+
+            filtered.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                const firstImage = product.folder + product.images[0];
+                const imgId = `img-${index}`;
+
+                card.innerHTML = `
+                    <div class="img-container">
+                        <img id="${imgId}" src="${firstImage}" alt="${product.name}" class="product-image" loading="lazy">
+                    </div>
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-price">${formatter.format(product.price)}</p>
+                `;
+                
+                // Lógica de transición de fotos al pasar el mouse o dedo
+                const startCycle = () => {
+                    let imgIndex = 0;
+                    const imgEl = document.getElementById(imgId);
+                    hoverIntervals[imgId] = setInterval(() => {
+                        imgIndex = (imgIndex + 1) % product.images.length;
+                        imgEl.src = product.folder + product.images[imgIndex];
+                    }, 800); // Cambia foto cada 0.8s
+                };
+
+                const stopCycle = () => {
+                    clearInterval(hoverIntervals[imgId]);
+                    document.getElementById(imgId).src = firstImage; // Vuelve a la original
+                };
+
+                // Eventos PC
+                card.addEventListener('mouseenter', startCycle);
+                card.addEventListener('mouseleave', stopCycle);
+                
+                // Eventos Móvil (Touch)
+                card.addEventListener('touchstart', startCycle, {passive: true});
+                card.addEventListener('touchend', stopCycle);
+                card.addEventListener('touchcancel', stopCycle);
+
+                // Clic para abrir (Prevenir que un touch abra de inmediato si solo hace scroll)
+                card.addEventListener('click', () => openModal(product));
+                grid.appendChild(card);
+            });
+        }
+
+        // === MODAL Y GALERÍA HORIZONTAL ===
+        function openModal(product) {
+            document.getElementById('modal-title').textContent = product.name;
+            document.getElementById('modal-price').textContent = formatter.format(product.price);
+            
+            const wsMensaje = encodeURIComponent(`Hola, me interesa el ${product.name}`);
+            document.getElementById('modal-whatsapp').href = `https://wa.me/573143766181?text=${wsMensaje}`;
+
+            // Cargar imágenes horizontalmente
+            modalSlider.innerHTML = '';
+            product.images.forEach(imgName => {
+                const img = document.createElement('img');
+                img.src = product.folder + imgName;
+                img.alt = `Vista de ${product.name}`;
+                img.loading = 'lazy';
+                modalSlider.appendChild(img);
+            });
+
+            document.getElementById('product-modal').style.display = 'flex';
+            modalSlider.scrollLeft = 0; // Reiniciar posición
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+
+        // Navegación con botones (PC)
+        function scrollGallery(direction) {
+            const width = modalSlider.clientWidth;
+            modalSlider.scrollBy({ left: width * direction, behavior: 'smooth' });
+        }
+
+        // Cerrar modal al clickear fuera
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('product-modal');
+            if (e.target === modal) closeModal();
+        });
+
+        // Ocultar menú categorías si se hace click en otro lado
+        window.addEventListener('click', (e) => {
+            if (!e.target.matches('.menu-toggle') && !e.target.closest('.categories-menu')) {
+                document.getElementById('category-menu').classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
