@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJ ICE</title>
+    <title>AJ ICE STORE</title>
     <!-- Fuentes Minimalistas y Modernas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -252,6 +252,21 @@
             margin-bottom: 15px;
             border-radius: 8px;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* --- NUEVO: Pista de imagenes para la tarjeta con desplazamiento fluido --- */
+        .card-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .card-track img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .product-image {
@@ -436,6 +451,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- NUEVO: Lienzo (Canvas) para la estela del ratón/dedo --- */
+        #trail-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
     </style>
 </head>
 <body>
@@ -452,7 +478,7 @@
 
     <!-- CABECERA PRINCIPAL -->
     <header>
-        <h1 class="logo">AJ ICE</h1>
+        <h1 class="logo">AJ ICE STORE</h1>
         <button class="menu-toggle" onclick="toggleMenu()" title="Categorías">☰</button>
         
         <nav id="category-menu" class="categories-menu">
@@ -491,6 +517,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Lienzo para la estela del cursor -->
+    <canvas id="trail-canvas"></canvas>
 
     <script>
         // === BASE DE DATOS ===
@@ -575,30 +604,37 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 
-                const firstImage = product.folder + product.images[0];
-                const imgId = `img-${index}`;
+                const trackId = `track-${index}`;
+
+                // Generar todas las imágenes en fila para la animación de deslizamiento
+                const trackImages = product.images.map(img => `<img src="${product.folder + img}" alt="${product.name}" loading="lazy">`).join('');
 
                 card.innerHTML = `
                     <div class="img-container">
-                        <img id="${imgId}" src="${firstImage}" alt="${product.name}" class="product-image" loading="lazy">
+                        <div class="card-track" id="${trackId}">
+                            ${trackImages}
+                        </div>
                     </div>
                     <h3 class="product-title">${product.name}</h3>
                     <p class="product-price">${formatter.format(product.price)}</p>
                 `;
                 
-                // Lógica de transición de fotos al pasar el mouse o dedo
+                // Lógica de transición de fotos (Desplazamiento fluido)
                 const startCycle = () => {
                     let imgIndex = 0;
-                    const imgEl = document.getElementById(imgId);
-                    hoverIntervals[imgId] = setInterval(() => {
-                        imgIndex = (imgIndex + 1) % product.images.length;
-                        imgEl.src = product.folder + product.images[imgIndex];
-                    }, 800); // Cambia foto cada 0.8s
+                    const maxImages = product.images.length;
+                    const trackEl = document.getElementById(trackId);
+                    
+                    hoverIntervals[trackId] = setInterval(() => {
+                        imgIndex = (imgIndex + 1) % maxImages;
+                        trackEl.style.transform = `translateX(-${imgIndex * 100}%)`;
+                    }, 600); // 0.6s (más rápido y fluido)
                 };
 
                 const stopCycle = () => {
-                    clearInterval(hoverIntervals[imgId]);
-                    document.getElementById(imgId).src = firstImage; // Vuelve a la original
+                    clearInterval(hoverIntervals[trackId]);
+                    const trackEl = document.getElementById(trackId);
+                    if(trackEl) trackEl.style.transform = `translateX(0)`; // Vuelve a la portada
                 };
 
                 // Eventos PC
@@ -610,13 +646,16 @@
                 card.addEventListener('touchend', stopCycle);
                 card.addEventListener('touchcancel', stopCycle);
 
-                // Clic para abrir (Prevenir que un touch abra de inmediato si solo hace scroll)
+                // Clic para abrir
                 card.addEventListener('click', () => openModal(product));
                 grid.appendChild(card);
             });
         }
 
         // === MODAL Y GALERÍA HORIZONTAL ===
+        let modalAutoPlayInterval;
+        let isInteractingWithModal = false;
+
         function openModal(product) {
             document.getElementById('modal-title').textContent = product.name;
             document.getElementById('modal-price').textContent = formatter.format(product.price);
@@ -636,11 +675,34 @@
 
             document.getElementById('product-modal').style.display = 'flex';
             modalSlider.scrollLeft = 0; // Reiniciar posición
+
+            // --- INICIAR AUTOPLAY EN LA GALERÍA ---
+            if(modalAutoPlayInterval) clearInterval(modalAutoPlayInterval);
+            isInteractingWithModal = false;
+            
+            modalAutoPlayInterval = setInterval(() => {
+                if (isInteractingWithModal) return; // Se pausa si el usuario toca la galería
+                
+                const width = modalSlider.clientWidth;
+                // Si llegó al final, vuelve suavemente al inicio. Si no, avanza 1 foto.
+                if (modalSlider.scrollLeft + width >= modalSlider.scrollWidth - 10) {
+                    modalSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    modalSlider.scrollBy({ left: width, behavior: 'smooth' });
+                }
+            }, 1500); // Avanza cada 1.5 segundos
         }
 
         function closeModal() {
             document.getElementById('product-modal').style.display = 'none';
+            if(modalAutoPlayInterval) clearInterval(modalAutoPlayInterval); // Detener al cerrar
         }
+
+        // Detectar interacción manual para pausar el autoplay
+        modalSlider.addEventListener('mouseenter', () => isInteractingWithModal = true);
+        modalSlider.addEventListener('mouseleave', () => isInteractingWithModal = false);
+        modalSlider.addEventListener('touchstart', () => isInteractingWithModal = true, {passive: true});
+        modalSlider.addEventListener('touchend', () => isInteractingWithModal = false);
 
         // Navegación con botones (PC)
         function scrollGallery(direction) {
@@ -660,6 +722,53 @@
                 document.getElementById('category-menu').classList.remove('active');
             }
         });
+
+        // === ESTELA DEL CURSOR / DEDO (CANVAS) ===
+        const canvas = document.getElementById('trail-canvas');
+        const ctx = canvas.getContext('2d');
+        let trailWidth, trailHeight;
+        let particles = [];
+
+        function resizeCanvas() {
+            trailWidth = window.innerWidth;
+            trailHeight = window.innerHeight;
+            canvas.width = trailWidth;
+            canvas.height = trailHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function createParticle(x, y) {
+            particles.push({ x: x, y: y, alpha: 0.6, size: 2 });
+        }
+
+        // Registrar movimiento
+        window.addEventListener('mousemove', (e) => createParticle(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => {
+            for(let i=0; i<e.touches.length; i++) {
+                createParticle(e.touches[i].clientX, e.touches[i].clientY);
+            }
+        }, {passive: true});
+
+        // Animar estela
+        function animateTrail() {
+            ctx.clearRect(0, 0, trailWidth, trailHeight);
+            
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 240, 255, ${p.alpha})`; // Mismo Cyan de la web
+                ctx.fill();
+                
+                p.alpha -= 0.02; // Desaparece gradualmente
+                p.size += 0.15;  // Crece ligeramente mientras desaparece
+            }
+            
+            particles = particles.filter(p => p.alpha > 0); // Limpiar memoria
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
     </script>
 </body>
 </html>
