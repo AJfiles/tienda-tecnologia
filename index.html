@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Tecnología</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1 class="glitch" data-text="TECH STORE">TECH STORE</h1>
+        <div class="controls-container">
+            <div class="categories">
+                <button class="btn cat-btn active" data-cat="Todos">Todos</button>
+                <button class="btn cat-btn" data-cat="Controles">Controles</button>
+                <button class="btn cat-btn" data-cat="COOLERS">Ventiladores</button>
+            </div>
+            <button id="sort-btn" class="btn sort-btn">Ordenar: Mayor Precio ▼</button>
+        </div>
+    </header>
+
+    <main id="product-grid" class="grid"></main>
+
+    <!-- Modal para el producto -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">Nombre del Producto</h2>
+            <div id="modal-gallery" class="gallery"></div>
+            <div class="modal-footer">
+                <p id="modal-price" class="price-glow"></p>
+                <a id="modal-whatsapp" class="btn wp-btn" href="#" target="_blank">Comprar por WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
