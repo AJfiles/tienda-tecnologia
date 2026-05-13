@@ -156,14 +156,37 @@
             position: relative;
         }
 
+        /* Animación de Neón para el título */
+        @keyframes neonPulse {
+            0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00f0ff; }
+            50% { text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
+        }
+
+        /* Animación de vibración (Glitch) */
+        @keyframes vibrate {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
         h1.logo {
             font-family: 'Syncopate', sans-serif;
             font-size: 2.8rem;
             letter-spacing: 6px;
             color: #fff;
-            text-shadow: 0 0 20px var(--accent-glow);
             margin: 0;
             text-align: center;
+            animation: neonPulse 2s infinite alternate;
+            cursor: default;
+            transition: color 0.3s;
+        }
+
+        h1.logo:hover {
+            color: var(--accent-ice);
+            animation: vibrate 0.2s infinite;
         }
 
         .menu-toggle {
@@ -326,23 +349,34 @@
         }
 
         /* EFECTO FUEGO AL PASAR EL MOUSE */
+        @keyframes flickerFlame {
+            0% { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px var(--fire-glow), inset 0 0 15px rgba(255, 60, 0, 0.2); border-color: #ff3c00; }
+            50% { box-shadow: 0 15px 30px rgba(0,0,0,0.7), 0 0 35px rgba(255, 120, 0, 0.8), inset 0 0 25px rgba(255, 100, 0, 0.5); border-color: #ffaa00; }
+            100% { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px var(--fire-glow), inset 0 0 15px rgba(255, 60, 0, 0.2); border-color: #ff3c00; }
+        }
+
+        @keyframes flameMove {
+            0% { background-position: 50% 100%; }
+            50% { background-position: 50% 0%; }
+            100% { background-position: 50% 100%; }
+        }
+
         .product-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(255, 60, 0, 0.05));
+            bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, rgba(255, 60, 0, 0.4) 0%, rgba(255, 150, 0, 0.1) 40%, transparent 80%);
+            background-size: 100% 200%;
             opacity: 0;
             transition: opacity 0.4s;
             z-index: 1;
+            pointer-events: none;
         }
 
         .product-card:hover, .product-card:active {
             transform: translateY(-10px) scale(1.02);
-            /* Transición de hielo a fuego */
-            border-color: var(--fire-color);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 
-                        0 0 20px var(--fire-glow), 
-                        inset 0 0 15px rgba(255, 60, 0, 0.2);
+            /* Transición de hielo a fuego animada */
+            animation: flickerFlame 1.2s infinite alternate;
         }
 
         .product-card:hover .product-title {
@@ -350,7 +384,10 @@
             text-shadow: 0 0 8px rgba(255, 170, 0, 0.5);
         }
 
-        .product-card:hover::before { opacity: 1; }
+        .product-card:hover::before { 
+            opacity: 1;
+            animation: flameMove 2s infinite ease-in-out;
+        }
 
         .img-container {
             height: 220px;
@@ -412,6 +449,7 @@
             background-color: var(--surface-color);
             width: 90%;
             max-width: 480px;
+            max-height: 95vh;
             border-radius: 20px;
             border: 1px solid rgba(0,240,255,0.2);
             display: flex;
@@ -458,6 +496,8 @@
             position: relative;
             width: 100%;
             height: 350px;
+            min-height: 200px;
+            flex-shrink: 1;
             background: #000;
         }
 
@@ -516,7 +556,7 @@
         }
 
         .modal-footer {
-            padding: 20px;
+            padding: 15px 20px;
             background: rgba(5, 9, 20, 0.95);
             border-top: 1px solid rgba(255,255,255,0.05);
             display: flex;
@@ -530,13 +570,13 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-shadow: 0 0 15px rgba(0, 255, 115, 0.4);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         /* NUEVO: ESTILOS PARA LA TABLA DE ESPECIFICACIONES */
         .modal-description {
             text-align: left;
-            margin: 5px 0 20px;
+            margin: 5px 0 15px;
             padding: 15px 20px;
             background: rgba(0, 240, 255, 0.05);
             border-radius: 12px;
@@ -546,8 +586,21 @@
             color: var(--text-muted);
             box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
             animation: fadeInUp 0.6s ease-out;
+            max-height: 22vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-ice) transparent;
+        }
+
+        .modal-description::-webkit-scrollbar {
+            width: 6px;
         }
         
+        .modal-description::-webkit-scrollbar-thumb {
+            background-color: var(--accent-ice);
+            border-radius: 10px;
+        }
+
         .specs-list {
             list-style: none;
             padding: 0;
