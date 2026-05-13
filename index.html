@@ -145,9 +145,25 @@
             .htb-arrow::after { content: '↓'; } /* Evita rotar caracteres en Android */
         }
 
-        /* MODAL (VISTA DE PRODUCTO) */
+        /* MODALES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background-color: var(--surface-color); width: 90%; max-width: 500px; max-height: 95vh; border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        
+        /* ESTILOS DEL CARRITO EXTRAÍDOS DE INLINE A CSS */
+        .cart-modal-content { max-width: 450px; height: auto; max-height: 85vh; }
+        .cart-items-wrapper { flex: 1; overflow-y: auto; padding: 10px 15px; }
+        .cart-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
+        .cart-item-img { width: 45px; height: 45px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .cart-item-info { flex: 1; display: flex; flex-direction: column; }
+        .cart-item-title { color: #fff; font-size: 0.9rem; font-weight: 500; }
+        .cart-item-price { color: var(--price-green); font-weight: bold; font-size: 0.9rem; }
+        .cart-item-controls { display: flex; align-items: center; background: rgba(0,0,0,0.4); border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); }
+        .cart-btn-ctrl { background: none; border: none; color: #fff; cursor: pointer; padding: 4px 10px; font-size: 1.1rem; }
+        .cart-item-qty { color: #fff; font-weight: bold; font-size: 0.9rem; min-width: 15px; text-align: center; }
+        .cart-btn-del { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1.3rem; margin-left: 5px; padding: 5px; }
+        .cart-summary { display: flex; justify-content: space-between; padding: 20px; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(0,240,255,0.2); }
+        .cart-footer-btn { width: 100%; }
+
         @keyframes popIn { 0% { transform: scale(0.8) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
 
         .close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10; background: rgba(0,0,0,0.6); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: all 0.3s; }
@@ -265,7 +281,7 @@
 
     <section class="trust-section">
         <div class="trust-container">
-            <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos <b>Contra Entrega en Bogotá</b>. Para el resto de Colombia despachamos de forma segura mediante <b>Servientrega o Inter Rapidísimo</b>.</p></div>
+            <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos en Bogotá <b>desde $6.000 COP</b> (Pago Contra Entrega). Para el resto de Colombia despachamos mediante <b>Servientrega o Inter Rapidísimo</b>.</p></div>
             <div class="trust-item"><div class="trust-icon">📱</div><h3>Pagos Digitales</h3><p>Recibimos pagos por transferencia bancaria rápida: <b>Nequi, Daviplata, Bancolombia, Banco Nu, Dale</b> y otros aliados.</p></div>
             <div class="trust-item"><div class="trust-icon">⭐</div><h3>Experiencia Comprobada</h3><p>Operando sin interrupciones desde <b>enero de 2024</b> con un historial intachable y cientos de clientes 100% satisfechos.</p></div>
             <div class="trust-item"><div class="trust-icon">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos <b>atención personalizada</b> para asegurar que lleves el equipo perfecto para tu celular o estilo de juego.</p></div>
@@ -292,7 +308,7 @@
             <div class="modal-scroll-area">
                 <div class="trust-badges-block">
                     <div class="t-badge"><span>✅</span> <strong>En Stock</strong> listo para despachar.</div>
-                    <div class="t-badge"><span>🛵</span> Entrega <strong>1-2 horas</strong> en Bogotá.</div>
+                    <div class="t-badge"><span>🚚</span> Envío: <strong>Desde $6.000 COP</strong> (Bogotá).</div>
                     <div class="t-badge"><span>📱</span> Compatibilidad: <strong id="modal-compat">Universal</strong></div>
                 </div>
                 <div id="modal-desc" class="modal-description"></div>
@@ -311,18 +327,18 @@
 
     <!-- Modal Carrito -->
     <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
-        <div class="modal-content" style="max-width: 450px; height: auto; max-height: 85vh;">
+        <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('cart-modal')" aria-label="Cerrar carrito">&times;</button>
             <div class="modal-header-info">
                 <h2 id="cart-title" style="color:#fff; font-family: 'Space Grotesk', sans-serif;">Tu Carrito 🛒</h2>
             </div>
-            <div id="cart-items-container" style="flex: 1; overflow-y: auto; padding: 10px 15px;"></div>
-            <div style="display: flex; justify-content: space-between; padding: 20px; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(0,240,255,0.2);">
+            <div id="cart-items-container" class="cart-items-wrapper"></div>
+            <div class="cart-summary">
                 <span>Total:</span>
                 <span id="cart-total-price" style="color: var(--price-green);">0</span>
             </div>
-            <div class="modal-footer" style="padding: 15px;">
-                <a id="cart-whatsapp-btn" class="btn-base wp-btn" href="#" target="_blank" style="width: 100%;">Comprar Todo por WhatsApp 💬</a>
+            <div class="modal-footer">
+                <a id="cart-whatsapp-btn" class="btn-base wp-btn cart-footer-btn" href="#" target="_blank">Comprar Todo por WhatsApp 💬</a>
             </div>
         </div>
     </div>
@@ -519,8 +535,8 @@
             }
             if (product.tag) { badgesHTML += `<div class="card-badge tag-badge">${product.tag}</div>`; }
 
-            // MANEJO DE ERRORES DE IMAGEN (onerror)
-            const trackImages = product.images.map(img => `<img src="${product.folder + img}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=&quot;http://www.w3.org/2000/svg&quot;/%3E'; this.style.background='rgba(255,255,255,0.05)'; this.style.opacity='0.2';">`).join('');
+            // Imágenes dinámicas sin onerror inline para evitar fragilidad en navegadores
+            const trackImages = product.images.map(img => `<img src="${product.folder + img}" alt="${product.name}" loading="lazy" class="track-img">`).join('');
 
             let priceDisplayHTML = '';
             if (product.oldPrice) {
@@ -550,6 +566,15 @@
             card.addEventListener('touchstart', startCycle, {passive: true}); card.addEventListener('touchend', stopCycle); card.addEventListener('touchcancel', stopCycle);
             card.addEventListener('click', () => openModal(product));
             grid.appendChild(card);
+
+            // MANEJO SEGURO DE ERRORES DE IMAGEN POR JS (Recomendación del Amigo)
+            card.querySelectorAll('.track-img').forEach(img => {
+                img.onerror = () => {
+                    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E';
+                    img.style.background = 'rgba(255,255,255,0.05)';
+                    img.style.opacity = '0.2';
+                };
+            });
         }
 
         let modalAutoPlayInterval; let isInteractingWithModal = false;
@@ -584,7 +609,6 @@
                 img.src = product.folder + imgName; 
                 img.alt = `Vista de ${product.name}`; 
                 img.loading = 'lazy'; 
-                // MANEJO ERRORES IMAGEN EN MODAL
                 img.onerror = () => { img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E'; img.style.background = 'rgba(255,255,255,0.05)'; img.style.opacity = '0.2'; };
                 modalSlider.appendChild(img); 
             });
@@ -608,7 +632,9 @@
         modalSlider.addEventListener('mouseenter', () => isInteractingWithModal = true); modalSlider.addEventListener('mouseleave', () => isInteractingWithModal = false);
         modalSlider.addEventListener('touchstart', () => isInteractingWithModal = true, {passive: true}); modalSlider.addEventListener('touchend', () => { setTimeout(()=> isInteractingWithModal = false, 2000); });
 
-        // CONTROLES DEL CARRITO AVANZADOS (+ / -)
+        // ==========================================
+        // SISTEMA DE CARRITO ROBUSTO
+        // ==========================================
         function updateCartBadge() {
             const countSpan = document.getElementById('cart-count');
             const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
@@ -625,25 +651,35 @@
             }
             saveCart(); 
             updateCartBadge(); 
-            renderCartUI();
+            // Optimización: Solo redibuja el DOM si el modal está a la vista
+            if (document.getElementById('cart-modal').style.display === 'flex') {
+                renderCartUI();
+            }
         }
 
-        function changeQuantity(index, delta) {
-            if (cart[index].quantity + delta > 0) {
-                cart[index].quantity += delta;
+        // Fix de índices reemplazado por uso de ID seguro
+        function changeQuantity(productId, delta) {
+            const i = cart.findIndex(item => item.id === productId);
+            if (i === -1) return;
+            
+            if (cart[i].quantity + delta > 0) {
+                cart[i].quantity += delta;
             } else {
-                cart.splice(index, 1);
+                cart.splice(i, 1);
             }
             saveCart();
             updateCartBadge();
-            renderCartUI();
+            if (document.getElementById('cart-modal').style.display === 'flex') renderCartUI();
         }
 
-        function removeFromCart(index) { 
-            cart.splice(index, 1); 
-            saveCart(); 
-            updateCartBadge(); 
-            renderCartUI(); 
+        function removeFromCart(productId) { 
+            const i = cart.findIndex(item => item.id === productId);
+            if (i > -1) {
+                cart.splice(i, 1); 
+                saveCart(); 
+                updateCartBadge(); 
+                if (document.getElementById('cart-modal').style.display === 'flex') renderCartUI(); 
+            }
         }
 
         function openCart() { renderCartUI(); document.getElementById('cart-modal').style.display = 'flex'; }
@@ -658,7 +694,7 @@
             }
 
             let total = 0; let wpMessage = "Hola, me interesa comprar estos artículos:\n\n";
-            cart.forEach((p, index) => {
+            cart.forEach((p) => {
                 const qty = p.quantity || 1;
                 const subtotal = p.price * qty;
                 total += subtotal; 
@@ -666,29 +702,37 @@
                 const imgSrc = p.folder + p.images[0];
                 
                 const item = document.createElement('div');
-                item.style = "display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px;";
-                // CARRITO CON IMAGEN Y BOTONES +/-
+                item.className = 'cart-item';
+                
                 item.innerHTML = `
-                    <img src="${imgSrc}" style="width: 45px; height: 45px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.03);" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=&quot;http://www.w3.org/2000/svg&quot;/%3E'; this.style.opacity='0.2';">
-                    <div style="flex: 1; display: flex; flex-direction: column;">
-                        <span style="color: #fff; font-size: 0.9rem; font-weight: 500;">${p.name}</span>
-                        <span style="color: var(--price-green); font-weight: bold; font-size: 0.9rem;">${formatter.format(subtotal)}</span>
+                    <img src="${imgSrc}" class="cart-item-img" alt="${p.name}">
+                    <div class="cart-item-info">
+                        <span class="cart-item-title">${p.name}</span>
+                        <span class="cart-item-price">${formatter.format(subtotal)}</span>
                     </div>
-                    <div style="display: flex; align-items: center; background: rgba(0,0,0,0.4); border-radius: 20px; border: 1px solid rgba(0,240,255,0.2);">
-                        <button style="background: none; border: none; color: #fff; cursor: pointer; padding: 4px 10px; font-size: 1.1rem;" onclick="changeQuantity(${index}, -1)" aria-label="Restar uno">−</button>
-                        <span style="color: #fff; font-weight: bold; font-size: 0.9rem; min-width: 15px; text-align: center;">${qty}</span>
-                        <button style="background: none; border: none; color: #fff; cursor: pointer; padding: 4px 10px; font-size: 1.1rem;" onclick="changeQuantity(${index}, 1)" aria-label="Sumar uno">+</button>
+                    <div class="cart-item-controls">
+                        <button class="cart-btn-ctrl" onclick="changeQuantity('${p.id}', -1)" aria-label="Restar uno">−</button>
+                        <span class="cart-item-qty">${qty}</span>
+                        <button class="cart-btn-ctrl" onclick="changeQuantity('${p.id}', 1)" aria-label="Sumar uno">+</button>
                     </div>
-                    <button style="background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1.3rem; margin-left: 5px; padding: 5px;" onclick="removeFromCart(${index})" aria-label="Eliminar producto">✖</button>
+                    <button class="cart-btn-del" onclick="removeFromCart('${p.id}')" aria-label="Eliminar producto">✖</button>
                 `;
+                
+                // Prevención de error visual nativo en miniatura del carrito
+                const imgEl = item.querySelector('.cart-item-img');
+                imgEl.onerror = () => { imgEl.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E'; imgEl.style.opacity = '0.2'; };
+                
                 container.appendChild(item);
             });
 
             document.getElementById('cart-total-price').textContent = formatter.format(total);
-            wpMessage += `\n*Total a pagar: ${formatter.format(total)}*`;
+            wpMessage += `\n*Total a pagar (sin envío): ${formatter.format(total)}*`;
             const wpBtn = document.getElementById('cart-whatsapp-btn'); wpBtn.href = `https://wa.me/573232452698?text=${encodeURIComponent(wpMessage)}`; wpBtn.style.opacity = '1'; wpBtn.style.pointerEvents = 'auto';
         }
 
+        // ==========================================
+        // FUNCIONALIDADES GENERALES
+        // ==========================================
         function showGlobalToast(msg) { const toast = document.getElementById('global-toast'); toast.textContent = msg; toast.classList.add('show'); setTimeout(() => { toast.classList.remove('show'); }, 2500); }
 
         function copyProductLink(productId) {
@@ -718,14 +762,16 @@
 
         function initCanvas() { 
             width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; bgNodes = [];
-            // Límite de rendimiento: Máximo 60 nodos incluso en pantallas gigantes
             const numNodes = Math.min(Math.floor(width / 20), 60); 
             for(let i = 0; i < numNodes; i++) bgNodes.push({ x: Math.random() * width, y: Math.random() * height, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, size: Math.random() * 1.5 + 0.5 });
         }
         
         if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
             window.addEventListener('resize', initCanvas); initCanvas();
-            function spawnParticles(x, y) { for(let i=0; i < 2; i++) particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 - 0.5, life: 1, size: Math.random() * 3 + 1, color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255' }); }
+            function spawnParticles(x, y) { 
+                if (particles.length > 80) return; // Tope máximo de partículas
+                for(let i=0; i < 2; i++) particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 - 0.5, life: 1, size: Math.random() * 3 + 1, color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255' }); 
+            }
             window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; spawnParticles(mouse.x, mouse.y); });
             window.addEventListener('mouseout', () => { mouse.x = -1000; mouse.y = -1000; }); 
 
