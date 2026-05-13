@@ -533,6 +533,53 @@
             margin-bottom: 20px;
         }
 
+        /* NUEVO: ESTILOS PARA LA TABLA DE ESPECIFICACIONES */
+        .modal-description {
+            text-align: left;
+            margin: 5px 0 20px;
+            padding: 15px 20px;
+            background: rgba(0, 240, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .specs-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .specs-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .specs-list li::before {
+            content: '▹'; /* Viñeta futurista */
+            position: absolute;
+            left: 0;
+            top: -2px;
+            color: var(--accent-ice);
+            font-size: 1.1rem;
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .specs-list b {
+            color: var(--text-main);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
         .action-buttons {
             display: flex;
             gap: 10px;
@@ -714,6 +761,9 @@
 
             <div class="modal-footer">
                 <p id="modal-price" class="price-glow"></p>
+                <!-- NUEVO: CONTENEDOR DE ESPECIFICACIONES -->
+                <div id="modal-desc" class="modal-description"></div>
+                
                 <div class="action-buttons">
                     <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir</button>
                     <a id="modal-whatsapp" class="btn-base wp-btn" href="#" target="_blank">Comprar 💬</a>
@@ -760,30 +810,65 @@
     <script>
         // === BASE DE DATOS ===
         const products = [
-            // CONTROLES
+            // CONTROLES (Sin descripciones por el momento)
             { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'] },
             { id: 'GameSirX3Pro', name: 'GameSir X3 Pro', category: 'Controles', price: 290000, folder: 'Controles/GameSirX3Pro/', images: ['GameSirX3Pro_1.png', 'GameSirX3Pro_2.png', 'GameSirX3Pro_3.png', 'GameSirX3Pro_4.png', 'GameSirX3Pro_5.png', 'GameSirX3Pro_6.png.jpg'] },
             { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'] },
 
-            // COOLERS
-            { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'] },
-            { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'] },
-            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'] },
-            { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png', 'CX15_2_ConAgarraderas.png', 'CX15_3_DelanteSolo.png', 'CX15_4_AtrasSolo.png', 'CX15_5_CableDeCarga.png', 'CX15_6_Agarraderas.png', 'CX15_7_PlacaMagnetica.png', 'CX15_8_Todo.png'] },
-            { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'] },
-            { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png', 'K22_2_Delantesolo.png', 'K22_3_AtrasSolo.png', 'K22_4_Funciones.png', 'K22_5_PlacaMagnetica.png', 'K22_6_CableDeCarga.png', 'K22_7_Todo.png'] },
-            { id: 'K36', name: 'K36', category: 'COOLERS', price: 85000, folder: 'COOLERS/K36/', images: ['K36_1_Delante.jpg', 'K36_2_con_Agarraderas.jpg', 'K36_3_Delante_solo.png', 'K36_4_Atrás_solo.png', 'K36_5_Cable_de_carga.png', 'K36_6_Agarraderas.png', 'K36_7_Placa_Magnética.png', 'K36_8_Todo.jpg'] },
-            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'] },
-            { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'] },
-            { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'] },
-            { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'] },
-            { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png', 'S6X_2_DelanteSolo.png', 'S6X_3_AtrasSolo.png', 'S6X_4_PlacaMagnetica.png', 'S6X_5_CableDeCarga.png', 'S6X_6_Todo.png'] },
-            { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'] },
-            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'] },
-            { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'] },
-            { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'] },
-            { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'] },
-            { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'] }
+            // COOLERS (Con descripciones)
+            { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Función 2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética tipo MagSafe.</li><li><b>Uso:</b> Trabajo leve, ideal para evitar calentamiento al cargar.</li></ul>` },
+            
+            { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla oculta, 3 niveles de enfriamiento.</li><li><b>Fijación:</b> Dual (Magnético y Clip).</li><li><b>Extra:</b> Interruptor independiente para luz RGB.</li></ul>` },
+            
+            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Potencia:</b> 15W con control IA para "hielo verdadero".</li><li><b>Fijación:</b> Dual (Magnética / Clip).</li><li><b>Diseño:</b> Ultraligero (68g), RGB y bajo ruido.</li><li><b>Nota:</b> Requiere cargador 15W (5V-3A).</li></ul>` },
+            
+            { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png', 'CX15_2_ConAgarraderas.png', 'CX15_3_DelanteSolo.png', 'CX15_4_AtrasSolo.png', 'CX15_5_CableDeCarga.png', 'CX15_6_Agarraderas.png', 'CX15_7_PlacaMagnetica.png', 'CX15_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Potencia Extrema:</b> 20W, baja hasta -7°C (forma hielo en placa).</li><li><b>Tecnología AI:</b> Ajusta potencia y luces RGB automáticamente.</li><li><b>Pantalla:</b> Monitoreo de temperatura en tiempo real.</li><li><b>Fijación:</b> Dual. Silencio total (<25dB).</li></ul>` },
+            
+            { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Diseño:</b> Doble turbina de alta velocidad y cobertura amplia.</li><li><b>Versatilidad:</b> Versiones recargable (600mAh) o enchufable.</li><li><b>Fijación:</b> Clip elástico universal (62-92mm).</li><li><b>Ligero:</b> Súper silencioso y peso entre 44g-53g.</li></ul>` },
+            
+            { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png', 'K22_2_Delantesolo.png', 'K22_3_AtrasSolo.png', 'K22_4_Funciones.png', 'K22_5_PlacaMagnetica.png', 'K22_6_CableDeCarga.png', 'K22_7_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Control IA:</b> Ajuste automático o 4 velocidades manuales.</li><li><b>Potencia:</b> 15W para refrigeración de gran área.</li><li><b>Fijación:</b> Dual 2 en 1 (Magnético o Clip).</li><li><b>Extra:</b> Pantalla digital y luces RGB de 6 colores.</li></ul>` },
+            
+            { id: 'K36', name: 'K36', category: 'COOLERS', price: 85000, folder: 'COOLERS/K36/', images: ['K36_1_Delante.jpg', 'K36_2_con_Agarraderas.jpg', 'K36_3_Delante_solo.png', 'K36_4_Atrás_solo.png', 'K36_5_Cable_de_carga.png', 'K36_6_Agarraderas.png', 'K36_7_Placa_Magnética.png', 'K36_8_Todo.jpg'], 
+              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 15W, enfriamiento ultra rápido en <10 segundos.</li><li><b>Velocidades:</b> 3 niveles ajustables.</li><li><b>Fijación:</b> Magnético con posibilidad de añadir clips.</li></ul>` },
+            
+            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> Grado aeroespacial, baja hasta -9°C.</li><li><b>Modos:</b> Congelación, Silencioso y Overclocking (5700 RPM).</li><li><b>Pantalla HD:</b> Muestra temperatura y modo.</li><li><b>Fijación:</b> MagSafe nativo o clip universal 2 en 1.</li></ul>` },
+            
+            { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Refrigeración:</b> Sistema de 7 capas (cerámica/aviación) a 6000 RPM.</li><li><b>Variantes:</b> Digital (muestra temperatura) u ordinaria.</li><li><b>Diseño:</b> Ultra ligero (56g) y súper silencioso.</li></ul>` },
+            
+            { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Tecnología:</b> 7 capas térmicas con base de cerámica.</li><li><b>Eficiencia:</b> 10W (5V 2A), gran rendimiento sin exceso de energía.</li><li><b>Diseño:</b> Súper compacto (55g) y silencioso.</li></ul>` },
+            
+            { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W, 3 velocidades (Ice-Cool, Juego, Frío Extremo).</li><li><b>Fijación:</b> Magnética superior (32 imanes tipo MagSafe).</li><li><b>Diseño:</b> Ligero (59g), silencioso (<25dB) e iluminación RGB.</li><li><b>Flujo:</b> Bidireccional (el calor no va a las manos).</li></ul>` },
+            
+            { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png', 'S6X_2_DelanteSolo.png', 'S6X_3_AtrasSolo.png', 'S6X_4_PlacaMagnetica.png', 'S6X_5_CableDeCarga.png', 'S6X_6_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Streamers:</b> Rosca de cobre integrada para montar en trípodes.</li><li><b>Refrigeración:</b> TEC 5 niveles con panel de aluminio (5500 RPM).</li><li><b>Fijación:</b> Magnética inteligente (compatible MagSafe).</li><li><b>Estética:</b> Luces LED RGB con efecto "respiración".</li></ul>` },
+            
+            { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Enfriamiento:</b> Extremo por semiconductores (Potencia 15W).</li><li><b>Materiales:</b> ABS robusto, metal y cerámica.</li><li><b>Diseño:</b> Ultra ligero, peso de solo 60g.</li></ul>` },
+            
+            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Rendimiento TEC:</b> Alcanza 0°C en 30s. Reduce la temp hasta 40°C.</li><li><b>Flujo Vertical:</b> El aire caliente no sopla hacia los dedos.</li><li><b>Fijación:</b> Magnética o abrazadera retráctil (4.7" a 6.9").</li><li><b>Diseño:</b> RGB personalizable y funcionamiento silencioso.</li></ul>` },
+            
+            { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Poder Extremo:</b> 30W reales. Forma escarcha rápidamente.</li><li><b>Nota de Energía:</b> Exige cargador PD 30W (No usar Powerbank).</li><li><b>Control:</b> Inteligencia artificial, 3 niveles y pantalla.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li></ul>` },
+            
+            { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Control:</b> 3 modos (9W, 10W, 12W) y pantalla digital.</li><li><b>Tecnología:</b> 7 capas para temperaturas entre -1°C y -3°C.</li><li><b>Seguridad:</b> Se apaga automáticamente a los 70°C.</li><li><b>Diseño:</b> Fijación dual y ultraligero (solo 56g).</li></ul>` },
+            
+            { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Portabilidad:</b> Batería (300mAh) para movilidad o enchufe.</li><li><b>Rendimiento:</b> 3 velocidades, turbina silenciosa de 7 aspas.</li><li><b>Refrigeración:</b> Chip semiconductor de alto rendimiento.</li><li><b>Fijación:</b> Clip seguro en L (4.7 a 7.5 pulgadas).</li></ul>` },
+            
+            { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'], 
+              desc: `<ul class='specs-list'><li><b>Portabilidad:</b> Batería integrada (movilidad) o uso directo.</li><li><b>Rendimiento:</b> 3 velocidades con turbina de 7 aspas.</li><li><b>Tecnología:</b> Disipación térmica agresiva por semiconductor.</li><li><b>Fijación:</b> Hebilla ajustable segura con almohadillas.</li></ul>` }
         ];
 
         let currentCategory = 'Todos';
@@ -934,6 +1019,15 @@
             document.getElementById('modal-title').textContent = product.name;
             document.getElementById('modal-price').textContent = formatter.format(product.price);
             
+            // NUEVO: INYECTAR DESCRIPCIÓN (Ocultar si no tiene)
+            const descContainer = document.getElementById('modal-desc');
+            if (product.desc) {
+                descContainer.innerHTML = product.desc;
+                descContainer.style.display = 'block';
+            } else {
+                descContainer.style.display = 'none';
+            }
+
             const wsMensaje = encodeURIComponent(`Hola, me interesa el ${product.name}`);
             document.getElementById('modal-whatsapp').href = `https://wa.me/573143766181?text=${wsMensaje}`;
 
