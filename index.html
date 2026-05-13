@@ -151,6 +151,7 @@
         
         /* ESTILOS DEL CARRITO EXTRAÍDOS DE INLINE A CSS */
         .cart-modal-content { max-width: 450px; height: auto; max-height: 85vh; }
+        .cart-title-text { color: #fff; font-family: 'Space Grotesk', sans-serif; }
         .cart-items-wrapper { flex: 1; overflow-y: auto; padding: 10px 15px; }
         .cart-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
         .cart-item-img { width: 45px; height: 45px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.03); }
@@ -172,6 +173,7 @@
         .modal-header-info { text-align: center; padding: 20px 40px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .modal-breadcrumb { font-size: 0.75rem; color: var(--accent-ice); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; opacity: 0.8; }
         #modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        #modal-subtitle { color: var(--accent-ice); font-size: 0.85rem; margin-bottom: 10px; font-weight: 500; opacity: 0.9; }
         #modal-reviews { font-size: 0.9rem; color: #ffaa00; }
 
         .gallery-wrapper { position: relative; width: 100%; height: 280px; min-height: 200px; flex-shrink: 0; background: #000; }
@@ -257,8 +259,6 @@
         </div>
     </header>
 
-    <main id="product-grid" class="grid" role="main"></main>
-
     <section class="how-to-buy-section">
         <h2 class="section-title">¿CÓMO COMPRAR?</h2>
         <div class="htb-steps">
@@ -279,6 +279,8 @@
         </div>
     </section>
 
+    <main id="product-grid" class="grid" role="main"></main>
+
     <section class="trust-section">
         <div class="trust-container">
             <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos en Bogotá <b>desde $6.000 COP</b> (Pago Contra Entrega). Para el resto de Colombia despachamos mediante <b>Servientrega o Inter Rapidísimo</b>.</p></div>
@@ -296,6 +298,7 @@
             <div class="modal-header-info">
                 <div class="modal-breadcrumb" id="modal-cat-crumb">Categoría</div>
                 <h2 id="modal-title">Nombre</h2>
+                <div id="modal-subtitle"></div>
                 <div id="modal-reviews">⭐⭐⭐⭐⭐ (0)</div>
             </div>
             
@@ -318,7 +321,7 @@
                 <div id="modal-price" class="price-glow"></div>
                 <div class="action-buttons">
                     <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir al carrito</button>
-                    <a id="modal-whatsapp" class="btn-base wp-btn" href="#" target="_blank">Comprar ahora 💬</a>
+                    <a id="modal-whatsapp" class="btn-base wp-btn" href="#" target="_blank" rel="noopener noreferrer">Comprar ahora 💬</a>
                     <button class="btn-base share-link-btn" id="modal-share-btn">🔗 Copiar Enlace</button>
                 </div>
             </div>
@@ -330,7 +333,7 @@
         <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('cart-modal')" aria-label="Cerrar carrito">&times;</button>
             <div class="modal-header-info">
-                <h2 id="cart-title" style="color:#fff; font-family: 'Space Grotesk', sans-serif;">Tu Carrito 🛒</h2>
+                <h2 id="cart-title" class="cart-title-text">Tu Carrito 🛒</h2>
             </div>
             <div id="cart-items-container" class="cart-items-wrapper"></div>
             <div class="cart-summary">
@@ -338,7 +341,7 @@
                 <span id="cart-total-price" style="color: var(--price-green);">0</span>
             </div>
             <div class="modal-footer">
-                <a id="cart-whatsapp-btn" class="btn-base wp-btn cart-footer-btn" href="#" target="_blank">Comprar Todo por WhatsApp 💬</a>
+                <a id="cart-whatsapp-btn" class="btn-base wp-btn cart-footer-btn" href="#" target="_blank" rel="noopener noreferrer">Comprar Todo por WhatsApp 💬</a>
             </div>
         </div>
     </div>
@@ -352,7 +355,7 @@
     <button id="scroll-top-btn" class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Volver arriba">⬆️</button>
 
     <div class="global-floating float-right">
-        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20de%20su%20tienda." target="_blank" aria-label="Contactar por WhatsApp General">💬</a>
+        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20de%20su%20tienda." target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp General">💬</a>
     </div>
 
     <script>
@@ -460,8 +463,8 @@
         const searchInput = document.getElementById('search-input');
         const modalSlider = document.getElementById('modal-slider');
 
-        // Persistencia del Carrito
-        function loadCart() { const sc = localStorage.getItem('aj_cart'); if(sc) { cart = JSON.parse(sc); updateCartBadge(); renderCartUI(); } }
+        // Persistencia del Carrito (Optimizado)
+        function loadCart() { const sc = localStorage.getItem('aj_cart'); if(sc) { cart = JSON.parse(sc); updateCartBadge(); } }
         function saveCart() { localStorage.setItem('aj_cart', JSON.stringify(cart)); }
 
         // Tabs de Categorías
@@ -582,6 +585,11 @@
         function openModal(product) {
             document.getElementById('modal-cat-crumb').textContent = `Inicio > ${product.category}`;
             document.getElementById('modal-title').textContent = product.name;
+            
+            // Subtítulo contextual UX
+            const catSubtitle = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
+            document.getElementById('modal-subtitle').textContent = catSubtitle;
+            
             document.getElementById('modal-reviews').innerHTML = getFakeReviews(product.id);
             document.getElementById('modal-compat').textContent = product.compat;
             
