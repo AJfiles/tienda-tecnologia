@@ -50,7 +50,7 @@
 
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: rgba(5, 9, 20, 0.95); backdrop-filter: blur(15px);
+            background-color: rgba(5, 9, 20, 0.85); backdrop-filter: blur(15px);
             z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
@@ -90,8 +90,8 @@
         h1.logo:hover { color: var(--accent-ice); transform: scale(1.05); text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff, 0 0 60px #00f0ff; }
 
         .offers-sidebar {
-            position: fixed; top: 25vh; left: -280px; width: 280px; height: 60vh;
-            background: rgba(10, 17, 34, 0.95); backdrop-filter: blur(10px);
+            position: fixed; top: 20vh; left: -280px; width: 280px; height: 65vh;
+            background: rgba(10, 17, 34, 0.90); backdrop-filter: blur(15px);
             border-right: 2px solid var(--fire-color); border-top: 2px solid var(--fire-color); border-bottom: 2px solid var(--fire-color);
             border-radius: 0 20px 20px 0; box-shadow: 10px 0 30px rgba(255, 60, 0, 0.2);
             transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; display: flex; flex-direction: column;
@@ -156,9 +156,9 @@
 
         .modal-description { text-align: left; margin: 5px 0 15px; padding: 15px 20px; background: rgba(0, 240, 255, 0.05); border-radius: 12px; border: 1px solid rgba(0, 240, 255, 0.15); font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); max-height: 20vh; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--accent-ice) transparent; }
 
-        .trust-section { width: 100%; padding: 40px 20px 80px; background: linear-gradient(0deg, var(--bg-color), rgba(10, 17, 34, 0.2)); position: relative; z-index: 10; border-top: 1px solid rgba(0, 240, 255, 0.1); margin-top: 20px; }
+        .trust-section { width: 100%; padding: 40px 20px 80px; background: linear-gradient(0deg, transparent, rgba(10, 17, 34, 0.5)); position: relative; z-index: 10; border-top: 1px solid rgba(0, 240, 255, 0.1); margin-top: 20px; }
         .trust-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; text-align: center; }
-        .trust-item { background: rgba(0, 240, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px 20px; border-radius: 16px; transition: all 0.4s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .trust-item { background: rgba(0, 240, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px 20px; border-radius: 16px; transition: all 0.4s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
         .trust-item:hover { transform: translateY(-8px); border-color: var(--accent-ice); box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1); background: rgba(0, 240, 255, 0.05); }
         .trust-icon { font-size: 2.8rem; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--accent-glow)); animation: pulseHint 3s infinite alternate; }
         .trust-item h3 { color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; }
@@ -190,10 +190,8 @@
         .wa-global-btn { background: #25D366; animation: bounceWA 3s infinite; }
         .cart-global-btn { background: var(--surface-color); border: 2px solid var(--accent-ice); color: var(--accent-ice); }
         
-        /* Modificado: Badge del carrito inicia oculto */
         .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--fire-color); color: white; font-size: 0.8rem; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: none; justify-content: center; align-items: center; }
         
-        /* Modificado: Botón Subir reubicado a la izquierda para no chocar con WhatsApp */
         .scroll-top-btn { position: fixed; bottom: 95px; left: 20px; width: 50px; height: 50px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; backdrop-filter: blur(5px); }
         .scroll-top-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
         .scroll-top-btn:hover { background: var(--accent-ice); color: #000; border-color: var(--accent-ice); }
@@ -203,12 +201,10 @@
         
         #trail-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
 
-        /* Mejora Rendimiento: Oculta canvas en celulares/dispositivos táctiles */
         @media (hover: none) and (pointer: coarse) {
             #trail-canvas { display: none !important; }
         }
 
-        /* Mejora UX: Apila botones en pantallas muy pequeñas */
         @media (max-width: 380px) {
             .action-buttons { flex-direction: column; }
             .btn-base { width: 100%; min-width: 100%; }
@@ -222,14 +218,22 @@
         .specs-list li::before { content: '▹'; position: absolute; left: 0; top: -2px; color: var(--accent-ice); font-size: 1.1rem; text-shadow: 0 0 8px var(--accent-glow); }
         .specs-list b { color: var(--text-main); font-weight: 600; letter-spacing: 0.5px; }
 
-        .offers-content { padding: 20px 15px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .offers-content { padding: 20px 15px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; scrollbar-width: thin; scrollbar-color: var(--fire-color) transparent; }
         .offers-content h3 { color: var(--fire-light); text-align: center; font-family: 'Syncopate', sans-serif; font-size: 1rem; border-bottom: 1px solid rgba(255, 60, 0, 0.3); padding-bottom: 10px; }
-        .mini-offer-card { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 60, 0, 0.2); border-radius: 10px; padding: 10px; cursor: pointer; transition: all 0.3s; }
-        .mini-offer-img { width: 50px; height: 50px; object-fit: contain; margin-right: 15px; }
-        .mini-offer-title { font-size: 0.9rem; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 3px; }
+        
+        /* Modificación 1: Tarjetas de Ofertas Reaccionan */
+        .mini-offer-card { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 60, 0, 0.2); border-radius: 10px; padding: 10px; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .mini-offer-card::before { content: ''; position: absolute; top:0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,100,0,0.2), transparent); transition: left 0.5s; z-index: 1; }
+        .mini-offer-card:hover { transform: translateX(8px) scale(1.02); border-color: var(--fire-light); box-shadow: 0 5px 15px rgba(255, 60, 0, 0.4), inset 0 0 10px rgba(255, 60, 0, 0.1); background: rgba(255, 60, 0, 0.08); }
+        .mini-offer-card:hover::before { left: 100%; }
+        
+        .mini-offer-info { position: relative; z-index: 2; width: 100%; }
+        .mini-offer-img { width: 50px; height: 50px; object-fit: contain; margin-right: 15px; position: relative; z-index: 2; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+        .mini-offer-title { font-size: 0.9rem; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 3px; transition: color 0.3s; }
+        .mini-offer-card:hover .mini-offer-title { color: var(--fire-light); }
         .mini-old { color: #ff3c00; text-decoration: line-through; font-size: 0.75rem; }
         .mini-new { color: var(--price-green); font-weight: bold; font-size: 0.95rem; }
-        .mini-badge { background: var(--fire-color); color: #fff; font-size: 0.7rem; padding: 2px 5px; border-radius: 4px; margin-left: 5px; font-weight: bold; }
+        .mini-badge { background: var(--fire-color); color: #fff; font-size: 0.7rem; padding: 2px 5px; border-radius: 4px; margin-left: 5px; font-weight: bold; box-shadow: 0 0 5px rgba(255,60,0,0.5); }
     </style>
 </head>
 <body>
@@ -246,7 +250,6 @@
         <span class="welcome-all" onclick="selectInterest('Todos')">Ver Todo el Catálogo</span>
     </div>
 
-    <!-- Modificado: stopPropagation para que clics internos no lo cierren -->
     <div id="offers-sidebar" class="offers-sidebar" onclick="event.stopPropagation()">
         <div class="offers-tab" onclick="toggleOffers()" title="Ver Ofertas">
             <span class="pulse-icon">🔥<br><span style="font-size:0.9rem">%</span></span>
@@ -330,7 +333,6 @@
         </button>
     </div>
 
-    <!-- Modificado: onClick ahora llama a la función JS matemática de scroll suave 100% segura -->
     <button id="scroll-top-btn" class="scroll-top-btn" onclick="scrollToTopSmooth()" title="Volver arriba">⬆️</button>
 
     <div class="global-floating float-right">
@@ -339,32 +341,32 @@
 
     <script>
         const products = [
-            // Controles - ¡Con descripciones actualizadas y Tags añadidos!
-            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, tag: '🎮 Nuevo', folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'],
+            // Controles - ¡Nuevas ofertas realistas y llamativas!
+            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, oldPrice: 195000, tag: '🎮 Nuevo', folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'],
               desc: `<ul class='specs-list'><li><b>Precisión Absoluta:</b> Sticks y gatillos con tecnología Hall Effect (sin drift).</li><li><b>Durabilidad:</b> Micro-switches testeados hasta 5 millones de clics.</li><li><b>Inmersión:</b> 5 niveles de vibración ajustables.</li><li><b>Profesional:</b> 2 botones traseros programables.</li><li><b>Compatibilidad:</b> Modos HID / Xbox / Apple / Bluetooth.</li></ul>` },
             
-            { id: 'GameSirX3Pro', name: 'GameSir X3 Pro', category: 'Controles', price: 290000, tag: '🔥 Top Ventas', folder: 'Controles/GameSirX3Pro/', images: ['GameSirX3Pro_1.png', 'GameSirX3Pro_2.png', 'GameSirX3Pro_3.png', 'GameSirX3Pro_4.png', 'GameSirX3Pro_5.png', 'GameSirX3Pro_6.png.jpg'],
+            { id: 'GameSirX3Pro', name: 'GameSir X3 Pro', category: 'Controles', price: 290000, oldPrice: 355000, tag: '🔥 Top Ventas', folder: 'Controles/GameSirX3Pro/', images: ['GameSirX3Pro_1.png', 'GameSirX3Pro_2.png', 'GameSirX3Pro_3.png', 'GameSirX3Pro_4.png', 'GameSirX3Pro_5.png', 'GameSirX3Pro_6.png.jpg'],
               desc: `<ul class='specs-list'><li><b>Refrigeración Integrada:</b> Cooler Peltier 12W con placa de 900mm².</li><li><b>Componentes Premium:</b> Hall Effect y micro-switches esport-grade.</li><li><b>Respuesta:</b> Giroscopio de 6 ejes y vibración dual.</li><li><b>Personalización:</b> Piezas modulares intercambiables a tu gusto.</li></ul>` },
             
-            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, tag: '💡 Entry Level', folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'],
+            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, oldPrice: 175000, tag: '💡 Entry Level', folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'],
               desc: `<ul class='specs-list'><li><b>Fiabilidad:</b> Joysticks con tecnología Hall Effect.</li><li><b>Ligereza:</b> Peso ultraligero de solo 135g.</li><li><b>Conveniencia:</b> Pass-through charging (carga mientras juegas).</li><li><b>Tamaño:</b> Ajustable para móviles desde 105mm hasta 213mm.</li><li><b>Funciones:</b> Modo Turbo totalmente personalizable.</li></ul>` },
 
-            // Coolers
+            // Coolers - ¡Descuentos rebalanceados!
             { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], desc: `<ul class='specs-list'><li><b>Función 2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética, estilo MagSafe.</li><li><b>Uso Sugerido:</b> Trabajo leve, ideal para evitar sobrecalentamiento al cargar.</li></ul>` },
-            { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, oldPrice: 118000, tag: '🔥 Top Ventas', folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla digital oculta y 3 niveles de potencia ajustables.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li><li><b>Extras:</b> Interruptor independiente para apagar luces.</li></ul>` },
-            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'], desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W con inteligencia artificial para efecto "hielo verdadero".</li><li><b>Fijación:</b> Sistema dual 2 en 1 (Magnética o Clip).</li><li><b>Diseño:</b> Extremadamente ligero (68g).</li><li><b>Requisito:</b> Exige cargador de al menos 15W (5V-3A).</li></ul>` },
-            { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, oldPrice: 130000, tag: '🔥 Top Ventas', folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png', 'CX15_2_ConAgarraderas.png', 'CX15_3_DelanteSolo.png', 'CX15_4_AtrasSolo.png', 'CX15_5_CableDeCarga.png', 'CX15_6_Agarraderas.png', 'CX15_7_PlacaMagnetica.png', 'CX15_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Congelación Extrema:</b> 20W totales, de -5°C a -7°C creando hielo en la placa.</li><li><b>Tecnología AI:</b> Ajusta temperatura y luces automáticamente.</li><li><b>Pantalla HD:</b> Monitoreo de temperatura en tiempo real.</li><li><b>Silencio Total:</b> < 25dB, ideal para streaming sin ruido de micrófono.</li></ul>` },
+            { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, oldPrice: 100000, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla digital oculta y 3 niveles de potencia ajustables.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li><li><b>Extras:</b> Interruptor independiente para apagar luces.</li></ul>` },
+            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, tag: '🔥 Top Ventas', folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'], desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W con inteligencia artificial para efecto "hielo verdadero".</li><li><b>Fijación:</b> Sistema dual 2 en 1 (Magnética o Clip).</li><li><b>Diseño:</b> Extremadamente ligero (68g).</li><li><b>Requisito:</b> Exige cargador de al menos 15W (5V-3A).</li></ul>` },
+            { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, oldPrice: 145000, tag: '🔥 Top Ventas', folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png', 'CX15_2_ConAgarraderas.png', 'CX15_3_DelanteSolo.png', 'CX15_4_AtrasSolo.png', 'CX15_5_CableDeCarga.png', 'CX15_6_Agarraderas.png', 'CX15_7_PlacaMagnetica.png', 'CX15_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Congelación Extrema:</b> 20W totales, de -5°C a -7°C creando hielo en la placa.</li><li><b>Tecnología AI:</b> Ajusta temperatura y luces automáticamente.</li><li><b>Pantalla HD:</b> Monitoreo de temperatura en tiempo real.</li><li><b>Silencio Total:</b> < 25dB, ideal para streaming sin ruido de micrófono.</li></ul>` },
             { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'], desc: `<ul class='specs-list'><li><b>Innovación:</b> Doble turbina de alta velocidad para mayor cobertura.</li><li><b>Opciones:</b> Versión Recargable (600 mAh) o de cable directo.</li><li><b>Sujeción:</b> Clip universal elástico para móviles de 62 a 92 mm.</li><li><b>Súper Liviano:</b> Pesa entre 44g y 53g.</li></ul>` },
             { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, oldPrice: 120000, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png', 'K22_2_Delantesolo.png', 'K22_3_AtrasSolo.png', 'K22_4_Funciones.png', 'K22_5_PlacaMagnetica.png', 'K22_6_CableDeCarga.png', 'K22_7_Todo.png'], desc: `<ul class='specs-list'><li><b>Gestión IA:</b> Ajuste automático o 4 niveles manuales de potencia.</li><li><b>Refrigeración:</b> 15W de gran área, ideal para evitar lag (PUBG, COD).</li><li><b>Fijación:</b> Magnético nativo y clip trasero (2 en 1).</li><li><b>Estética:</b> Pantalla digital y RGB de 6 colores (apagable).</li></ul>` },
             { id: 'K36', name: 'K36', category: 'COOLERS', price: 85000, oldPrice: 110000, folder: 'COOLERS/K36/', images: ['K36_1_Delante.jpg', 'K36_2_con_Agarraderas.jpg', 'K36_3_Delante_solo.png', 'K36_4_Atrás_solo.png', 'K36_5_Cable_de_carga.png', 'K36_6_Agarraderas.png', 'K36_7_Placa_Magnética.png', 'K36_8_Todo.jpg'], desc: `<ul class='specs-list'><li><b>Desempeño:</b> 15W, enfría en menos de 10 segundos.</li><li><b>Tamaño:</b> Mediano/Grande para máxima área de disipación.</li><li><b>Control:</b> 3 velocidades ajustables.</li><li><b>Versatilidad:</b> Magnético con opción de colocar clips.</li></ul>` },
-            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, oldPrice: 118000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Potencia Aeroespacial:</b> Baja hasta -9°C, una armadura para la batería.</li><li><b>3 Modos:</b> Congelación, Silencioso y Overclocking.</li><li><b>Información:</b> Pantalla HD para temperatura y modo.</li><li><b>Doble Uso:</b> MagSafe nativo o clip universal trasero.</li></ul>` },
+            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, oldPrice: 128000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Potencia Aeroespacial:</b> Baja hasta -9°C, una armadura para la batería.</li><li><b>3 Modos:</b> Congelación, Silencioso y Overclocking.</li><li><b>Información:</b> Pantalla HD para temperatura y modo.</li><li><b>Doble Uso:</b> MagSafe nativo o clip universal trasero.</li></ul>` },
             { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Refrigeración Premium:</b> Sistema de 7 capas (aleación de aviación y cerámica).</li><li><b>Eficiencia:</b> Turbina de 6000 RPM súper silenciosa.</li><li><b>Diseño:</b> Variantes con o sin pantalla digital.</li><li><b>Comodidad:</b> Pesa tan solo 56g.</li></ul>` },
             { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'], desc: `<ul class='specs-list'><li><b>Tecnología Base:</b> 7 capas con placa de cerámica (Modelo SL17).</li><li><b>Balance Ideal:</b> 10W (5V 2A), buen rendimiento sin gastar exceso de energía.</li><li><b>Ultra Compacto:</b> Medidas de 59x23mm y 55g de peso.</li><li><b>Variantes:</b> Con o sin pantalla indicadora de temperatura.</li></ul>` },
             { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'], desc: `<ul class='specs-list'><li><b>Refrigeración TEC 15W:</b> 3 niveles (Vídeo, 120 FPS y Transmisión).</li><li><b>MagSafe Superior:</b> 32 imanes ultra potentes integrados.</li><li><b>Ergonomía:</b> Flujo bidireccional, no quema ni sopla calor a las manos.</li><li><b>Silencio Absoluto:</b> < 25 dB de ruido operativo.</li></ul>` },
             { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png', 'S6X_2_DelanteSolo.png', 'S6X_3_AtrasSolo.png', 'S6X_4_PlacaMagnetica.png', 'S6X_5_CableDeCarga.png', 'S6X_6_Todo.png'], desc: `<ul class='specs-list'><li><b>Para Streamers:</b> Rosca de cobre integrada para montar en trípodes.</li><li><b>Doble Tecnología:</b> TEC de 5 niveles (panel de aluminio y cobre).</li><li><b>Fijación:</b> Magnético de alta potencia (MagSafe compatible).</li><li><b>RGB:</b> Efecto de "respiración" en el ventilador de 5500 RPM.</li></ul>` },
             { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Poder TEC:</b> 15W, capaz de congelación rápida en pleno verano.</li><li><b>Materiales:</b> Construcción robusta en ABS, metal y cerámica.</li><li><b>Comodidad:</b> Ultraligero (60g).</li><li><b>Conexión:</b> Alimentación estable mediante puerto USB Tipo-C.</li></ul>` },
-            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, oldPrice: 122000, folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Rendimiento Pro:</b> Reduce temperatura hasta 40°C, llegando a 0°C en 30s.</li><li><b>Comodidad:</b> Conducto de aire vertical que no sopla hacia las manos.</li><li><b>Compatibilidad:</b> Magnético o abrazadera universal (4.7" a 6.9").</li><li><b>Ambiente:</b> RGB personalizable y silencio para chats de voz.</li></ul>` },
-            { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, oldPrice: 115000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Poder Masivo:</b> 30W. Alcanza escarcha gracias a aletas engrosadas y turbo.</li><li><b>ATENCIÓN:</b> Requiere cargador PD (9V/3A) mínimo 30W. No usar Powerbanks.</li><li><b>IA & Pantalla:</b> Regulación automática en 3 niveles con pantalla digital.</li><li><b>Fijación:</b> Magnética o mediante clip desmontable.</li></ul>` },
+            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, oldPrice: 105000, tag: '🔥 Top Ventas', folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Rendimiento Pro:</b> Reduce temperatura hasta 40°C, llegando a 0°C en 30s.</li><li><b>Comodidad:</b> Conducto de aire vertical que no sopla hacia las manos.</li><li><b>Compatibilidad:</b> Magnético o abrazadera universal (4.7" a 6.9").</li><li><b>Ambiente:</b> RGB personalizable y silencio para chats de voz.</li></ul>` },
+            { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, oldPrice: 125000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Poder Masivo:</b> 30W. Alcanza escarcha gracias a aletas engrosadas y turbo.</li><li><b>ATENCIÓN:</b> Requiere cargador PD (9V/3A) mínimo 30W. No usar Powerbanks.</li><li><b>IA & Pantalla:</b> Regulación automática en 3 niveles con pantalla digital.</li><li><b>Fijación:</b> Magnética o mediante clip desmontable.</li></ul>` },
             { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'], desc: `<ul class='specs-list'><li><b>Versatilidad:</b> 3 modos ajustables (9W, 10W, 12W).</li><li><b>Disipación Máxima:</b> 7 capas térmicas para llevar la temperatura a -3°C.</li><li><b>Seguridad:</b> Apagado automático a los 70°C por seguridad.</li><li><b>Doble Sujeción:</b> Imán o clip, pesando apenas 56g.</li></ul>` },
             { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'], desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Tecnología Fría:</b> Chip semiconductor de alto rendimiento (23x23mm).</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` },
             { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'], desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Tecnología Fría:</b> Chip semiconductor de alto rendimiento (23x23mm).</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` }
@@ -407,27 +409,32 @@
             if (window.scrollY > 300) upBtn.classList.add('visible'); else upBtn.classList.remove('visible');
         });
 
-        // 100% Garantizado Smooth Scroll Matemático (Corregido)
         let scrollAnimationId;
         function scrollToTopSmooth() {
             const c = document.documentElement.scrollTop || document.body.scrollTop;
-            if (c > 2) { // Evita el bucle infinito al acercarse a 0
+            if (c > 2) { 
                 window.scrollTo(0, c - c / 10);
                 scrollAnimationId = window.requestAnimationFrame(scrollToTopSmooth);
             } else {
-                window.scrollTo(0, 0); // Fuerza llegar al tope exacto
+                window.scrollTo(0, 0); 
                 cancelAnimationFrame(scrollAnimationId);
             }
         }
         
-        // Detiene la animación automáticamente si el usuario decide hacer scroll manual
         window.addEventListener('wheel', () => cancelAnimationFrame(scrollAnimationId), {passive: true});
         window.addEventListener('touchstart', () => cancelAnimationFrame(scrollAnimationId), {passive: true});
 
+        // Ofertas reflejan descuentos automáticamente (incluyendo controles)
         function renderOffersSidebar() {
             const offersContainer = document.getElementById('offers-list');
             offersContainer.innerHTML = '';
-            const onSale = products.filter(p => p.oldPrice);
+            
+            // Filtra y ordena las ofertas de mayor a menor porcentaje de descuento
+            const onSale = products.filter(p => p.oldPrice).sort((a, b) => {
+                let descA = ((a.oldPrice - a.price) / a.oldPrice);
+                let descB = ((b.oldPrice - b.price) / b.oldPrice);
+                return descB - descA;
+            });
             
             onSale.forEach(product => {
                 const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
@@ -469,7 +476,6 @@
         function createProductCard(product, uniqueId) {
             const card = document.createElement('div'); card.className = 'product-card';
             
-            // Implementación de los Badges sugeridos
             let badgesHTML = '';
             if (product.oldPrice) {
                 const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
@@ -536,7 +542,6 @@
         modalSlider.addEventListener('mouseenter', () => isInteractingWithModal = true); modalSlider.addEventListener('mouseleave', () => isInteractingWithModal = false);
         modalSlider.addEventListener('touchstart', () => isInteractingWithModal = true, {passive: true}); modalSlider.addEventListener('touchend', () => { setTimeout(()=> isInteractingWithModal = false, 2000); });
 
-        // Corrección de lógica para ocultar/mostrar Badge de Carrito
         function updateCartBadge() {
             const countSpan = document.getElementById('cart-count');
             countSpan.textContent = cart.length;
@@ -572,7 +577,6 @@
 
         function showGlobalToast(msg) { const toast = document.getElementById('global-toast'); toast.textContent = msg; toast.classList.add('show'); setTimeout(() => { toast.classList.remove('show'); }, 2500); }
 
-        // Mejora API Moderna para copiar enlaces + Fallback
         function copyProductLink(productId) {
             let urlSinParams = window.location.href.split('?')[0].split('#')[0];
             const linkToCopy = urlSinParams + '?p=' + productId;
@@ -596,19 +600,103 @@
             if (!e.target.closest('.offers-sidebar') && !e.target.closest('.offers-tab')) document.getElementById('offers-sidebar').classList.remove('open');
         });
 
-        // Configuración y Mejora del Canvas
-        const canvas = document.getElementById('trail-canvas'); const ctx = canvas.getContext('2d'); let width, height; let particles = []; let mouse = { x: -100, y: -100 };
-        function initCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+        // ==========================================
+        // NUEVO FONDO: PLEXUS NETWORK (Red interactiva) + Partículas
+        // ==========================================
+        const canvas = document.getElementById('trail-canvas'); 
+        const ctx = canvas.getContext('2d'); 
+        let width, height; 
+        let particles = []; 
+        let bgNodes = []; // Nodos de la red de fondo
+        let mouse = { x: -1000, y: -1000 };
+
+        function initCanvas() { 
+            width = window.innerWidth; 
+            height = window.innerHeight; 
+            canvas.width = width; 
+            canvas.height = height; 
+            
+            bgNodes = [];
+            const numNodes = Math.floor(width / 20); // Cantidad de nodos según el tamaño de la pantalla
+            for(let i = 0; i < numNodes; i++) {
+                bgNodes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 1.5 + 0.5
+                });
+            }
+        }
         
-        // Verifica si el dispositivo es táctil usando JS para no gastar batería
         if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
             window.addEventListener('resize', initCanvas); initCanvas();
-            function spawnParticles(x, y) { for(let i=0; i < 2; i++){ particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 - 0.5, life: 1, size: Math.random() * 3 + 1, color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255' }); } }
+            
+            function spawnParticles(x, y) { 
+                for(let i=0; i < 2; i++){ 
+                    particles.push({ 
+                        x: x, y: y, 
+                        vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 - 0.5, 
+                        life: 1, size: Math.random() * 3 + 1, 
+                        color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255' 
+                    }); 
+                } 
+            }
+            
             window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; spawnParticles(mouse.x, mouse.y); });
-            function animateCanvas() { ctx.clearRect(0, 0, width, height); ctx.globalCompositeOperation = 'lighter'; for(let i = 0; i < particles.length; i++) { let p = particles[i]; p.x += p.vx; p.y += p.vy; p.life -= 0.015; p.size *= 0.96; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(${p.color}, ${p.life})`; ctx.fill(); } particles = particles.filter(p => p.life > 0.05); requestAnimationFrame(animateCanvas); }
+            window.addEventListener('mouseout', () => { mouse.x = -1000; mouse.y = -1000; }); // Oculta interaccion al salir
+
+            function animateCanvas() { 
+                ctx.clearRect(0, 0, width, height); 
+                
+                // 1. Dibujar Red Interconectada (Plexus)
+                ctx.lineWidth = 0.5;
+                for(let i=0; i < bgNodes.length; i++) {
+                    let n1 = bgNodes[i];
+                    n1.x += n1.vx; n1.y += n1.vy;
+                    
+                    // Rebote en bordes
+                    if(n1.x < 0 || n1.x > width) n1.vx *= -1;
+                    if(n1.y < 0 || n1.y > height) n1.vy *= -1;
+
+                    ctx.fillStyle = 'rgba(0, 240, 255, 0.4)';
+                    ctx.beginPath(); ctx.arc(n1.x, n1.y, n1.size, 0, Math.PI * 2); ctx.fill();
+
+                    // Conectar nodos entre sí (Color Azul Hielo)
+                    for(let j = i + 1; j < bgNodes.length; j++) {
+                        let n2 = bgNodes[j];
+                        let dist = Math.sqrt((n1.x - n2.x)**2 + (n1.y - n2.y)**2);
+                        if(dist < 100) {
+                            ctx.strokeStyle = `rgba(0, 240, 255, ${0.2 - dist/500})`;
+                            ctx.beginPath(); ctx.moveTo(n1.x, n1.y); ctx.lineTo(n2.x, n2.y); ctx.stroke();
+                        }
+                    }
+
+                    // Conectar nodos al Mouse (Color Fuego/Naranja al acercarse)
+                    let distMouse = Math.sqrt((n1.x - mouse.x)**2 + (n1.y - mouse.y)**2);
+                    if(distMouse < 150) {
+                        ctx.strokeStyle = `rgba(255, 100, 0, ${0.6 - distMouse/250})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath(); ctx.moveTo(n1.x, n1.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+                        ctx.lineWidth = 0.5;
+                    }
+                }
+
+                // 2. Dibujar estela de partículas al mover el mouse
+                ctx.globalCompositeOperation = 'lighter'; 
+                for(let i = 0; i < particles.length; i++) { 
+                    let p = particles[i]; 
+                    p.x += p.vx; p.y += p.vy; p.life -= 0.015; p.size *= 0.96; 
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); 
+                    ctx.fillStyle = `rgba(${p.color}, ${p.life})`; ctx.fill(); 
+                } 
+                particles = particles.filter(p => p.life > 0.05); 
+                
+                requestAnimationFrame(animateCanvas); 
+            }
+            
             window.onload = function() { renderOffersSidebar(); checkUrlForProduct(); animateCanvas(); };
         } else {
-            // Si es móvil, no carga animaciones de fondo
             window.onload = function() { renderOffersSidebar(); checkUrlForProduct(); };
         }
     </script>
