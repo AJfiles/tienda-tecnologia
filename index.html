@@ -3,26 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJ ICE STORE</title>
-    <!-- Fuentes Minimalistas y Modernas -->
+    
+    <!-- METADATOS PARA COMPARTIR EN WHATSAPP/REDES -->
+    <title>AJ-STORE</title>
+    <meta property="og:title" content="AJ-STORE 🎮❄️ | Tecnología y Gaming">
+    <meta property="og:description" content="Descubre los mejores Controles y Coolers para móviles. Envíos a todo el país y contra entrega en Bogotá. 🔥 ¡Aprovecha nuestras ofertas!">
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <!-- Importamos Montserrat (textos), Space Grotesk (Títulos minimalistas) y Syncopate (Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Space+Grotesk:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* === VARIABLES Y DISEÑO BASE === */
         :root {
-            --bg-color: #050914; /* Azul/Negro muy profundo */
+            --bg-color: #050914; 
             --surface-color: #0a1122;
             --accent-ice: #00f0ff;
             --accent-glow: rgba(0, 240, 255, 0.3);
-            /* Nuevo: Tema de fuego para el Hover */
             --fire-color: #ff3c00;
             --fire-glow: rgba(255, 60, 0, 0.6);
             --fire-light: #ffaa00;
             --text-main: #ffffff;
             --text-muted: #8b9bb4;
             --price-green: #00ff73;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Desplazamiento global suave */
         }
 
         * {
@@ -37,10 +45,8 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* === PANTALLA DE BIENVENIDA === */
         #welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -80,275 +86,114 @@
         }
 
         .welcome-options {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            animation: fadeInUp 1s ease-out;
+            display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; animation: fadeInUp 1s ease-out;
         }
 
         .welcome-btn {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(0, 240, 255, 0.3);
             color: var(--text-main);
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            border-radius: 40px;
-            cursor: pointer;
+            padding: 15px 35px; font-size: 1.1rem; border-radius: 40px; cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            position: relative; overflow: hidden;
         }
 
         .welcome-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,240,255,0.2), transparent);
-            transition: left 0.5s;
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,240,255,0.2), transparent); transition: left 0.5s;
         }
 
         .welcome-btn:hover {
-            border-color: var(--accent-ice);
-            box-shadow: 0 0 25px var(--accent-glow);
-            transform: scale(1.05);
-            color: var(--accent-ice);
+            border-color: var(--accent-ice); box-shadow: 0 0 25px var(--accent-glow);
+            transform: scale(1.05); color: var(--accent-ice);
         }
         .welcome-btn:hover::before { left: 100%; }
 
         .welcome-all {
-            margin-top: 2.5rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            animation: fadeInUp 1.2s ease-out;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
+            margin-top: 2.5rem; color: var(--text-muted); cursor: pointer; font-size: 0.9rem;
+            transition: all 0.3s; animation: fadeInUp 1.2s ease-out; letter-spacing: 1px; text-transform: uppercase;
+            padding-bottom: 2px; border-bottom: 1px solid transparent; font-family: 'Space Grotesk', sans-serif;
         }
+        .welcome-all:hover { color: var(--accent-ice); border-bottom: 1px solid var(--accent-ice); }
 
-        .welcome-all:hover {
-            color: var(--accent-ice);
-            border-bottom: 1px solid var(--accent-ice);
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === CABECERA === */
         header {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 20px 10px;
-            position: relative;
-            z-index: 50;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 30px 20px 10px; position: relative; z-index: 50;
         }
 
-        .header-top {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            position: relative;
-        }
+        .header-top { display: flex; justify-content: center; align-items: center; width: 100%; position: relative; }
 
-        /* Animación de Neón para el título */
-        @keyframes neonPulse {
-            0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00f0ff; }
-            50% { text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
-        }
-
-        /* Animación de vibración (Glitch) */
-        @keyframes vibrate {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+        @keyframes neonPulseSoft {
+            0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); }
+            50% { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; }
         }
 
         h1.logo {
             font-family: 'Syncopate', sans-serif;
-            font-size: 2.8rem;
-            letter-spacing: 6px;
-            color: #fff;
-            margin: 0;
-            text-align: center;
-            animation: neonPulse 2s infinite alternate;
-            cursor: default;
-            transition: color 0.3s;
+            font-size: 2.8rem; letter-spacing: 6px; color: #fff; margin: 0; text-align: center;
+            cursor: default; transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: neonPulseSoft 2.5s infinite alternate;
         }
 
         h1.logo:hover {
-            color: var(--accent-ice);
-            animation: vibrate 0.2s infinite;
+            color: var(--accent-ice); transform: scale(1.05); 
+            text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff, 0 0 60px #00f0ff;
         }
 
-        .menu-toggle {
-            position: absolute;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 101;
+        .offers-sidebar {
+            position: fixed; top: 25vh; left: -280px; width: 280px; height: 60vh;
+            background: rgba(10, 17, 34, 0.95); backdrop-filter: blur(10px);
+            border-right: 2px solid var(--fire-color); border-top: 2px solid var(--fire-color); border-bottom: 2px solid var(--fire-color);
+            border-radius: 0 20px 20px 0; box-shadow: 10px 0 30px rgba(255, 60, 0, 0.2);
+            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; display: flex; flex-direction: column;
+        }
+
+        .offers-sidebar.open { left: 0; box-shadow: 15px 0 50px rgba(255, 60, 0, 0.4); }
+
+        .offers-tab {
+            position: absolute; right: -55px; top: 40px; width: 55px; height: 80px;
+            background: linear-gradient(135deg, #ff3c00, #ffaa00); border-radius: 0 15px 15px 0;
+            display: flex; justify-content: center; align-items: center; cursor: pointer;
+            box-shadow: 5px 0 20px var(--fire-glow); animation: flamePulse 2s infinite alternate;
         }
         
-        .menu-toggle:hover { transform: scale(1.1); color: var(--accent-ice); text-shadow: 0 0 10px var(--accent-glow); }
+        @keyframes flamePulse { 0% { box-shadow: 5px 0 15px rgba(255, 60, 0, 0.5); } 100% { box-shadow: 10px 0 30px rgba(255, 120, 0, 0.8); } }
 
-        .categories-menu {
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background: rgba(10, 17, 34, 0.98);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0,240,255,0.2);
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-15px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 100;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 15px rgba(0,240,255,0.1);
+        /* Efecto Cenizas Fuego para Tab de Ofertas */
+        .offers-tab::after {
+            content: ''; position: absolute; bottom: 5px; left: 50%; width: 3px; height: 3px;
+            background: transparent; border-radius: 50%;
+            box-shadow: -15px 10px 1px rgba(255,255,255,0.8), 10px 20px 2px rgba(255,170,0,0.8), -5px 30px 1px rgba(255,60,0,0.8), 15px 40px 2px rgba(255,170,0,0.8);
+            opacity: 0; pointer-events: none; filter: blur(0.5px);
+            animation: ashRiseTab 1.5s infinite ease-in;
         }
 
-        .categories-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        @keyframes ashRiseTab {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-50px) scale(0.2); opacity: 0; }
         }
 
-        .cat-btn {
-            background: transparent;
-            border: 1px solid transparent;
-            color: var(--text-muted);
-            padding: 12px 25px;
-            text-align: left;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s;
+        .pulse-icon {
+            color: #fff; font-size: 1.5rem; font-weight: bold; display: flex; flex-direction: column; align-items: center;
+            line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5); font-family: 'Space Grotesk', sans-serif;
         }
 
-        .cat-btn:hover, .cat-btn.active {
-            background: rgba(0, 240, 255, 0.05);
-            color: var(--accent-ice);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            box-shadow: 0 0 10px rgba(0,240,255,0.1);
-        }
-
-        /* === BÚSQUEDA Y FILTROS === */
-        .controls-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
-            z-index: 40;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.03);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .search-bar:focus {
-            border-color: var(--accent-ice);
-            box-shadow: 0 0 15px var(--accent-glow);
-            background: rgba(0, 240, 255, 0.05);
-        }
-
-        .sort-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.15);
-            color: var(--text-muted);
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .sort-btn:hover {
-            border-color: var(--accent-ice);
-            color: var(--accent-ice);
-        }
-
-        /* === GRILLA DE PRODUCTOS Y SEPARADORES === */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 35px;
-            padding: 30px 40px 80px;
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .category-separator {
-            grid-column: 1 / -1;
-            width: 100%;
-            text-align: center;
-            margin: 30px 0 10px;
-            position: relative;
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.5rem;
-            color: var(--accent-ice);
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px var(--accent-glow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .category-separator::before, .category-separator::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-ice), transparent);
-            margin: 0 20px;
-            opacity: 0.5;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 35px;
+            padding: 30px 40px 80px; max-width: 1300px; margin: 0 auto; position: relative; z-index: 10;
         }
 
         .product-card {
-            background-color: var(--surface-color);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255,255,255,0.03);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: var(--surface-color); border-radius: 16px; padding: 20px; text-align: center;
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.03); position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* EFECTO FUEGO AL PASAR EL MOUSE */
         @keyframes flickerFlame {
             0% { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px var(--fire-glow), inset 0 0 15px rgba(255, 60, 0, 0.2); border-color: #ff3c00; }
             50% { box-shadow: 0 15px 30px rgba(0,0,0,0.7), 0 0 35px rgba(255, 120, 0, 0.8), inset 0 0 25px rgba(255, 100, 0, 0.5); border-color: #ffaa00; }
@@ -356,489 +201,185 @@
         }
 
         @keyframes flameMove {
-            0% { background-position: 50% 100%; }
-            50% { background-position: 50% 0%; }
-            100% { background-position: 50% 100%; }
+            0% { background-position: 50% 100%; } 50% { background-position: 50% 0%; } 100% { background-position: 50% 100%; }
         }
 
         .product-card::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 100%;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(0deg, rgba(255, 60, 0, 0.4) 0%, rgba(255, 150, 0, 0.1) 40%, transparent 80%);
-            background-size: 100% 200%;
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 1;
-            pointer-events: none;
+            background-size: 100% 200%; opacity: 0; transition: opacity 0.4s; z-index: 1; pointer-events: none;
+        }
+
+        /* Efecto Cenizas de Fuego para Producto */
+        .product-card::after {
+            content: ''; position: absolute; bottom: 20%; left: 50%; width: 4px; height: 4px;
+            background: transparent; border-radius: 50%;
+            box-shadow: -50px 10px 2px rgba(255,60,0,0.8), 40px 30px 1px rgba(255,170,0,0.8), -30px 50px 2px rgba(255,60,0,0.8), 20px 70px 1px rgba(255,170,0,0.8), 50px 90px 2px rgba(255,60,0,0.8), -15px 110px 1px rgba(255,170,0,0.8), 0px 20px 2px rgba(255,60,0,0.8);
+            opacity: 0; pointer-events: none; z-index: 10; filter: blur(1px);
+        }
+
+        @keyframes ashRiseCard {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-150px) scale(0.3); opacity: 0; }
         }
 
         .product-card:hover, .product-card:active {
-            transform: translateY(-10px) scale(1.02);
-            /* Transición de hielo a fuego animada */
-            animation: flickerFlame 1.2s infinite alternate;
+            transform: translateY(-10px) scale(1.02); animation: flickerFlame 1.2s infinite alternate;
         }
 
-        .product-card:hover .product-title {
-            color: var(--fire-light);
-            text-shadow: 0 0 8px rgba(255, 170, 0, 0.5);
+        .product-card:hover .product-title { color: var(--fire-light); text-shadow: 0 0 8px rgba(255, 170, 0, 0.5); }
+        .product-card:hover::before { opacity: 1; animation: flameMove 2s infinite ease-in-out; }
+        
+        /* Animación de cenizas SOLO activa al posar cursor/dedo */
+        .product-card:hover::after { animation: ashRiseCard 1.2s infinite ease-in; }
+
+        .product-title {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: 0.5px;
+            margin-bottom: 8px; color: #fff; position: relative; z-index: 2; transition: color 0.3s;
         }
 
-        .product-card:hover::before { 
-            opacity: 1;
-            animation: flameMove 2s infinite ease-in-out;
+        .product-price { color: var(--text-muted); font-size: 1.1rem; font-weight: 500; z-index: 2; position: relative; }
+        .old-price {
+            text-decoration: line-through; color: #ff3c00; font-size: 0.95rem; margin-right: 8px;
+            font-weight: 500; opacity: 0.8; text-shadow: 0 0 5px rgba(255, 60, 0, 0.4);
         }
 
         .img-container {
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            z-index: 2;
+            height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
+            border-radius: 8px; overflow: hidden; position: relative; z-index: 2;
         }
 
-        .card-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
+        .card-track { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .card-track img { min-width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4)); }
 
-        .card-track img {
-            min-width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4));
-        }
-
-        .product-title {
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            color: #fff;
-            position: relative;
-            z-index: 2;
-            transition: color 0.3s;
-        }
-
-        .product-price {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            font-weight: 300;
-            z-index: 2;
-            position: relative;
-        }
-
-        /* NUEVO: Estilo para el precio tachado */
-        .old-price {
-            text-decoration: line-through;
-            color: #ff3c00;
-            font-size: 0.9rem;
-            margin-right: 8px;
-            font-weight: 400;
-            opacity: 0.8;
-            text-shadow: 0 0 5px rgba(255, 60, 0, 0.4);
-        }
-
-        /* === MODAL & GALERÍA === */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center;
         }
 
         .modal-content {
-            background-color: var(--surface-color);
-            width: 90%;
-            max-width: 480px;
-            max-height: 95vh;
-            border-radius: 20px;
-            border: 1px solid rgba(0,240,255,0.2);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+            background-color: var(--surface-color); width: 90%; max-width: 480px; max-height: 95vh;
+            border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); display: flex; flex-direction: column;
+            position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        @keyframes popIn {
-            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
+        @keyframes popIn { 0% { transform: scale(0.8) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
 
         .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 10;
-            background: rgba(0,0,0,0.6);
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            transition: all 0.3s;
+            position: absolute; top: 15px; right: 20px; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10;
+            background: rgba(0,0,0,0.6); width: 40px; height: 40px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; transition: all 0.3s;
         }
-
         .close-btn:hover { background: var(--fire-color); box-shadow: 0 0 15px var(--fire-glow); transform: rotate(90deg); }
 
         #modal-title {
-            text-align: center;
-            padding: 20px 40px;
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.2rem;
-            color: var(--accent-ice);
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-align: center; padding: 20px 40px; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700;
+            color: var(--accent-ice); letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .gallery-wrapper {
-            position: relative;
-            width: 100%;
-            height: 350px;
-            min-height: 200px;
-            flex-shrink: 1;
-            background: #000;
-        }
-
-        .slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            width: 100%;
-            height: 100%;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        
+        .gallery-wrapper { position: relative; width: 100%; height: 350px; min-height: 200px; flex-shrink: 1; background: #000; }
+        .slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: 100%; height: 100%; -ms-overflow-style: none; scrollbar-width: none; }
         .slider::-webkit-scrollbar { display: none; }
+        .slider img { width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: center; object-fit: contain; }
 
-        .slider img {
-            width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            scroll-snap-align: center;
-            object-fit: contain;
-        }
-
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-            width: 45px; height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 5;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            display: flex; justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        .nav-btn:hover { background: var(--accent-ice); color: #000; border-color: transparent; box-shadow: 0 0 15px var(--accent-glow); }
-        .nav-prev { left: 10px; }
-        .nav-next { right: 10px; }
-
-        .swipe-hint {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin: 10px 0;
-            animation: pulseHint 2s infinite;
-        }
-
-        @keyframes pulseHint {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .modal-footer {
-            padding: 15px 20px;
-            background: rgba(5, 9, 20, 0.95);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .price-glow {
-            color: var(--price-green);
-            font-size: 2.2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-shadow: 0 0 15px rgba(0, 255, 115, 0.4);
-            margin-bottom: 10px;
-        }
-
-        /* NUEVO: ESTILOS PARA LA TABLA DE ESPECIFICACIONES */
         .modal-description {
-            text-align: left;
-            margin: 5px 0 15px;
-            padding: 15px 20px;
-            background: rgba(0, 240, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 0.6s ease-out;
-            max-height: 22vh;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-ice) transparent;
+            text-align: left; margin: 5px 0 15px; padding: 15px 20px; background: rgba(0, 240, 255, 0.05);
+            border-radius: 12px; border: 1px solid rgba(0, 240, 255, 0.15); font-size: 0.9rem; line-height: 1.6;
+            color: var(--text-muted); box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); max-height: 20vh;
+            overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--accent-ice) transparent;
         }
 
-        .modal-description::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .modal-description::-webkit-scrollbar-thumb {
-            background-color: var(--accent-ice);
-            border-radius: 10px;
-        }
-
-        .specs-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .specs-list li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .specs-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .specs-list li::before {
-            content: '▹'; /* Viñeta futurista */
-            position: absolute;
-            left: 0;
-            top: -2px;
-            color: var(--accent-ice);
-            font-size: 1.1rem;
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        .specs-list b {
-            color: var(--text-main);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .btn-base {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            padding: 15px 10px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-        }
-
-        .wp-btn {
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        .wp-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
-
-        .cart-add-btn {
-            background: transparent;
-            color: var(--accent-ice);
-            border: 1px solid var(--accent-ice);
-        }
-        .cart-add-btn:hover {
-            background: rgba(0, 240, 255, 0.1);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        /* === BOTONES FLOTANTES GLOBALES === */
-        .global-floating {
-            position: fixed;
-            bottom: 20px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .float-right { right: 20px; }
-        .float-left { left: 20px; }
-
-        .floating-btn {
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            color: white;
-            font-size: 1.8rem;
-            text-decoration: none;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            border: none;
-            position: relative;
-        }
-
-        .wa-global-btn {
-            background: #25D366;
-            animation: bounceWA 3s infinite;
-        }
-        .wa-global-btn:hover { transform: scale(1.15); box-shadow: 0 0 25px rgba(37, 211, 102, 0.8); animation: none; }
-
-        @keyframes bounceWA {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-15px); }
-            60% { transform: translateY(-7px); }
-        }
-
-        .cart-global-btn {
-            background: var(--surface-color);
-            border: 2px solid var(--accent-ice);
-            color: var(--accent-ice);
-        }
-        .cart-global-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--accent-glow); background: var(--accent-ice); color: #000; }
-
-        .cart-badge {
-            position: absolute;
-            top: -5px; right: -5px;
-            background: var(--fire-color);
-            color: white;
-            font-size: 0.8rem;
-            font-weight: bold;
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 10px var(--fire-glow);
-        }
-
-        /* === MODAL DE CARRITO === */
-        #cart-modal .modal-content { max-width: 400px; }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.9rem;
-        }
-        .cart-item-name { color: #fff; flex: 1; }
-        .cart-item-price { color: var(--price-green); font-weight: bold; margin: 0 15px; }
-        .cart-remove { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1.2rem; }
-        .cart-empty { text-align: center; padding: 30px; color: var(--text-muted); }
-        .cart-total-wrap { display: flex; justify-content: space-between; padding: 20px; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(0,240,255,0.2);}
-
-        /* === SECCIÓN DE CONFIANZA Y ENVÍOS (NUEVO) === */
         .trust-section {
-            width: 100%;
-            padding: 40px 20px 80px;
-            background: linear-gradient(0deg, var(--bg-color), rgba(10, 17, 34, 0.2));
-            position: relative;
-            z-index: 10;
-            border-top: 1px solid rgba(0, 240, 255, 0.1);
-            margin-top: 20px;
+            width: 100%; padding: 40px 20px 80px; background: linear-gradient(0deg, var(--bg-color), rgba(10, 17, 34, 0.2));
+            position: relative; z-index: 10; border-top: 1px solid rgba(0, 240, 255, 0.1); margin-top: 20px;
         }
-
-        .trust-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            text-align: center;
-        }
-
+        .trust-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; text-align: center; }
         .trust-item {
-            background: rgba(0, 240, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px 20px;
-            border-radius: 16px;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: rgba(0, 240, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 20px; border-radius: 16px; transition: all 0.4s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
+        .trust-item:hover { transform: translateY(-8px); border-color: var(--accent-ice); box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1); background: rgba(0, 240, 255, 0.05); }
+        .trust-icon { font-size: 2.8rem; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--accent-glow)); animation: pulseHint 3s infinite alternate; }
+        .trust-item h3 { color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; }
 
-        .trust-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-ice);
-            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1);
-            background: rgba(0, 240, 255, 0.05);
+        .menu-toggle { position: absolute; right: 20px; background: none; border: none; color: var(--text-main); font-size: 2rem; cursor: pointer; transition: all 0.3s; z-index: 101; }
+        .categories-menu {
+            position: absolute; top: 60px; right: 20px; background: rgba(10, 17, 34, 0.98); backdrop-filter: blur(15px);
+            border: 1px solid rgba(0,240,255,0.2); border-radius: 12px; padding: 15px; display: flex; flex-direction: column;
+            gap: 10px; opacity: 0; visibility: hidden; transform: translateY(-15px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 100;
         }
+        .categories-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .cat-btn {
+            background: transparent; border: 1px solid transparent; color: var(--text-muted); padding: 12px 25px; text-align: left;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; border-radius: 8px; transition: all 0.3s;
+        }
+        .cat-btn:hover, .cat-btn.active { background: rgba(0, 240, 255, 0.05); color: var(--accent-ice); border: 1px solid rgba(0, 240, 255, 0.3); }
 
-        .trust-icon {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px var(--accent-glow));
-            animation: pulseHint 3s infinite alternate;
-        }
+        .controls-area { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; width: 100%; max-width: 600px; z-index: 40; }
+        .search-bar { width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-family: 'Montserrat', sans-serif; text-align: center; }
+        .sort-btn { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; }
 
-        .trust-item h3 {
-            color: var(--text-main);
-            font-family: 'Syncopate', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+        /* Varios genéricos necesarios del código base (Botones flotantes, Modal de carrito, etc) */
+        .category-separator {
+            grid-column: 1 / -1; width: 100%; text-align: center; margin: 30px 0 10px; position: relative;
+            font-family: 'Syncopate', sans-serif; font-size: 1.5rem; color: var(--accent-ice); letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--accent-glow); display: flex; align-items: center; justify-content: center;
         }
+        .category-separator::before, .category-separator::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-ice), transparent); margin: 0 20px; opacity: 0.5; }
 
-        .trust-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+        /* Complementos Modales */
+        .modal-footer { padding: 15px 20px; background: rgba(5, 9, 20, 0.95); border-top: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; }
+        .price-glow { color: var(--price-green); font-size: 2.2rem; font-family: 'Montserrat', sans-serif; font-weight: 700; text-shadow: 0 0 15px rgba(0, 255, 115, 0.4); margin-bottom: 10px; }
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; }
+        .btn-base { flex: 1; min-width: 45%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 12px 10px; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; border: none; text-align: center; font-family: 'Space Grotesk', sans-serif; }
+        .wp-btn { background: linear-gradient(45deg, #25D366, #128C7E); color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .cart-add-btn { background: transparent; color: var(--accent-ice); border: 1px solid var(--accent-ice); }
+        .share-link-btn { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.2); flex-basis: 100%;}
         
-        .trust-item b {
-            color: var(--accent-ice);
-            font-weight: 500;
-        }
+        .global-floating { position: fixed; bottom: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 15px; }
+        .float-right { right: 20px; } .float-left { left: 20px; }
+        .floating-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.8rem; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none; position: relative; }
+        .wa-global-btn { background: #25D366; animation: bounceWA 3s infinite; }
+        .cart-global-btn { background: var(--surface-color); border: 2px solid var(--accent-ice); color: var(--accent-ice); }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--fire-color); color: white; font-size: 0.8rem; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        
+        /* Modificado: Botón Volver arriba suave */
+        .scroll-top-btn { position: fixed; bottom: 95px; right: 20px; width: 50px; height: 50px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; backdrop-filter: blur(5px); }
+        .scroll-top-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .scroll-top-btn:hover { background: var(--accent-ice); color: #000; border-color: var(--accent-ice); }
 
-        /* === CANVAS MÁGICO === */
-        #trail-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-        }
+        .toast-notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-50px); background: rgba(0, 240, 255, 0.9); color: #000; font-weight: bold; padding: 12px 25px; border-radius: 30px; z-index: 3000; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: 'Space Grotesk', sans-serif;}
+        .toast-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+        
+        #trail-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
 
+        /* Utilidades Internas */
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: 1px solid rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 5; font-size: 1.2rem; transition: all 0.3s; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .nav-prev { left: 10px; } .nav-next { right: 10px; }
+        .swipe-hint { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin: 10px 0; }
+        .specs-list { list-style: none; padding: 0; margin: 0; }
+        .specs-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .specs-list li::before { content: '▹'; position: absolute; left: 0; top: -2px; color: var(--accent-ice); font-size: 1.1rem; text-shadow: 0 0 8px var(--accent-glow); }
+        .specs-list b { color: var(--text-main); font-weight: 600; letter-spacing: 0.5px; }
+
+        /* Componentes Mini Offers */
+        .offers-content { padding: 20px 15px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .offers-content h3 { color: var(--fire-light); text-align: center; font-family: 'Syncopate', sans-serif; font-size: 1rem; border-bottom: 1px solid rgba(255, 60, 0, 0.3); padding-bottom: 10px; }
+        .mini-offer-card { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 60, 0, 0.2); border-radius: 10px; padding: 10px; cursor: pointer; transition: all 0.3s; }
+        .mini-offer-img { width: 50px; height: 50px; object-fit: contain; margin-right: 15px; }
+        .mini-offer-title { font-size: 0.9rem; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 3px; }
+        .mini-old { color: #ff3c00; text-decoration: line-through; font-size: 0.75rem; }
+        .mini-new { color: var(--price-green); font-weight: bold; font-size: 0.95rem; }
     </style>
 </head>
 <body>
-
-    <!-- LIENZO DE PARTÍCULAS MÁGICAS (Fondo interactivo) -->
     <canvas id="trail-canvas"></canvas>
+    <div id="global-toast" class="toast-notification">Mensaje</div>
 
-    <!-- PANTALLA DE BIENVENIDA -->
     <div id="welcome-screen">
-        <h1 class="welcome-logo">AJ ICE</h1>
+        <h1 class="welcome-logo">AJ-STORE</h1>
         <h2 class="welcome-title">¿En qué estás interesado hoy?</h2>
         <div class="welcome-options">
             <button class="welcome-btn" onclick="selectInterest('Controles')">Controles</button>
@@ -847,55 +388,43 @@
         <span class="welcome-all" onclick="selectInterest('Todos')">Ver Todo el Catálogo</span>
     </div>
 
-    <!-- CABECERA PRINCIPAL Y BÚSQUEDA -->
+    <div id="offers-sidebar" class="offers-sidebar">
+        <div class="offers-tab" onclick="toggleOffers()" title="Ver Ofertas">
+            <span class="pulse-icon">🔥<br><span style="font-size:0.9rem">%</span></span>
+        </div>
+        <div class="offers-content">
+            <h3>OFERTAS ESPECIALES</h3>
+            <div id="offers-list"></div>
+        </div>
+    </div>
+
     <header>
         <div class="header-top">
-            <h1 class="logo">AJ ICE STORE</h1>
+            <h1 class="logo">AJ-STORE</h1>
             <button class="menu-toggle" onclick="toggleMenu()" title="Categorías">☰</button>
-            
             <nav id="category-menu" class="categories-menu">
                 <button class="cat-btn active" data-cat="Todos">Todos</button>
                 <button class="cat-btn" data-cat="Controles">Controles</button>
                 <button class="cat-btn" data-cat="COOLERS">Ventiladores</button>
             </nav>
         </div>
-
         <div class="controls-area">
             <input type="text" id="search-input" class="search-bar" placeholder="Buscar por nombre (ej. M15, CX07)...">
             <button id="sort-btn" class="sort-btn">Ordenar: Mayor Precio ▼</button>
         </div>
     </header>
 
-    <!-- CONTENEDOR DE PRODUCTOS -->
     <main id="product-grid" class="grid"></main>
 
-    <!-- NUEVA SECCIÓN DE CONFIANZA Y ENVÍOS -->
     <section class="trust-section">
         <div class="trust-container">
-            <div class="trust-item">
-                <div class="trust-icon">🚚</div>
-                <h3>Logística Nacional</h3>
-                <p>Envíos <b>Contra Entrega a todo Bogotá</b>. Para el resto del país, despachamos de forma 100% segura mediante <b>Servientrega o Inter Rapidísimo</b>.</p>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon">📱</div>
-                <h3>Pagos Digitales</h3>
-                <p>Aceptamos únicamente transferencias seguras a través de <b>Nequi, Daviplata, Bancolombia, Banco Nu, Lulo Bank</b> y más aliados.</p>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon">⭐</div>
-                <h3>Experiencia Comprobada</h3>
-                <p>Operando desde <b>enero de 2024</b> con un historial intachable de ventas exitosas y cientos de clientes satisfechos a nivel nacional.</p>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon">🛡️</div>
-                <h3>Asesoría Gamer</h3>
-                <p>¿No sabes cuál elegir? Te brindamos <b>atención personalizada</b> para asegurar que lleves el equipo perfecto para tu dispositivo y estilo de juego.</p>
-            </div>
+            <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos <b>Contra Entrega en Bogotá</b>. Para el resto de Colombia despachamos de forma segura mediante <b>Servientrega o Inter Rapidísimo</b>.</p></div>
+            <div class="trust-item"><div class="trust-icon">📱</div><h3>Pagos Digitales</h3><p>Recibimos pagos por transferencia bancaria rápida: <b>Nequi, Daviplata, Bancolombia, Banco Nu, Dale</b> y otros aliados.</p></div>
+            <div class="trust-item"><div class="trust-icon">⭐</div><h3>Experiencia Comprobada</h3><p>Operando sin interrupciones desde <b>enero de 2024</b> con un historial intachable y cientos de clientes 100% satisfechos.</p></div>
+            <div class="trust-item"><div class="trust-icon">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos <b>atención personalizada</b> para asegurar que lleves el equipo perfecto para tu celular o estilo de juego.</p></div>
         </div>
     </section>
 
-    <!-- MODAL DE PRODUCTO (Galería Horizontal) -->
     <div id="product-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('product-modal')">&times;</span>
@@ -903,155 +432,133 @@
             
             <div class="gallery-wrapper">
                 <button class="nav-btn nav-prev" onclick="scrollGallery(-1)">&#10094;</button>
-                <div class="slider" id="modal-slider">
-                    <!-- Las imágenes se inyectan aquí -->
-                </div>
+                <div class="slider" id="modal-slider"></div>
                 <button class="nav-btn nav-next" onclick="scrollGallery(1)">&#10095;</button>
             </div>
-            <!-- ESPACIO FUTURO PARA TABLA DE ESPECIFICACIONES -->
-            <!-- <div id="specs-container"></div> -->
             <p class="swipe-hint">← Desliza o toca las flechas para ver más →</p>
 
             <div class="modal-footer">
                 <p id="modal-price" class="price-glow"></p>
-                <!-- NUEVO: CONTENEDOR DE ESPECIFICACIONES -->
                 <div id="modal-desc" class="modal-description"></div>
                 
                 <div class="action-buttons">
                     <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir</button>
                     <a id="modal-whatsapp" class="btn-base wp-btn" href="#" target="_blank">Comprar 💬</a>
+                    <button class="btn-base share-link-btn" id="modal-share-btn">🔗 Copiar Enlace</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE CARRITO -->
     <div id="cart-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 400px; height: auto; max-height: 80vh;">
             <span class="close-btn" onclick="closeModal('cart-modal')">&times;</span>
             <h2 id="modal-title">Tu Selección</h2>
-            
-            <div id="cart-items-container" style="flex: 1; overflow-y: auto; padding: 10px;">
-                <!-- Items del carrito -->
-            </div>
-
-            <div class="cart-total-wrap">
+            <div id="cart-items-container" style="flex: 1; overflow-y: auto; padding: 15px;"></div>
+            <div style="display: flex; justify-content: space-between; padding: 20px; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(0,240,255,0.2);">
                 <span>Total:</span>
                 <span id="cart-total-price" style="color: var(--price-green);">0</span>
             </div>
-
             <div class="modal-footer" style="padding: 15px;">
                 <a id="cart-whatsapp-btn" class="btn-base wp-btn" href="#" target="_blank" style="width: 100%;">Comprar Todo por WhatsApp 💬</a>
             </div>
         </div>
     </div>
 
-    <!-- BOTONES FLOTANTES -->
     <div class="global-floating float-left">
         <button class="floating-btn cart-global-btn" onclick="openCart()" title="Ver Carrito">
             🛒<span class="cart-badge" id="cart-count">0</span>
         </button>
     </div>
 
+    <button id="scroll-top-btn" class="scroll-top-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Volver arriba">⬆️</button>
+
     <div class="global-floating float-right">
-        <a class="floating-btn wa-global-btn" href="https://wa.me/573143766181?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20de%20su%20tienda." target="_blank" title="WhatsApp General">
-            <!-- Icono simple de WA hecho con texto/emoji o svg básico -->
-            💬
-        </a>
+        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20de%20su%20tienda." target="_blank" title="WhatsApp General">💬</a>
     </div>
 
     <script>
-        // === BASE DE DATOS ===
         const products = [
-            // CONTROLES (Sin descripciones por el momento)
             { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'] },
             { id: 'GameSirX3Pro', name: 'GameSir X3 Pro', category: 'Controles', price: 290000, folder: 'Controles/GameSirX3Pro/', images: ['GameSirX3Pro_1.png', 'GameSirX3Pro_2.png', 'GameSirX3Pro_3.png', 'GameSirX3Pro_4.png', 'GameSirX3Pro_5.png', 'GameSirX3Pro_6.png.jpg'] },
             { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'] },
 
-            // COOLERS (Con descripciones y ofertas)
             { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Función 2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética tipo MagSafe.</li><li><b>Uso:</b> Trabajo leve, ideal para evitar calentamiento al cargar.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Función 2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética, estilo MagSafe.</li><li><b>Uso Sugerido:</b> Trabajo leve, ideal para evitar sobrecalentamiento al cargar.</li></ul>` },
             
             { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, oldPrice: 118000, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla oculta, 3 niveles de enfriamiento.</li><li><b>Fijación:</b> Dual (Magnético y Clip).</li><li><b>Extra:</b> Interruptor independiente para luz RGB.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla digital oculta y 3 niveles de potencia ajustables.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li><li><b>Extras:</b> Interruptor independiente para apagar luces.</li></ul>` },
             
             { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Potencia:</b> 15W con control IA para "hielo verdadero".</li><li><b>Fijación:</b> Dual (Magnética / Clip).</li><li><b>Diseño:</b> Ultraligero (68g), RGB y bajo ruido.</li><li><b>Nota:</b> Requiere cargador 15W (5V-3A).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W con inteligencia artificial para efecto "hielo verdadero".</li><li><b>Fijación:</b> Sistema dual 2 en 1 (Magnética o Clip).</li><li><b>Diseño:</b> Extremadamente ligero (68g).</li><li><b>Requisito:</b> Exige cargador de al menos 15W (5V-3A).</li></ul>` },
             
             { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, oldPrice: 130000, folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png', 'CX15_2_ConAgarraderas.png', 'CX15_3_DelanteSolo.png', 'CX15_4_AtrasSolo.png', 'CX15_5_CableDeCarga.png', 'CX15_6_Agarraderas.png', 'CX15_7_PlacaMagnetica.png', 'CX15_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Potencia Extrema:</b> 20W, baja hasta -7°C (forma hielo en placa).</li><li><b>Tecnología AI:</b> Ajusta potencia y luces RGB automáticamente.</li><li><b>Pantalla:</b> Monitoreo de temperatura en tiempo real.</li><li><b>Fijación:</b> Dual. Silencio total (<25dB).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Congelación Extrema:</b> 20W totales, de -5°C a -7°C creando hielo en la placa.</li><li><b>Tecnología AI:</b> Ajusta temperatura y luces automáticamente.</li><li><b>Pantalla HD:</b> Monitoreo de temperatura en tiempo real.</li><li><b>Silencio Total:</b> < 25dB, ideal para streaming sin ruido de micrófono.</li></ul>` },
             
             { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Diseño:</b> Doble turbina de alta velocidad y cobertura amplia.</li><li><b>Versatilidad:</b> Versiones recargable (600mAh) o enchufable.</li><li><b>Fijación:</b> Clip elástico universal (62-92mm).</li><li><b>Ligero:</b> Súper silencioso y peso entre 44g-53g.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Innovación:</b> Doble turbina de alta velocidad para mayor cobertura.</li><li><b>Opciones:</b> Versión Recargable (600 mAh) o de cable directo.</li><li><b>Sujeción:</b> Clip universal elástico para móviles de 62 a 92 mm.</li><li><b>Súper Liviano:</b> Pesa entre 44g y 53g.</li></ul>` },
             
             { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, oldPrice: 120000, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png', 'K22_2_Delantesolo.png', 'K22_3_AtrasSolo.png', 'K22_4_Funciones.png', 'K22_5_PlacaMagnetica.png', 'K22_6_CableDeCarga.png', 'K22_7_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Control IA:</b> Ajuste automático o 4 velocidades manuales.</li><li><b>Potencia:</b> 15W para refrigeración de gran área.</li><li><b>Fijación:</b> Dual 2 en 1 (Magnético o Clip).</li><li><b>Extra:</b> Pantalla digital y luces RGB de 6 colores.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Gestión IA:</b> Ajuste automático o 4 niveles manuales de potencia.</li><li><b>Refrigeración:</b> 15W de gran área, ideal para evitar lag (PUBG, COD).</li><li><b>Fijación:</b> Magnético nativo y clip trasero (2 en 1).</li><li><b>Estética:</b> Pantalla digital y RGB de 6 colores (apagable).</li></ul>` },
             
             { id: 'K36', name: 'K36', category: 'COOLERS', price: 85000, oldPrice: 110000, folder: 'COOLERS/K36/', images: ['K36_1_Delante.jpg', 'K36_2_con_Agarraderas.jpg', 'K36_3_Delante_solo.png', 'K36_4_Atrás_solo.png', 'K36_5_Cable_de_carga.png', 'K36_6_Agarraderas.png', 'K36_7_Placa_Magnética.png', 'K36_8_Todo.jpg'], 
-              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 15W, enfriamiento ultra rápido en <10 segundos.</li><li><b>Velocidades:</b> 3 niveles ajustables.</li><li><b>Fijación:</b> Magnético con posibilidad de añadir clips.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Desempeño:</b> 15W, enfría en menos de 10 segundos.</li><li><b>Tamaño:</b> Mediano/Grande para máxima área de disipación.</li><li><b>Control:</b> 3 velocidades ajustables.</li><li><b>Versatilidad:</b> Magnético con opción de colocar clips.</li></ul>` },
             
             { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, oldPrice: 118000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> Grado aeroespacial, baja hasta -9°C.</li><li><b>Modos:</b> Congelación, Silencioso y Overclocking (5700 RPM).</li><li><b>Pantalla HD:</b> Muestra temperatura y modo.</li><li><b>Fijación:</b> MagSafe nativo o clip universal 2 en 1.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Potencia Aeroespacial:</b> Baja hasta -9°C, una armadura para la batería.</li><li><b>3 Modos:</b> Congelación, Silencioso y Overclocking.</li><li><b>Información:</b> Pantalla HD para temperatura y modo.</li><li><b>Doble Uso:</b> MagSafe nativo o clip universal trasero.</li></ul>` },
             
             { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Refrigeración:</b> Sistema de 7 capas (cerámica/aviación) a 6000 RPM.</li><li><b>Variantes:</b> Digital (muestra temperatura) u ordinaria.</li><li><b>Diseño:</b> Ultra ligero (56g) y súper silencioso.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Refrigeración Premium:</b> Sistema de 7 capas (aleación de aviación y cerámica).</li><li><b>Eficiencia:</b> Turbina de 6000 RPM súper silenciosa.</li><li><b>Diseño:</b> Variantes con o sin pantalla digital.</li><li><b>Comodidad:</b> Pesa tan solo 56g.</li></ul>` },
             
             { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Tecnología:</b> 7 capas térmicas con base de cerámica.</li><li><b>Eficiencia:</b> 10W (5V 2A), gran rendimiento sin exceso de energía.</li><li><b>Diseño:</b> Súper compacto (55g) y silencioso.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Tecnología Base:</b> 7 capas con placa de cerámica (Modelo SL17).</li><li><b>Balance Ideal:</b> 10W (5V 2A), buen rendimiento sin gastar exceso de energía.</li><li><b>Ultra Compacto:</b> Medidas de 59x23mm y 55g de peso.</li><li><b>Variantes:</b> Con o sin pantalla indicadora de temperatura.</li></ul>` },
             
             { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W, 3 velocidades (Ice-Cool, Juego, Frío Extremo).</li><li><b>Fijación:</b> Magnética superior (32 imanes tipo MagSafe).</li><li><b>Diseño:</b> Ligero (59g), silencioso (<25dB) e iluminación RGB.</li><li><b>Flujo:</b> Bidireccional (el calor no va a las manos).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Refrigeración TEC 15W:</b> 3 niveles (Vídeo, 120 FPS y Transmisión).</li><li><b>MagSafe Superior:</b> 32 imanes ultra potentes integrados.</li><li><b>Ergonomía:</b> Flujo bidireccional, no quema ni sopla calor a las manos.</li><li><b>Silencio Absoluto:</b> < 25 dB de ruido operativo.</li></ul>` },
             
             { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png', 'S6X_2_DelanteSolo.png', 'S6X_3_AtrasSolo.png', 'S6X_4_PlacaMagnetica.png', 'S6X_5_CableDeCarga.png', 'S6X_6_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Streamers:</b> Rosca de cobre integrada para montar en trípodes.</li><li><b>Refrigeración:</b> TEC 5 niveles con panel de aluminio (5500 RPM).</li><li><b>Fijación:</b> Magnética inteligente (compatible MagSafe).</li><li><b>Estética:</b> Luces LED RGB con efecto "respiración".</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Para Streamers:</b> Rosca de cobre integrada para montar en trípodes.</li><li><b>Doble Tecnología:</b> TEC de 5 niveles (panel de aluminio y cobre).</li><li><b>Fijación:</b> Magnético de alta potencia (MagSafe compatible).</li><li><b>RGB:</b> Efecto de "respiración" en el ventilador de 5500 RPM.</li></ul>` },
             
             { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Enfriamiento:</b> Extremo por semiconductores (Potencia 15W).</li><li><b>Materiales:</b> ABS robusto, metal y cerámica.</li><li><b>Diseño:</b> Ultra ligero, peso de solo 60g.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Poder TEC:</b> 15W, capaz de congelación rápida en pleno verano.</li><li><b>Materiales:</b> Construcción robusta en ABS, metal y cerámica.</li><li><b>Comodidad:</b> Ultraligero (60g).</li><li><b>Conexión:</b> Alimentación estable mediante puerto USB Tipo-C.</li></ul>` },
             
             { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, oldPrice: 122000, folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Rendimiento TEC:</b> Alcanza 0°C en 30s. Reduce la temp hasta 40°C.</li><li><b>Flujo Vertical:</b> El aire caliente no sopla hacia los dedos.</li><li><b>Fijación:</b> Magnética o abrazadera retráctil (4.7" a 6.9").</li><li><b>Diseño:</b> RGB personalizable y funcionamiento silencioso.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Rendimiento Pro:</b> Reduce temperatura hasta 40°C, llegando a 0°C en 30s.</li><li><b>Comodidad:</b> Conducto de aire vertical que no sopla hacia las manos.</li><li><b>Compatibilidad:</b> Magnético o abrazadera universal (4.7" a 6.9").</li><li><b>Ambiente:</b> RGB personalizable y silencio para chats de voz.</li></ul>` },
             
             { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, oldPrice: 115000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Poder Extremo:</b> 30W reales. Forma escarcha rápidamente.</li><li><b>Nota de Energía:</b> Exige cargador PD 30W (No usar Powerbank).</li><li><b>Control:</b> Inteligencia artificial, 3 niveles y pantalla.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Poder Masivo:</b> 30W. Alcanza escarcha gracias a aletas engrosadas y turbo.</li><li><b>ATENCIÓN:</b> Requiere cargador PD (9V/3A) mínimo 30W. No usar Powerbanks.</li><li><b>IA & Pantalla:</b> Regulación automática en 3 niveles con pantalla digital.</li><li><b>Fijación:</b> Magnética o mediante clip desmontable.</li></ul>` },
             
             { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Control:</b> 3 modos (9W, 10W, 12W) y pantalla digital.</li><li><b>Tecnología:</b> 7 capas para temperaturas entre -1°C y -3°C.</li><li><b>Seguridad:</b> Se apaga automáticamente a los 70°C.</li><li><b>Diseño:</b> Fijación dual y ultraligero (solo 56g).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Versatilidad:</b> 3 modos ajustables (9W, 10W, 12W).</li><li><b>Disipación Máxima:</b> 7 capas térmicas para llevar la temperatura a -3°C.</li><li><b>Seguridad:</b> Apagado automático a los 70°C por seguridad.</li><li><b>Doble Sujeción:</b> Imán o clip, pesando apenas 56g.</li></ul>` },
             
             { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Portabilidad:</b> Batería (300mAh) para movilidad o enchufe.</li><li><b>Rendimiento:</b> 3 velocidades, turbina silenciosa de 7 aspas.</li><li><b>Refrigeración:</b> Chip semiconductor de alto rendimiento.</li><li><b>Fijación:</b> Clip seguro en L (4.7 a 7.5 pulgadas).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Tecnología Fría:</b> Chip semiconductor de alto rendimiento (23x23mm).</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` },
             
             { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'], 
-              desc: `<ul class='specs-list'><li><b>Portabilidad:</b> Batería integrada (movilidad) o uso directo.</li><li><b>Rendimiento:</b> 3 velocidades con turbina de 7 aspas.</li><li><b>Tecnología:</b> Disipación térmica agresiva por semiconductor.</li><li><b>Fijación:</b> Hebilla ajustable segura con almohadillas.</li></ul>` }
+              desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Tecnología Fría:</b> Chip semiconductor de alto rendimiento (23x23mm).</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` }
         ];
 
         let currentCategory = 'Todos';
         let sortDesc = true;
         let hoverIntervals = {}; 
         let cart = [];
-
         const formatter = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 });
         const grid = document.getElementById('product-grid');
         const searchInput = document.getElementById('search-input');
         const modalSlider = document.getElementById('modal-slider');
 
-        // === FUNCIONES DE INICIO Y NAVEGACIÓN ===
         function selectInterest(category) {
             document.getElementById('welcome-screen').classList.add('hidden');
-            currentCategory = category;
-            updateMenuSelection();
-            renderProducts();
+            currentCategory = category; updateMenuSelection(); renderProducts();
         }
 
-        function toggleMenu() {
-            document.getElementById('category-menu').classList.toggle('active');
-        }
+        function toggleMenu() { document.getElementById('category-menu').classList.toggle('active'); }
+        function toggleOffers() { document.getElementById('offers-sidebar').classList.toggle('open'); }
 
         document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 currentCategory = e.target.getAttribute('data-cat');
-                updateMenuSelection();
-                renderProducts();
-                toggleMenu(); 
+                updateMenuSelection(); renderProducts(); toggleMenu(); 
             });
         });
 
@@ -1062,7 +569,6 @@
             });
         }
 
-        // === BÚSQUEDA Y FILTROS ===
         searchInput.addEventListener('input', renderProducts);
 
         document.getElementById('sort-btn').addEventListener('click', (e) => {
@@ -1071,19 +577,37 @@
             renderProducts();
         });
 
-        // === RENDERIZAR PRODUCTOS ===
+        // Evento Botón Subir
+        window.addEventListener('scroll', () => {
+            const upBtn = document.getElementById('scroll-top-btn');
+            if (window.scrollY > 300) upBtn.classList.add('visible');
+            else upBtn.classList.remove('visible');
+        });
+
+        function renderOffersSidebar() {
+            const offersContainer = document.getElementById('offers-list');
+            offersContainer.innerHTML = '';
+            const onSale = products.filter(p => p.oldPrice);
+            
+            onSale.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'mini-offer-card';
+                card.onclick = () => { toggleOffers(); openModal(product); };
+                card.innerHTML = `<img class="mini-offer-img" src="${product.folder + product.images[0]}" alt="${product.name}"><div class="mini-offer-info"><div class="mini-offer-title">${product.name}</div><div class="mini-offer-prices"><span class="mini-old">${formatter.format(product.oldPrice)}</span><span class="mini-new">${formatter.format(product.price)}</span></div></div>`;
+                offersContainer.appendChild(card);
+            });
+        }
+
         function renderProducts() {
             grid.innerHTML = '';
             const query = searchInput.value.toLowerCase().trim();
 
-            // Filtrar por categoría y búsqueda
             let filtered = products.filter(p => {
                 const matchCat = (currentCategory === 'Todos' || p.category === currentCategory);
                 const matchSearch = p.name.toLowerCase().includes(query);
                 return matchCat && matchSearch;
             });
 
-            // Ordenar
             filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
 
             if (filtered.length === 0) {
@@ -1091,19 +615,12 @@
                 return;
             }
 
-            // Separación de categorías si estamos en "Todos"
             if (currentCategory === 'Todos') {
                 const controles = filtered.filter(p => p.category === 'Controles');
                 const coolers = filtered.filter(p => p.category === 'COOLERS');
 
-                if (controles.length > 0) {
-                    addCategoryTitle('CONTROLES GAMER');
-                    controles.forEach((p, i) => createProductCard(p, 'ctrl-' + i));
-                }
-                if (coolers.length > 0) {
-                    addCategoryTitle('VENTILADORES / COOLERS');
-                    coolers.forEach((p, i) => createProductCard(p, 'cool-' + i));
-                }
+                if (controles.length > 0) { addCategoryTitle('CONTROLES GAMER'); controles.forEach((p, i) => createProductCard(p, 'ctrl-' + i)); }
+                if (coolers.length > 0) { addCategoryTitle('VENTILADORES / COOLERS'); coolers.forEach((p, i) => createProductCard(p, 'cool-' + i)); }
             } else {
                 filtered.forEach((p, i) => createProductCard(p, 'item-' + i));
             }
@@ -1111,8 +628,7 @@
 
         function addCategoryTitle(title) {
             const separator = document.createElement('div');
-            separator.className = 'category-separator';
-            separator.textContent = title;
+            separator.className = 'category-separator'; separator.textContent = title;
             grid.appendChild(separator);
         }
 
@@ -1122,7 +638,6 @@
             
             const trackImages = product.images.map(img => `<img src="${product.folder + img}" alt="${product.name}" loading="lazy">`).join('');
 
-            // NUEVO: Lógica para mostrar el precio tachado en las tarjetas
             let priceDisplayHTML = '';
             if (product.oldPrice) {
                 priceDisplayHTML = `<span class="old-price">${formatter.format(product.oldPrice)}</span><span class="product-price" style="color: var(--price-green); font-weight: bold; text-shadow: 0 0 10px rgba(0, 255, 115, 0.3);">${formatter.format(product.price)}</span>`;
@@ -1130,24 +645,11 @@
                 priceDisplayHTML = `<span class="product-price">${formatter.format(product.price)}</span>`;
             }
 
-            card.innerHTML = `
-                <div class="img-container">
-                    <div class="card-track" id="${uniqueId}">
-                        ${trackImages}
-                    </div>
-                </div>
-                <h3 class="product-title">${product.name}</h3>
-                <p>${priceDisplayHTML}</p>
-            `;
+            card.innerHTML = `<div class="img-container"><div class="card-track" id="${uniqueId}">${trackImages}</div></div><h3 class="product-title">${product.name}</h3><p>${priceDisplayHTML}</p>`;
             
-            // Animación de fotos: 1.5 Segundos por foto (Punto 5)
             const startCycle = () => {
-                let imgIndex = 0;
-                const maxImages = product.images.length;
-                const trackEl = document.getElementById(uniqueId);
-                
+                let imgIndex = 0; const maxImages = product.images.length; const trackEl = document.getElementById(uniqueId);
                 if (hoverIntervals[uniqueId]) clearInterval(hoverIntervals[uniqueId]);
-
                 hoverIntervals[uniqueId] = setInterval(() => {
                     imgIndex = (imgIndex + 1) % maxImages;
                     trackEl.style.transform = `translateX(-${imgIndex * 100}%)`;
@@ -1165,91 +667,56 @@
             card.addEventListener('touchstart', startCycle, {passive: true});
             card.addEventListener('touchend', stopCycle);
             card.addEventListener('touchcancel', stopCycle);
-
             card.addEventListener('click', () => openModal(product));
             grid.appendChild(card);
         }
 
-        // === MODAL DE PRODUCTO Y LOOP DE GALERÍA ===
-        let modalAutoPlayInterval;
-        let isInteractingWithModal = false;
-        let currentOpenProduct = null;
+        let modalAutoPlayInterval; let isInteractingWithModal = false;
 
         function openModal(product) {
-            currentOpenProduct = product;
             document.getElementById('modal-title').textContent = product.name;
             
-            // NUEVO: Lógica para mostrar el precio tachado en la ventana emergente
-            if (product.oldPrice) {
-                document.getElementById('modal-price').innerHTML = `
-                    <span class="old-price" style="font-size: 1.2rem; text-shadow: none;">${formatter.format(product.oldPrice)}</span> 
-                    ${formatter.format(product.price)}`;
-            } else {
-                document.getElementById('modal-price').textContent = formatter.format(product.price);
-            }
+            if (product.oldPrice) document.getElementById('modal-price').innerHTML = `<span class="old-price" style="font-size: 1.2rem; text-shadow: none;">${formatter.format(product.oldPrice)}</span> ${formatter.format(product.price)}`;
+            else document.getElementById('modal-price').textContent = formatter.format(product.price);
             
-            // NUEVO: INYECTAR DESCRIPCIÓN (Ocultar si no tiene)
             const descContainer = document.getElementById('modal-desc');
-            if (product.desc) {
-                descContainer.innerHTML = product.desc;
-                descContainer.style.display = 'block';
-            } else {
-                descContainer.style.display = 'none';
-            }
+            if (product.desc) { descContainer.innerHTML = product.desc; descContainer.style.display = 'block'; } 
+            else { descContainer.style.display = 'none'; }
 
             const wsMensaje = encodeURIComponent(`Hola, me interesa el ${product.name}`);
-            document.getElementById('modal-whatsapp').href = `https://wa.me/573143766181?text=${wsMensaje}`;
+            document.getElementById('modal-whatsapp').href = `https://wa.me/573232452698?text=${wsMensaje}`;
 
-            // Configurar botón añadir al carrito
             const addBtn = document.getElementById('modal-add-cart');
-            addBtn.onclick = () => { addToCart(product); showToast("¡Añadido al carrito!"); };
+            addBtn.onclick = () => { addToCart(product); showGlobalToast("¡Añadido al carrito!"); };
+
+            const shareBtn = document.getElementById('modal-share-btn');
+            shareBtn.onclick = () => { copyProductLink(product.id); };
 
             modalSlider.innerHTML = '';
             product.images.forEach(imgName => {
-                const img = document.createElement('img');
-                img.src = product.folder + imgName;
-                img.alt = `Vista de ${product.name}`;
-                img.loading = 'lazy';
+                const img = document.createElement('img'); img.src = product.folder + imgName; img.alt = `Vista de ${product.name}`; img.loading = 'lazy';
                 modalSlider.appendChild(img);
             });
 
             document.getElementById('product-modal').style.display = 'flex';
             modalSlider.scrollLeft = 0; 
 
-            // Autoplay Inteligente con Loop
             if(modalAutoPlayInterval) clearInterval(modalAutoPlayInterval);
             isInteractingWithModal = false;
             
-            modalAutoPlayInterval = setInterval(() => {
-                if (isInteractingWithModal) return; 
-                scrollGallery(1); // Avanza como si diera clic a "Siguiente"
-            }, 1500); 
+            modalAutoPlayInterval = setInterval(() => { if (!isInteractingWithModal) scrollGallery(1); }, 2500); 
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            if(modalId === 'product-modal' && modalAutoPlayInterval) clearInterval(modalAutoPlayInterval);
-        }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; if(modalId === 'product-modal' && modalAutoPlayInterval) clearInterval(modalAutoPlayInterval); }
 
-        // Navegación con Loop (Punto 8)
         function scrollGallery(direction) {
-            const width = modalSlider.clientWidth;
-            const maxScroll = modalSlider.scrollWidth - width;
-            const currentScroll = modalSlider.scrollLeft;
-            const tolerance = 10;
-
-            if (direction === 1) { // Siguiente
-                if (currentScroll >= maxScroll - tolerance) {
-                    modalSlider.scrollTo({ left: 0, behavior: 'smooth' }); // Loop al inicio
-                } else {
-                    modalSlider.scrollBy({ left: width, behavior: 'smooth' });
-                }
-            } else { // Anterior
-                if (currentScroll <= tolerance) {
-                    modalSlider.scrollTo({ left: maxScroll, behavior: 'smooth' }); // Loop al final
-                } else {
-                    modalSlider.scrollBy({ left: -width, behavior: 'smooth' });
-                }
+            const width = modalSlider.clientWidth; const maxScroll = modalSlider.scrollWidth - width; const currentScroll = modalSlider.scrollLeft; const tolerance = 10;
+            if (direction === 1) { 
+                if (currentScroll >= maxScroll - tolerance) modalSlider.scrollTo({ left: 0, behavior: 'smooth' }); 
+                else modalSlider.scrollBy({ left: width, behavior: 'smooth' });
+            } else { 
+                if (currentScroll <= tolerance) modalSlider.scrollTo({ left: maxScroll, behavior: 'smooth' }); 
+                else modalSlider.scrollBy({ left: -width, behavior: 'smooth' });
             }
         }
 
@@ -1258,147 +725,101 @@
         modalSlider.addEventListener('touchstart', () => isInteractingWithModal = true, {passive: true});
         modalSlider.addEventListener('touchend', () => { setTimeout(()=> isInteractingWithModal = false, 2000); });
 
-        // === SISTEMA DE CARRITO (Punto 9) ===
-        function addToCart(product) {
-            cart.push(product);
-            document.getElementById('cart-count').textContent = cart.length;
-        }
+        function addToCart(product) { cart.push(product); document.getElementById('cart-count').textContent = cart.length; }
+        function removeFromCart(index) { cart.splice(index, 1); document.getElementById('cart-count').textContent = cart.length; renderCartUI(); }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            document.getElementById('cart-count').textContent = cart.length;
-            renderCartUI();
-        }
-
-        function openCart() {
-            renderCartUI();
-            document.getElementById('cart-modal').style.display = 'flex';
-        }
+        function openCart() { renderCartUI(); document.getElementById('cart-modal').style.display = 'flex'; }
 
         function renderCartUI() {
-            const container = document.getElementById('cart-items-container');
-            container.innerHTML = '';
+            const container = document.getElementById('cart-items-container'); container.innerHTML = '';
             
             if(cart.length === 0) {
-                container.innerHTML = '<p class="cart-empty">Tu carrito está vacío.</p>';
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Tu carrito está vacío.</p>';
                 document.getElementById('cart-total-price').textContent = formatter.format(0);
-                document.getElementById('cart-whatsapp-btn').href = "#";
-                document.getElementById('cart-whatsapp-btn').style.opacity = '0.5';
-                document.getElementById('cart-whatsapp-btn').style.pointerEvents = 'none';
+                document.getElementById('cart-whatsapp-btn').href = "#"; document.getElementById('cart-whatsapp-btn').style.opacity = '0.5'; document.getElementById('cart-whatsapp-btn').style.pointerEvents = 'none';
                 return;
             }
 
-            let total = 0;
-            let wpMessage = "Hola, me interesa comprar estos artículos:\n\n";
-
+            let total = 0; let wpMessage = "Hola, me interesa comprar estos artículos:\n\n";
             cart.forEach((p, index) => {
-                total += p.price;
-                wpMessage += `- ${p.name}\n`;
-                
+                total += p.price; wpMessage += `- ${p.name}\n`;
                 const item = document.createElement('div');
-                item.className = 'cart-item';
-                item.innerHTML = `
-                    <span class="cart-item-name">${p.name}</span>
-                    <span class="cart-item-price">${formatter.format(p.price)}</span>
-                    <button class="cart-remove" onclick="removeFromCart(${index})">✖</button>
-                `;
+                item.style = "display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem;";
+                item.innerHTML = `<span style="color: #fff; flex: 1;">${p.name}</span><span style="color: var(--price-green); font-weight: bold; margin: 0 15px;">${formatter.format(p.price)}</span><button style="background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1.2rem;" onclick="removeFromCart(${index})">✖</button>`;
                 container.appendChild(item);
             });
 
             document.getElementById('cart-total-price').textContent = formatter.format(total);
-            
             wpMessage += `\n*Total: ${formatter.format(total)}*`;
             const wpBtn = document.getElementById('cart-whatsapp-btn');
-            wpBtn.href = `https://wa.me/573143766181?text=${encodeURIComponent(wpMessage)}`;
-            wpBtn.style.opacity = '1';
-            wpBtn.style.pointerEvents = 'auto';
+            wpBtn.href = `https://wa.me/573232452698?text=${encodeURIComponent(wpMessage)}`;
+            wpBtn.style.opacity = '1'; wpBtn.style.pointerEvents = 'auto';
         }
 
-        function showToast(msg) {
-            // Efecto visual simple al añadir al carrito
-            const btn = document.getElementById('modal-add-cart');
-            const originalText = btn.textContent;
-            btn.textContent = msg;
-            btn.style.background = 'var(--accent-ice)';
-            btn.style.color = '#000';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = 'transparent';
-                btn.style.color = 'var(--accent-ice)';
-            }, 1500);
+        function showGlobalToast(msg) {
+            const toast = document.getElementById('global-toast');
+            toast.textContent = msg; toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 2500);
         }
 
-        // Clicks fuera de modales
+        function copyProductLink(productId) {
+            // Corrección: Separa cualquier parámetro sucio de la URL original para que siempre sea limpia.
+            let urlSinParams = window.location.href.split('?')[0].split('#')[0];
+            const linkToCopy = urlSinParams + '?p=' + productId;
+            
+            const tempInput = document.createElement('input');
+            tempInput.value = linkToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            showGlobalToast("¡Enlace copiado al portapapeles!");
+        }
+
+        function checkUrlForProduct() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('p');
+            if (productId) {
+                document.getElementById('welcome-screen').classList.add('hidden');
+                const product = products.find(p => p.id === productId);
+                if (product) { setTimeout(() => { openModal(product); }, 500); }
+            }
+        }
+
         window.addEventListener('click', (e) => {
             if (e.target.matches('.modal')) closeModal(e.target.id);
-            if (!e.target.matches('.menu-toggle') && !e.target.closest('.categories-menu')) {
-                document.getElementById('category-menu').classList.remove('active');
-            }
+            if (!e.target.matches('.menu-toggle') && !e.target.closest('.categories-menu')) document.getElementById('category-menu').classList.remove('active');
+            if (!e.target.closest('.offers-sidebar')) document.getElementById('offers-sidebar').classList.remove('open');
         });
 
-        // === ESTELA MÁGICA (Canvas) ===
         const canvas = document.getElementById('trail-canvas');
         const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        let mouse = { x: -100, y: -100 };
+        let width, height; let particles = []; let mouse = { x: -100, y: -100 };
 
-        function initCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        }
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
+        function initCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+        window.addEventListener('resize', initCanvas); initCanvas();
 
         function spawnParticles(x, y) {
-            // Crear de 1 a 3 partículas sutiles
             for(let i=0; i < 2; i++){
-                particles.push({
-                    x: x, y: y,
-                    vx: (Math.random() - 0.5) * 1.5,
-                    vy: (Math.random() - 0.5) * 1.5 - 0.5, // Tienden a subir
-                    life: 1, // Opacidad de 1 a 0
-                    size: Math.random() * 3 + 1,
-                    // Colores alternados entre Cian y Azul profundo
-                    color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255'
-                });
+                particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 - 0.5, life: 1, size: Math.random() * 3 + 1, color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255' });
             }
         }
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX; mouse.y = e.clientY;
-            spawnParticles(mouse.x, mouse.y);
-        });
-
-        window.addEventListener('touchmove', (e) => {
-            mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY;
-            spawnParticles(mouse.x, mouse.y);
-        }, {passive: true});
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; spawnParticles(mouse.x, mouse.y); });
+        window.addEventListener('touchmove', (e) => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; spawnParticles(mouse.x, mouse.y); }, {passive: true});
 
         function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.globalCompositeOperation = 'lighter'; // Efecto luminoso/magia
-
+            ctx.clearRect(0, 0, width, height); ctx.globalCompositeOperation = 'lighter';
             for(let i = 0; i < particles.length; i++) {
                 let p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life -= 0.015; // Decaimiento suave
-                p.size *= 0.96; // Se encoge ligeramente
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${p.color}, ${p.life})`;
-                ctx.fill();
+                p.x += p.vx; p.y += p.vy; p.life -= 0.015; p.size *= 0.96; 
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(${p.color}, ${p.life})`; ctx.fill();
             }
-
-            particles = particles.filter(p => p.life > 0.05); // Limpiar
-            requestAnimationFrame(animateCanvas);
+            particles = particles.filter(p => p.life > 0.05); requestAnimationFrame(animateCanvas);
         }
-        animateCanvas();
-
+        
+        window.onload = function() { renderOffersSidebar(); checkUrlForProduct(); animateCanvas(); };
     </script>
 </body>
 </html>
