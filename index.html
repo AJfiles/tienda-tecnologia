@@ -11,12 +11,12 @@
     <meta property="og:description" content="Descubre los mejores Controles y Coolers para móviles. Envíos a todo el país y contra entrega en Bogotá. 🔥 ¡Aprovecha nuestras ofertas!">
     <meta property="og:type" content="website">
     
-    <!-- Favicon SVG inline (no requiere archivo externo) -->
+    <!-- Favicon SVG inline -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Space+Grotesk:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&family=Space+Grotesk:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -34,229 +34,219 @@
 
         html { scroll-behavior: smooth; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-        /* HEADER, LOGO & PROMO BANNER */
-        .promo-banner { background: var(--accent-ice); color: #000; text-align: center; padding: 8px 15px; font-weight: 700; font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif; position: relative; z-index: 100; box-shadow: 0 0 15px var(--accent-glow); }
+        /* BARRA PROMOCIONAL FIJA ARRIBA */
+        .promo-banner { background: var(--accent-ice); color: #000; text-align: center; padding: 8px 15px; font-weight: 800; font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif; position: relative; z-index: 100; box-shadow: 0 0 15px var(--accent-glow); letter-spacing: 0.5px; }
         .promo-banner span { display: inline-block; animation: neonPulseSoft 2s infinite alternate; }
-        
-        header { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px 20px 20px; position: relative; z-index: 50; }
+
+        header { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px 20px 20px; position: relative; z-index: 50; }
         
         @keyframes neonPulseSoft { 0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px rgba(0,0,0,0.2); } 50% { text-shadow: 0 0 2px #fff; } }
-        @keyframes logoPulse { 0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); } 50% { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; } }
         @keyframes bounceWA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         
-        h1.logo { font-family: 'Syncopate', sans-serif; font-size: 3rem; letter-spacing: 6px; color: #fff; margin: 0 0 20px 0; text-align: center; cursor: default; transition: all 0.6s ease; animation: logoPulse 2.5s infinite alternate; }
-        h1.logo:hover { color: var(--accent-ice); transform: scale(1.05); text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff, 0 0 60px #00f0ff; }
+        h1.logo { font-family: 'Syncopate', sans-serif; font-size: 2.8rem; letter-spacing: 5px; color: #fff; margin: 0 0 20px 0; text-align: center; cursor: default; transition: all 0.6s ease; text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); }
 
-        /* TABS (Categorías Sticky) */
-        .categories-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; z-index: 90; position: sticky; top: 0; background: rgba(5, 9, 20, 0.9); padding: 15px; backdrop-filter: blur(10px); width: 100%; border-bottom: 1px solid rgba(0,240,255,0.1); }
-        .cat-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 10px 20px; border-radius: 30px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
-        .cat-btn:hover { background: rgba(0, 240, 255, 0.05); border-color: rgba(0, 240, 255, 0.3); color: #fff; }
-        .cat-btn.active { background: rgba(0, 240, 255, 0.1); border-color: var(--accent-ice); color: var(--accent-ice); box-shadow: 0 0 15px var(--accent-glow); }
+        /* TABS (Categorías sticky) */
+        .categories-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; z-index: 90; position: sticky; top: 0; background: rgba(5, 9, 20, 0.95); padding: 12px; backdrop-filter: blur(10px); width: 100%; border-bottom: 1px solid rgba(0,240,255,0.1); }
+        .cat-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 8px 16px; border-radius: 30px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .cat-btn.active { background: rgba(0, 240, 255, 0.1); border-color: var(--accent-ice); color: var(--accent-ice); box-shadow: 0 0 10px var(--accent-glow); }
         .cat-btn.ofertas-btn { border-color: rgba(255, 60, 0, 0.5); color: var(--fire-light); }
-        .cat-btn.ofertas-btn:hover, .cat-btn.ofertas-btn.active { background: rgba(255, 60, 0, 0.1); border-color: var(--fire-color); color: #fff; box-shadow: 0 0 15px var(--fire-glow); }
+        .cat-btn.ofertas-btn.active { background: rgba(255, 60, 0, 0.1); border-color: var(--fire-color); color: #fff; box-shadow: 0 0 15px var(--fire-glow); }
 
-        /* BUSCADOR Y FILTROS */
-        .controls-area { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; max-width: 600px; z-index: 40; margin: 0 auto 20px; }
-        .search-bar { width: 90%; padding: 14px 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(10, 17, 34, 0.8); color: white; font-family: 'Montserrat', sans-serif; text-align: center; font-size: 1rem; transition: all 0.3s; backdrop-filter: blur(10px); }
+        /* BUSCADOR */
+        .controls-area { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 600px; z-index: 40; margin: 0 auto 10px; }
+        .search-bar { width: 90%; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(10, 17, 34, 0.8); color: white; font-family: 'Montserrat', sans-serif; text-align: center; font-size: 0.95rem; transition: all 0.3s; backdrop-filter: blur(10px); }
         .search-bar:focus { outline: none; border-color: var(--accent-ice); box-shadow: 0 0 15px var(--accent-glow); background: rgba(10, 17, 34, 0.95); }
-        .sort-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; transition: color 0.3s; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.2); text-underline-offset: 4px; }
-        .sort-btn:hover { color: var(--accent-ice); text-decoration-color: var(--accent-ice); }
+        .sort-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; transition: color 0.3s; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.2); text-underline-offset: 4px; }
 
-        .category-separator { grid-column: 1 / -1; width: 100%; text-align: center; margin: 20px 0 10px; position: relative; font-family: 'Syncopate', sans-serif; font-size: 1.5rem; color: var(--accent-ice); letter-spacing: 3px; text-shadow: 0 0 10px var(--accent-glow); display: flex; align-items: center; justify-content: center; }
-        .category-separator::before, .category-separator::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-ice), transparent); margin: 0 20px; opacity: 0.5; }
-
-        /* SECCIÓN CÓMO COMPRAR (REDESIGN MÓVIL PERFECTO) */
-        .how-to-buy-section { padding: 10px 20px 30px; text-align: center; position: relative; z-index: 10; max-width: 900px; margin: 0 auto; }
-        .section-title { font-family: 'Syncopate', sans-serif; font-size: 1.1rem; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
-        .htb-steps { display: flex; justify-content: center; align-items: center; gap: 15px; width: 100%; }
-        .htb-step { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
-        .htb-icon { font-size: 1.8rem; background: rgba(255,255,255,0.03); width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.3s; }
-        .htb-step:hover .htb-icon { transform: translateY(-3px); border-color: var(--accent-ice); box-shadow: 0 0 15px var(--accent-glow); }
-        .htb-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: var(--text-main); font-weight: 700; text-transform: uppercase; text-align: center; line-height: 1.2; }
-        
-        .htb-arrow { font-size: 1.2rem; color: var(--text-muted); opacity: 0.5; display: flex; align-items: center; justify-content: center; }
+        /* CÓMO COMPRAR (Organizado horizontalmente en móvil) */
+        .how-to-buy-section { padding: 15px 10px; text-align: center; position: relative; z-index: 10; background: linear-gradient(180deg, rgba(10, 17, 34, 0.4), transparent); margin-bottom: 10px; }
+        .htb-steps { display: flex; justify-content: center; align-items: center; gap: 10px; max-width: 900px; margin: 0 auto; flex-wrap: nowrap; }
+        .htb-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+        .htb-icon { font-size: 1.5rem; background: rgba(255,255,255,0.03); width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.3s; }
+        .htb-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; line-height: 1.2; }
+        .htb-arrow { font-size: 1rem; color: var(--text-muted); opacity: 0.4; }
         .htb-arrow::after { content: '➔'; }
-
-        @media (max-width: 600px) {
-            .how-to-buy-section { padding: 0 10px 20px; }
-            .htb-steps { flex-wrap: nowrap; gap: 5px; justify-content: space-between; }
-            .htb-step { gap: 5px; }
-            .htb-icon { width: 45px; height: 45px; font-size: 1.3rem; }
-            .htb-text { font-size: 0.65rem; }
-            .htb-arrow { margin: 0; font-size: 0.9rem; }
+        
+        @media (min-width: 601px) {
+            .htb-icon { width: 60px; height: 60px; font-size: 2rem; }
+            .htb-text { font-size: 0.8rem; }
+            .htb-arrow { font-size: 1.5rem; }
         }
+
+        .category-separator { grid-column: 1 / -1; width: 100%; text-align: center; margin: 20px 0 5px; position: relative; font-family: 'Syncopate', sans-serif; font-size: 1.2rem; color: var(--accent-ice); letter-spacing: 2px; text-shadow: 0 0 10px var(--accent-glow); display: flex; align-items: center; justify-content: center; }
+        .category-separator::before, .category-separator::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-ice), transparent); margin: 0 15px; opacity: 0.5; }
 
         /* GRID Y PRODUCTOS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 35px; padding: 10px 40px 80px; max-width: 1300px; margin: 0 auto; position: relative; z-index: 10; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 10px 15px 80px; max-width: 1300px; margin: 0 auto; position: relative; z-index: 10; }
+        @media (min-width: 601px) { .grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; padding: 20px 40px 80px; } }
 
-        .product-card { background-color: var(--surface-color); border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+        .product-card { background-color: var(--surface-color); border-radius: 16px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.4); display: flex; flex-direction: column; }
         
-        /* ETIQUETAS Y ANIMACIONES */
-        .card-badge { position: absolute; z-index: 10; padding: 4px 10px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        /* ETIQUETAS */
+        .card-badge { position: absolute; z-index: 10; padding: 3px 8px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .discount-badge { top: 10px; left: 10px; background: var(--fire-color); color: #fff; }
+        .tag-badge { top: 10px; left: 10px; background: var(--accent-ice); color: #000; }
         
-        @keyframes pulseHint { 0% { transform: scale(1); box-shadow: 0 0 5px rgba(255,60,0,0.5); } 100% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,60,0,0.8); } }
-        @keyframes fadeBlink { 0%, 45% { opacity: 1; visibility: visible; } 50%, 95% { opacity: 0; visibility: hidden; } 100% { opacity: 1; visibility: visible; } }
-        
-        .discount-badge { top: 12px; left: 12px; background: var(--fire-color); color: #fff; animation: pulseHint 2s infinite alternate; }
-        .tag-badge { top: 45px; left: 12px; background: var(--accent-ice); color: #000; }
-        .scarcity-badge { top: 78px; left: 12px; background: #e61919; color: #fff; font-size: 0.7rem; border: 1px solid #ff4d4d; animation: fadeBlink 6s infinite; padding: 5px 8px; border-radius: 4px; z-index: 15;}
+        /* Escasez animada (Blink suave) */
+        @keyframes fadeBlink { 0%, 30% { opacity: 1; visibility: visible; } 40%, 80% { opacity: 0; visibility: hidden; } 90%, 100% { opacity: 1; visibility: visible; } }
+        .scarcity-badge { bottom: 10px; left: 50%; transform: translateX(-50%); background: #e61919; color: #fff; font-size: 0.65rem; border: 1px solid #ff4d4d; animation: fadeBlink 8s infinite; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
 
-        /* Animación Fuego Hover */
-        @keyframes flickerFlame { 0% { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px var(--fire-glow), inset 0 0 15px rgba(255, 60, 0, 0.2); border-color: #ff3c00; } 50% { box-shadow: 0 15px 30px rgba(0,0,0,0.7), 0 0 35px rgba(255, 120, 0, 0.8), inset 0 0 25px rgba(255, 100, 0, 0.5); border-color: #ffaa00; } 100% { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px var(--fire-glow), inset 0 0 15px rgba(255, 60, 0, 0.2); border-color: #ff3c00; } }
-        @keyframes flameMove { 0% { background-position: 50% 100%; } 50% { background-position: 50% 0%; } 100% { background-position: 50% 100%; } }
-        
-        .product-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, rgba(255, 60, 0, 0.4) 0%, rgba(255, 150, 0, 0.1) 40%, transparent 80%); background-size: 100% 200%; opacity: 0; transition: opacity 0.4s; z-index: 1; pointer-events: none; }
-        
-        .product-card:hover, .product-card:active { transform: translateY(-10px) scale(1.02); animation: flickerFlame 1.2s infinite alternate; }
-        .product-card:hover .product-title { color: var(--fire-light); text-shadow: 0 0 8px rgba(255, 170, 0, 0.5); }
-        .product-card:hover::before { opacity: 1; animation: flameMove 2s infinite ease-in-out; }
+        /* Botón Quick Add (Arriba Derecha) */
+        .quick-add-btn { position: absolute; top: 10px; right: 10px; background: rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.3); color: #fff; border-radius: 50%; width: 35px; height: 35px; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 20; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .quick-add-btn:active, .quick-add-btn:hover { background: var(--accent-ice); color: #000; transform: scale(1.15); box-shadow: 0 0 15px var(--accent-glow); }
+        @media (min-width: 601px) { .quick-add-btn { width: 42px; height: 42px; font-size: 1.3rem; opacity: 0; transform: translateY(-10px); } .product-card:hover .quick-add-btn { opacity: 1; transform: translateY(0); } }
 
-        .img-container { height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 8px; overflow: hidden; position: relative; z-index: 2; }
+        .img-container { height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; border-radius: 8px; position: relative; z-index: 2; }
+        @media (min-width: 601px) { .img-container { height: 200px; } }
         .card-track { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .card-track img { min-width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4)); }
+        .card-track img { min-width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 8px 8px rgba(0,0,0,0.4)); }
 
-        .product-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: 0.5px; margin-bottom: 5px; color: #fff; position: relative; z-index: 2; transition: color 0.3s; }
+        .product-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; margin-bottom: 2px; color: #fff; position: relative; z-index: 2; line-height: 1.2; }
+        .card-reviews { font-size: 0.75rem; color: #ffaa00; margin-bottom: 8px; z-index: 2; position: relative; }
+        .card-reviews span { color: var(--text-muted); font-size: 0.7rem; margin-left: 2px; }
+        .card-short-desc { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; flex-grow: 1; z-index: 2; position: relative; line-height: 1.3; }
+
+        .price-container { z-index: 2; position: relative; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; }
+        .product-price { color: var(--price-green); font-size: 1.15rem; font-weight: 800; font-family: 'Montserrat', sans-serif; }
+        .price-has-discount { text-shadow: 0 0 10px rgba(0, 255, 115, 0.4); font-size: 1.2rem; }
+        .old-price { text-decoration: line-through; color: #ff3c00; font-size: 0.85rem; font-weight: 500; opacity: 0.8; }
+
+        /* MODALES ESTILO APP NATIVA (SHEIN/ALIEXPRESS) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: flex-end; }
         
-        .card-reviews { font-size: 0.9rem; color: #ffaa00; margin-bottom: 10px; z-index: 2; position: relative; }
-        .card-reviews span { color: var(--text-muted); font-size: 0.8rem; margin-left: 4px; }
-        .card-short-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; z-index: 2; position: relative; }
-
-        .price-container { z-index: 2; position: relative; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-        .product-price { color: var(--price-green); font-size: 1.3rem; font-weight: 700; font-family: 'Montserrat', sans-serif; }
-        .price-has-discount { text-shadow: 0 0 15px rgba(0, 255, 115, 0.6); font-size: 1.4rem; }
-        .old-price { text-decoration: line-through; color: #ff3c00; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
-
-        /* BOTÓN DE COMPRA RÁPIDA (Reubicado esquina superior derecha) */
-        .quick-add-btn { position: absolute; top: 15px; right: 15px; background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent-ice); color: #fff; border-radius: 50%; width: 45px; height: 45px; font-size: 1.4rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 20; opacity: 0; transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 10px rgba(0,240,255,0.2); backdrop-filter: blur(5px); }
-        .product-card:hover .quick-add-btn { opacity: 1; transform: translateY(0); }
-        .quick-add-btn:hover { background: var(--accent-ice); color: #000; transform: scale(1.15) !important; box-shadow: 0 0 15px var(--accent-glow); }
-
-        /* MEDIA QUERIES PARA MÓVILES */
-        @media (max-width: 600px) {
-            .grid { padding: 20px 15px 50px; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-            .img-container { height: 150px; }
-            .product-title { font-size: 1.1rem; margin-bottom: 2px; }
-            .card-short-desc { font-size: 0.75rem; margin-bottom: 10px; line-height: 1.3;}
-            .product-card { padding: 15px; border-radius: 12px; }
-            .product-price { font-size: 1.1rem; }
-            .price-has-discount { font-size: 1.2rem; }
-            .old-price { font-size: 0.85rem; }
-            .quick-add-btn { opacity: 1; transform: translateY(0); top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.1rem; background: rgba(0, 240, 255, 0.15); }
+        .modal-content { background-color: var(--surface-color); width: 100%; max-width: 600px; height: 92vh; border-radius: 24px 24px 0 0; display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; border-top: 1px solid rgba(0,240,255,0.2); }
+        
+        @media (min-width: 601px) { 
+            .modal { align-items: center; } 
+            .modal-content { height: 90vh; border-radius: 20px; animation: popIn 0.4s forwards; border: 1px solid rgba(0,240,255,0.2); } 
         }
 
-        /* SECCIÓN DE CONFIANZA INFERIOR */
-        .trust-section { width: 100%; padding: 40px 20px 80px; background: linear-gradient(0deg, transparent, rgba(10, 17, 34, 0.5)); position: relative; z-index: 10; border-top: 1px solid rgba(0, 240, 255, 0.1); margin-top: 20px; }
-        .trust-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; text-align: center; }
-        .trust-item { background: rgba(0, 240, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px 20px; border-radius: 16px; transition: all 0.4s ease; backdrop-filter: blur(5px); }
-        .trust-item:hover { transform: translateY(-8px); border-color: var(--accent-ice); box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1); background: rgba(0, 240, 255, 0.05); }
-        .trust-icon { font-size: 2.8rem; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--accent-glow)); }
-        .trust-item h3 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 10px; text-transform: uppercase; }
-        .trust-item p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+        @keyframes slideUp { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* MODALES */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background-color: var(--surface-color); width: 90%; max-width: 500px; max-height: 95vh; border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        /* Barra para arrastrar (Visual) */
+        .drag-indicator { width: 40px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; margin: 12px auto; position: absolute; left: 50%; transform: translateX(-50%); z-index: 50; pointer-events: none; }
         
-        .modal-sheet { background: var(--surface-color); border-radius: 20px 20px 0 0; margin-top: -20px; position: relative; z-index: 10; padding: 25px 20px 10px; display: flex; flex-direction: column; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
-        .t-badge-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(0, 255, 115, 0.2); padding: 8px 12px; border-radius: 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; white-space: nowrap; color: #e2e8f0; }
-        .share-icon-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; color: #fff; cursor: pointer; transition: all 0.3s; flex-shrink: 0; }
-        .share-icon-btn:hover { background: rgba(255,255,255,0.1); border-color: var(--accent-ice); color: var(--accent-ice); }
+        .close-btn { position: absolute; top: 12px; right: 15px; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 50; background: rgba(0,0,0,0.5); width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: all 0.3s; backdrop-filter: blur(5px); }
 
-        /* ESTILOS DEL CARRITO EXTRAÍDOS DE INLINE A CSS */
-        .cart-modal-content { max-width: 450px; height: auto; max-height: 85vh; }
-        .cart-title-text { color: #fff; font-family: 'Space Grotesk', sans-serif; text-align: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 1.4rem;}
-        .cart-items-wrapper { flex: 1; overflow-y: auto; padding: 10px 15px; }
-        .cart-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
-        .cart-item-img { width: 45px; height: 45px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .cart-item-info { flex: 1; display: flex; flex-direction: column; }
-        .cart-item-title { color: #fff; font-size: 0.9rem; font-weight: 500; }
-        .cart-item-price { color: var(--price-green); font-weight: bold; font-size: 0.9rem; }
-        .cart-item-controls { display: flex; align-items: center; background: rgba(0,0,0,0.4); border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); }
-        .cart-btn-ctrl { background: none; border: none; color: #fff; cursor: pointer; padding: 4px 10px; font-size: 1.1rem; }
-        .cart-item-qty { color: #fff; font-weight: bold; font-size: 0.9rem; min-width: 15px; text-align: center; }
-        .cart-btn-del { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1.3rem; margin-left: 5px; padding: 5px; }
-        .cart-summary { display: flex; justify-content: space-between; padding: 20px 20px 10px; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(0,240,255,0.2); }
-        .cart-footer-btn { width: 100%; }
-
-        @keyframes popIn { 0% { transform: scale(0.8) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
-
-        .close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 2rem; cursor: pointer; z-index: 50; background: rgba(0,0,0,0.5); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: all 0.3s; }
-        .close-btn:hover { background: var(--fire-color); box-shadow: 0 0 15px var(--fire-glow); transform: rotate(90deg); }
-
-        .gallery-wrapper { position: relative; width: 100%; height: 280px; min-height: 250px; flex-shrink: 0; background: #000; }
+        .gallery-wrapper { position: relative; width: 100%; height: 35vh; min-height: 250px; flex-shrink: 0; background: #000; }
         .slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: 100%; height: 100%; -ms-overflow-style: none; scrollbar-width: none; }
         .slider::-webkit-scrollbar { display: none; }
         .slider img { width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: center; object-fit: contain; }
 
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: 1px solid rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 5; font-size: 1.2rem; transition: all 0.3s; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: 1px solid rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 5; font-size: 1rem; display: flex; justify-content: center; align-items: center; }
         .nav-prev { left: 10px; } .nav-next { right: 10px; }
 
-        .modal-scroll-area { overflow-y: auto; flex: 1; padding: 15px 20px; scrollbar-width: thin; scrollbar-color: var(--accent-ice) transparent; }
-        
-        .modal-description { font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-top: 15px; }
+        .modal-scroll-area { overflow-y: auto; flex: 1; padding: 20px 20px; scrollbar-width: none; background: var(--bg-color); }
+        .modal-scroll-area::-webkit-scrollbar { display: none; }
+
+        /* HEADER INFO DENTRO DEL SCROLL */
+        .modal-header-info { margin-bottom: 15px; }
+        .modal-breadcrumb { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+        #modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.2; }
+        #modal-subtitle { color: var(--accent-ice); font-size: 0.85rem; margin-bottom: 8px; font-weight: 500; }
+        #modal-reviews { font-size: 0.9rem; color: #ffaa00; margin-bottom: 15px; }
+
+        /* CHIPS ESTILO APP */
+        .chips-container { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 10px; margin-bottom: 15px; scrollbar-width: none; }
+        .chips-container::-webkit-scrollbar { display: none; }
+        .info-chip { background: rgba(255,255,255,0.03); border: 1px solid rgba(0, 255, 115, 0.2); padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; display: flex; align-items: center; gap: 6px; white-space: nowrap; color: #e2e8f0; }
+        .info-chip strong { color: var(--price-green); font-weight: 700; }
+
+        .modal-description { font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); }
         .specs-list { list-style: none; padding: 0; margin: 0; }
-        .specs-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
-        .specs-list li::before { content: '▹'; position: absolute; left: 0; top: -2px; color: var(--accent-ice); font-size: 1.1rem; text-shadow: 0 0 8px var(--accent-glow); }
-        .specs-list b { color: var(--text-main); font-weight: 600; }
+        .specs-list li { margin-bottom: 12px; padding-left: 20px; position: relative; }
+        .specs-list li::before { content: '▹'; position: absolute; left: 0; top: -2px; color: var(--accent-ice); font-size: 1.1rem; }
+        .specs-list b { color: #fff; font-weight: 600; }
 
-        .modal-footer { padding: 15px 20px; background: rgba(5, 9, 20, 0.98); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; z-index: 10; }
-        .price-glow { color: var(--price-green); font-size: 2rem; font-family: 'Montserrat', sans-serif; font-weight: 700; text-shadow: 0 0 15px rgba(0, 255, 115, 0.3); margin-bottom: 12px; }
+        /* FOOTER FIJO (Sticky) */
+        .modal-footer-sticky { position: sticky; bottom: 0; padding: 15px 20px; background: rgba(10, 17, 34, 0.95); border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 15px; z-index: 10; backdrop-filter: blur(10px); }
         
-        .action-buttons { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; }
-        .btn-base { flex: 1; min-width: 45%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 12px 10px; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Space Grotesk', sans-serif; }
-        .wp-btn { background: linear-gradient(45deg, #25D366, #128C7E); color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .wp-btn:hover { background: linear-gradient(45deg, #1ebe5d, #0f7a6d); transform: translateY(-2px); }
+        .price-glow { display: flex; flex-direction: column; }
+        .price-glow .old-price { font-size: 0.8rem; color: var(--text-muted); text-decoration: line-through; margin-bottom: -2px; }
+        .price-glow .current { color: var(--price-green); font-size: 1.6rem; font-family: 'Montserrat', sans-serif; font-weight: 800; text-shadow: 0 0 10px rgba(0, 255, 115, 0.2); }
+        
+        .action-buttons { display: flex; gap: 8px; flex: 1; }
+        .btn-base { flex: 1; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 12px 10px; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+        
         .cart-add-btn { background: rgba(0,240,255,0.1); color: var(--accent-ice); border: 1px solid var(--accent-ice); }
-        .cart-add-btn:hover { background: var(--accent-ice); color: #000; transform: translateY(-2px); }
+        .wp-btn { background: linear-gradient(45deg, #25D366, #128C7E); color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); }
 
-        /* FLOTANTES */
-        .global-floating { position: fixed; bottom: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 15px; }
-        .float-right { right: 20px; } .float-left { left: 20px; }
-        .floating-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.8rem; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none; position: relative; }
-        .floating-btn:hover { transform: scale(1.1); }
-        .wa-global-btn { background: #25D366; animation: bounceWA 3s infinite; }
-        .cart-global-btn { background: var(--surface-color); border: 2px solid var(--accent-ice); color: var(--accent-ice); }
-        .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--fire-color); color: white; font-size: 0.8rem; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: none; justify-content: center; align-items: center; box-shadow: 0 0 10px rgba(255,60,0,0.5); }
+        /* CARRITO & UPSELL */
+        .cart-modal-content { height: auto; max-height: 85vh; border-radius: 20px; margin: auto; }
+        .cart-title-text { color: #fff; font-family: 'Space Grotesk', sans-serif; text-align: center; padding: 20px 20px 10px; font-size: 1.4rem; }
+        .cart-items-wrapper { flex: 1; overflow-y: auto; padding: 10px 20px; }
+        .cart-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
+        .cart-item-img { width: 50px; height: 50px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .cart-item-info { flex: 1; display: flex; flex-direction: column; }
+        .cart-item-title { color: #fff; font-size: 0.9rem; font-weight: 600; line-height: 1.2; margin-bottom: 4px; }
+        .cart-item-price { color: var(--price-green); font-weight: bold; font-size: 0.95rem; }
+        .cart-item-controls { display: flex; align-items: center; background: rgba(0,0,0,0.4); border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); }
+        .cart-btn-ctrl { background: none; border: none; color: #fff; cursor: pointer; padding: 4px 12px; font-size: 1.1rem; }
+        .cart-item-qty { color: #fff; font-weight: bold; font-size: 0.9rem; min-width: 15px; text-align: center; }
+        .cart-btn-del { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1.2rem; margin-left: 5px; padding: 5px; }
+        .cart-summary { display: flex; justify-content: space-between; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(0,240,255,0.2); }
         
-        .scroll-top-btn { position: fixed; bottom: 95px; left: 20px; width: 50px; height: 50px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; backdrop-filter: blur(5px); }
-        .scroll-top-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .scroll-top-btn:hover { background: var(--accent-ice); color: #000; border-color: var(--accent-ice); }
-
-        .toast-notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-50px); background: rgba(0, 240, 255, 0.95); color: #000; font-weight: bold; padding: 12px 25px; border-radius: 30px; z-index: 3000; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: 'Space Grotesk', sans-serif; box-shadow: 0 5px 15px rgba(0,240,255,0.4); text-align: center; width: max-content; max-width: 90vw; }
+        /* NOTIFICACIONES */
+        .toast-notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-50px); background: rgba(0, 240, 255, 0.95); color: #000; font-weight: bold; padding: 12px 25px; border-radius: 30px; z-index: 4000; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: 'Space Grotesk', sans-serif; box-shadow: 0 5px 15px rgba(0,240,255,0.4); text-align: center; width: max-content; max-width: 90vw; }
         .toast-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
         
-        /* NOTIFICACIÓN FOMO (Arriba y Adaptativa) */
-        .fomo-toast { position: fixed; top: 80px; left: 20px; background: rgba(10, 17, 34, 0.95); border: 1px solid rgba(0, 240, 255, 0.3); color: #fff; padding: 12px 20px; border-radius: 12px; z-index: 998; font-size: 0.85rem; font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 25px rgba(0,0,0,0.8); opacity: 0; visibility: hidden; transform: translateY(-20px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(5px); max-width: 320px; }
-        .fomo-toast.show-fomo { opacity: 1; visibility: visible; transform: translateY(0); }
-        .fomo-toast b { color: var(--accent-ice); }
-        @media (max-width: 600px) { .fomo-toast { top: 75px; left: 50%; transform: translateX(-50%) translateY(-20px); width: 90vw; max-width: 350px; text-align: center; } .fomo-toast.show-fomo { transform: translateX(-50%) translateY(0); } }
+        /* FOMO (Notificaciones de compra arriba) */
+        .fomo-toast { position: fixed; top: 50px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(10, 17, 34, 0.95); border: 1px solid rgba(0, 240, 255, 0.3); color: #fff; padding: 10px 18px; border-radius: 30px; z-index: 1000; font-size: 0.75rem; font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 25px rgba(0,0,0,0.8); opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(5px); width: max-content; max-width: 90vw; display: flex; align-items: center; gap: 8px; }
+        .fomo-toast.show-fomo { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .fomo-toast b { color: var(--accent-ice); font-weight: 700; }
+        
+        @media (min-width: 601px) { .fomo-toast { top: 90px; left: 20px; transform: translateX(0) translateY(-20px); } .fomo-toast.show-fomo { transform: translateX(0) translateY(0); } }
+
+        /* BOTONES FLOTANTES */
+        .global-floating { position: fixed; bottom: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 15px; }
+        .float-right { right: 20px; } .float-left { left: 20px; }
+        .floating-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: all 0.3s; border: none; position: relative; cursor: pointer; }
+        .wa-global-btn { background: #25D366; animation: bounceWA 3s infinite; }
+        .cart-global-btn { background: var(--surface-color); border: 2px solid var(--accent-ice); color: var(--accent-ice); }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--fire-color); color: white; font-size: 0.75rem; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: none; justify-content: center; align-items: center; box-shadow: 0 0 10px rgba(255,60,0,0.5); }
+        
+        /* SECCIÓN DE CONFIANZA INFERIOR */
+        .trust-section { width: 100%; padding: 30px 20px 80px; background: linear-gradient(0deg, transparent, rgba(10, 17, 34, 0.5)); position: relative; z-index: 10; border-top: 1px solid rgba(0, 240, 255, 0.1); margin-top: 20px; }
+        .trust-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; text-align: center; }
+        .trust-item { background: rgba(0, 240, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 25px 15px; border-radius: 16px; backdrop-filter: blur(5px); }
+        .trust-icon { font-size: 2.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--accent-glow)); }
+        .trust-item h3 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; margin-bottom: 8px; text-transform: uppercase; }
+        .trust-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
         #trail-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
-
         @media (hover: none) and (pointer: coarse) { #trail-canvas { display: none !important; } }
-        @media (max-width: 380px) { .action-buttons { flex-direction: column; } .btn-base { width: 100%; min-width: 100%; } }
     </style>
 </head>
 <body>
     <canvas id="trail-canvas"></canvas>
     
-    <!-- NOTIFICACIONES GLOBALES -->
     <div id="global-toast" class="toast-notification" role="alert">Mensaje</div>
     <div id="fomo-toast" class="fomo-toast" aria-live="polite"></div>
 
     <div class="promo-banner">
-        <span>🚚 Envío GRATIS en Bogotá por compras superiores a $120.000 COP</span>
+        <span>🚚 ENVÍO GRATIS EN BOGOTÁ POR COMPRAS SUPERIORES A $120.000 COP</span>
     </div>
 
     <header>
         <h1 class="logo">AJ-STORE</h1>
-        
         <div class="controls-area">
-            <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar por nombre o característica..." aria-label="Buscar productos">
+            <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar controles, coolers..." aria-label="Buscar productos">
             <button id="sort-btn" class="sort-btn" aria-label="Cambiar orden de precios">Ordenar: Mayor Precio ▼</button>
         </div>
     </header>
@@ -265,27 +255,16 @@
         <button class="cat-btn active" data-cat="Todos">Todos</button>
         <button class="cat-btn" data-cat="Controles">Controles</button>
         <button class="cat-btn" data-cat="COOLERS">Ventiladores</button>
-        <button class="cat-btn" data-cat="Accesorios">Accesorios</button>
         <button class="cat-btn ofertas-btn" data-cat="Ofertas">🔥 Ofertas</button>
     </nav>
 
     <section class="how-to-buy-section">
-        <h2 class="section-title">¿CÓMO COMPRAR?</h2>
         <div class="htb-steps">
-            <div class="htb-step">
-                <div class="htb-icon">🛍️</div>
-                <div class="htb-text">1. Elige tu<br>producto</div>
-            </div>
+            <div class="htb-step"><div class="htb-icon">🛍️</div><div class="htb-text">1. Elige tu<br>producto</div></div>
             <div class="htb-arrow"></div>
-            <div class="htb-step">
-                <div class="htb-icon">💬</div>
-                <div class="htb-text">2. Escríbenos<br>por WhatsApp</div>
-            </div>
+            <div class="htb-step"><div class="htb-icon">💬</div><div class="htb-text">2. Escribe por<br>WhatsApp</div></div>
             <div class="htb-arrow"></div>
-            <div class="htb-step">
-                <div class="htb-icon">🛵</div>
-                <div class="htb-text">3. Recibe<br>en casa</div>
-            </div>
+            <div class="htb-step"><div class="htb-icon">🛵</div><div class="htb-text">3. Recibe<br>en casa</div></div>
         </div>
     </section>
 
@@ -293,99 +272,101 @@
 
     <section class="trust-section">
         <div class="trust-container">
-            <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos en Bogotá <b>desde $6.000 COP</b> (Pago Contra Entrega). Para el resto de Colombia despachamos mediante <b>Servientrega o Inter Rapidísimo</b>.</p></div>
-            <div class="trust-item"><div class="trust-icon">📱</div><h3>Pagos Digitales</h3><p>Recibimos pagos por transferencia bancaria rápida: <b>Nequi, Daviplata, Bancolombia, Banco Nu, Dale</b> y otros aliados.</p></div>
-            <div class="trust-item"><div class="trust-icon">⭐</div><h3>Experiencia Comprobada</h3><p>Operando sin interrupciones desde <b>enero de 2024</b> con un historial intachable y cientos de clientes 100% satisfechos.</p></div>
-            <div class="trust-item"><div class="trust-icon">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos <b>atención personalizada</b> para asegurar que lleves el equipo perfecto para tu celular o estilo de juego.</p></div>
+            <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos en Bogotá <b>desde $6.000 COP</b> (Pago Contra Entrega). Para el resto despachamos mediante <b>Servientrega o Inter Rapidísimo</b>.</p></div>
+            <div class="trust-item"><div class="trust-icon">📱</div><h3>Pagos Digitales</h3><p>Transferencia bancaria rápida: <b>Nequi, Daviplata, Bancolombia, Banco Nu, Dale</b>.</p></div>
+            <div class="trust-item"><div class="trust-icon">⭐</div><h3>Experiencia Comprobada</h3><p>Operando desde <b>enero de 2024</b> con historial intachable y clientes 100% satisfechos.</p></div>
+            <div class="trust-item"><div class="trust-icon">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos <b>atención personalizada</b> para el equipo perfecto.</p></div>
         </div>
     </section>
 
-    <!-- Modal Producto (Diseño Minimalista Estilo App) -->
+    <!-- Modal Producto (Estilo Bottom Sheet / Shein) -->
     <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content" style="padding: 0; background: var(--bg-color);">
+        <div class="modal-content">
+            <div class="drag-indicator"></div>
             <button class="close-btn" onclick="closeModal('product-modal')" aria-label="Cerrar ventana">&times;</button>
             
-            <div class="gallery-wrapper" style="border-radius: 20px 20px 0 0;">
+            <div class="gallery-wrapper">
                 <button class="nav-btn nav-prev" onclick="scrollGallery(-1)" aria-label="Foto anterior">&#10094;</button>
                 <div class="slider" id="modal-slider"></div>
                 <button class="nav-btn nav-next" onclick="scrollGallery(1)" aria-label="Foto siguiente">&#10095;</button>
             </div>
             
-            <div class="modal-scroll-area modal-sheet">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:5px;">
-                    <div id="modal-price" class="price-glow" style="margin-bottom:0; text-align:left;"></div>
-                    <button class="share-icon-btn" id="modal-share-btn" aria-label="Copiar Enlace">🔗</button>
+            <div class="modal-scroll-area">
+                <div class="modal-header-info">
+                    <div class="modal-breadcrumb">
+                        <span id="modal-cat-crumb">Categoría</span>
+                        <span id="modal-share-btn" style="cursor:pointer; font-size:1.1rem;" aria-label="Copiar Enlace">🔗</span>
+                    </div>
+                    <h2 id="modal-title">Nombre</h2>
+                    <div id="modal-subtitle"></div>
+                    <div id="modal-reviews"></div>
                 </div>
                 
-                <h2 id="modal-title" style="font-size:1.4rem; text-align:left; margin-bottom:2px;">Nombre</h2>
-                <div id="modal-subtitle" style="color:var(--text-muted); font-size:0.85rem; text-align:left; margin-bottom:10px;"></div>
-                <div id="modal-reviews" style="text-align:left; margin-bottom:20px;"></div>
-                
-                <div style="display:flex; overflow-x:auto; gap:10px; padding-bottom:10px; margin-bottom:15px; scrollbar-width:none;">
-                    <div class="t-badge-box">✅ En Stock</div>
-                    <div class="t-badge-box">🚚 Envío Desde $6K</div>
-                    <div class="t-badge-box">📱 <span id="modal-compat"></span></div>
+                <div class="chips-container">
+                    <div class="info-chip">✅ <strong>En Stock</strong></div>
+                    <div class="info-chip">🚚 <strong>Envío Desde $6K</strong></div>
+                    <div class="info-chip">📱 <strong id="modal-compat">Universal</strong></div>
                 </div>
                 
-                <div id="modal-desc" class="modal-description" style="text-align:left;"></div>
+                <div id="modal-desc" class="modal-description"></div>
             </div>
 
-            <div class="modal-footer" style="display:flex; gap:10px; padding: 15px 20px;">
-                <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir al carrito</button>
-                <button class="btn-base wp-btn" id="modal-whatsapp">Comprar ahora 💬</button>
+            <div class="modal-footer-sticky">
+                <div class="price-glow" id="modal-price"></div>
+                <div class="action-buttons">
+                    <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir</button>
+                    <a id="modal-whatsapp" class="btn-base wp-btn" href="#" target="_blank" rel="noopener noreferrer">Comprar 💬</a>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Modal Upsell (Accesorios Estratégicos) -->
-    <div id="upsell-modal" class="modal" role="dialog" aria-modal="true">
+    <div id="upsell-modal" class="modal" role="dialog" aria-modal="true" style="align-items: center;">
         <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('upsell-modal')" aria-label="Cerrar">&times;</button>
             <div style="padding: 25px 20px 10px; text-align:center;">
-                <h2 style="color:var(--accent-ice); font-family:'Space Grotesk', sans-serif; font-size:1.4rem; margin-bottom:5px;">¡Mejora tu experiencia! ⚡</h2>
-                <p style="font-size:0.9rem; color:var(--text-muted);">Accesorios recomendados para sacarle el máximo provecho a tu compra.</p>
+                <h2 style="color:var(--accent-ice); font-family:'Space Grotesk', sans-serif; font-size:1.4rem; margin-bottom:5px;">¡Mejora tu compra! ⚡</h2>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Accesorios recomendados para sacarle el máximo provecho a tu cooler.</p>
             </div>
             <div id="upsell-items" style="flex: 1; overflow-y: auto; padding: 10px 20px;">
                 <!-- Accesorios inyectados por JS -->
             </div>
-            <div class="modal-footer" style="display:flex; gap:10px; padding: 15px 20px;">
-                <button class="btn-base" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);" onclick="skipUpsell()">Omitir</button>
-                <button class="btn-base wp-btn" onclick="confirmUpsell()">Continuar ➔</button>
+            <div style="padding: 15px 20px; background: rgba(5, 9, 20, 0.98); border-top: 1px solid rgba(255,255,255,0.05); display:flex; gap:10px;">
+                <button class="btn-base" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);" onclick="skipUpsell()">Solo el Cooler</button>
+                <button class="btn-base wp-btn" onclick="confirmUpsell()">Añadir y Continuar</button>
             </div>
         </div>
     </div>
 
     <!-- Modal Carrito -->
-    <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-title" style="align-items: center;">
         <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('cart-modal')" aria-label="Cerrar carrito">&times;</button>
             <h2 id="cart-title" class="cart-title-text">Tu Carrito 🛒</h2>
+            
+            <div id="cart-shipping-info" style="padding: 0 20px;"></div>
+
             <div id="cart-items-container" class="cart-items-wrapper"></div>
             
-            <!-- Zona de info de envío -->
-            <div id="cart-shipping-info"></div>
-
             <div class="cart-summary">
                 <span>Total:</span>
                 <span id="cart-total-price" style="color: var(--price-green);">0</span>
             </div>
-            <div class="modal-footer">
-                <a id="cart-whatsapp-btn" class="btn-base wp-btn cart-footer-btn" href="#" target="_blank" rel="noopener noreferrer">Comprar Todo por WhatsApp 💬</a>
+            <div style="padding: 15px 20px; background: rgba(5, 9, 20, 0.98);">
+                <a id="cart-whatsapp-btn" class="btn-base wp-btn" style="width:100%; padding:14px;" href="#" target="_blank" rel="noopener noreferrer">Comprar Todo por WhatsApp 💬</a>
             </div>
         </div>
     </div>
 
-    <!-- FLOTANTES -->
     <div class="global-floating float-left">
         <button class="floating-btn cart-global-btn" onclick="openCart()" aria-label="Ver Carrito">
             🛒<span class="cart-badge" id="cart-count">0</span>
         </button>
     </div>
 
-    <button id="scroll-top-btn" class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Volver arriba">⬆️</button>
-
     <div class="global-floating float-right">
-        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20de%20su%20tienda." target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp General">💬</a>
+        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20de%20su%20tienda." target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">💬</a>
     </div>
 
     <script>
@@ -398,13 +379,13 @@
 
         const products = [
             // Controles
-            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, oldPrice: 195000, tag: '🎮 Nuevo', folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'],
-              shortDesc: "Hall Effect · 5N Vibración · Pro", compat: "Android (Tipo-C) y iPhone 15+", 
-              desc: `<ul class='specs-list'><li><b>Precisión Absoluta:</b> Sticks y gatillos con tecnología Hall Effect (sin drift).</li><li><b>Durabilidad:</b> Micro-switches testeados hasta 5 millones de clics.</li><li><b>Inmersión:</b> 5 niveles de vibración ajustables.</li><li><b>Profesional:</b> 2 botones traseros programables.</li><li><b>Compatibilidad:</b> Modos HID / Xbox / Apple / Bluetooth.</li></ul>` },
+            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, oldPrice: 195000, tag: 'Nuevo', folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'],
+              shortDesc: "Hall Effect · 5N Vibración", compat: "Android (Tipo-C) y iPhone 15+", 
+              desc: `<ul class='specs-list'><li><b>Precisión Absoluta:</b> Sticks y gatillos con tecnología Hall Effect (sin drift).</li><li><b>Durabilidad:</b> Micro-switches testeados hasta 5 millones de clics.</li><li><b>Inmersión:</b> 5 niveles de vibración ajustables.</li><li><b>Profesional:</b> 2 botones traseros programables.</li></ul>` },
             
-            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, oldPrice: 175000, tag: '💡 Entry Level', folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'],
-              shortDesc: "Hall Effect · 135g · Pass-through", compat: "Android (Tipo-C) y iPhone 15+", 
-              desc: `<ul class='specs-list'><li><b>Fiabilidad:</b> Joysticks con tecnología Hall Effect.</li><li><b>Ligereza:</b> Peso ultraligero de solo 135g.</li><li><b>Conveniencia:</b> Pass-through charging (carga mientras juegas).</li><li><b>Tamaño:</b> Ajustable para móviles desde 105mm hasta 213mm.</li><li><b>Funciones:</b> Modo Turbo totalmente personalizable.</li></ul>` },
+            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, oldPrice: 175000, tag: 'Oferta', folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'],
+              shortDesc: "Hall Effect · 135g · Turbo", compat: "Android (Tipo-C) y iPhone 15+", 
+              desc: `<ul class='specs-list'><li><b>Fiabilidad:</b> Joysticks con tecnología Hall Effect.</li><li><b>Ligereza:</b> Peso ultraligero de solo 135g.</li><li><b>Conveniencia:</b> Pass-through charging (carga mientras juegas).</li><li><b>Funciones:</b> Modo Turbo totalmente personalizable.</li></ul>` },
 
             // Coolers
             { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], 
@@ -412,75 +393,75 @@
               desc: `<ul class='specs-list'><li><b>Función 2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética, estilo MagSafe.</li><li><b>Uso Sugerido:</b> Trabajo leve, ideal para evitar sobrecalentamiento al cargar.</li></ul>` },
             
             { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, oldPrice: 100000, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'], 
-              shortDesc: "Dual (Clip/Mag) · Pantalla · 6000RPM", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla digital oculta y 3 niveles de potencia ajustables.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li><li><b>Extras:</b> Interruptor independiente para apagar luces.</li></ul>` },
+              shortDesc: "Dual (Clip/Mag) · Pantalla", compat: "Universal (Cualquier celular)",
+              desc: `<ul class='specs-list'><li><b>Rendimiento:</b> 6000 RPM para congelación rápida.</li><li><b>Control:</b> Pantalla digital oculta y 3 niveles de potencia ajustables.</li><li><b>Fijación:</b> Sistema dual (Magnética o Clip).</li></ul>` },
             
-            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'], 
-              shortDesc: "Magnético o Clip · 15W TEC · 68g", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W con inteligencia artificial para efecto "hielo verdadero".</li><li><b>Fijación:</b> Sistema dual 2 en 1 (Magnética o Clip).</li><li><b>Diseño:</b> Extremadamente ligero (68g).</li><li><b>Requisito:</b> Exige cargador de al menos 15W (5V-3A).</li></ul>` },
+            { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, tag: 'Top Ventas', folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg', 'Cx07_2_Con_agarraderas.png', 'Cx07_3_Delante_Solo.png', 'Cx07_4_atras_solo.png', 'Cx07_5_Destapado.png', 'Cx07_6_Cable_De_Carga.png', 'Cx07_7_Agarraderas.png', 'Cx07_8_Placa_Magnetica.png', 'Cx07_9_Todo.png'], 
+              shortDesc: "Magnético o Clip · 15W TEC", compat: "Universal (Cualquier celular)",
+              desc: `<ul class='specs-list'><li><b>Potencia TEC:</b> 15W con inteligencia artificial para efecto "hielo verdadero".</li><li><b>Fijación:</b> Sistema dual 2 en 1 (Magnética o Clip).</li><li><b>Diseño:</b> Extremadamente ligero (68g).</li></ul>` },
             
             { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'], 
-              shortDesc: "Doble Turbina · Recargable/Cable", compat: "Móviles de 62mm a 92mm ancho",
-              desc: `<ul class='specs-list'><li><b>Innovación:</b> Doble turbina de alta velocidad para mayor cobertura.</li><li><b>Opciones:</b> Versión Recargable (600 mAh) o de cable directo.</li><li><b>Sujeción:</b> Clip universal elástico para móviles de 62 a 92 mm.</li><li><b>Súper Liviano:</b> Pesa entre 44g y 53g.</li></ul>` },
+              shortDesc: "Doble Turbina · Clip Elástico", compat: "Móviles de 62mm a 92mm ancho",
+              desc: `<ul class='specs-list'><li><b>Innovación:</b> Doble turbina de alta velocidad para mayor cobertura.</li><li><b>Opciones:</b> Versión Recargable (600 mAh) o de cable directo.</li><li><b>Sujeción:</b> Clip universal elástico para móviles de 62 a 92 mm.</li></ul>` },
             
             { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, oldPrice: 120000, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png', 'K22_2_Delantesolo.png', 'K22_3_AtrasSolo.png', 'K22_4_Funciones.png', 'K22_5_PlacaMagnetica.png', 'K22_6_CableDeCarga.png', 'K22_7_Todo.png'], 
               shortDesc: "Gestión IA · 15W · 4 Niveles", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Gestión IA:</b> Ajuste automático o 4 niveles manuales de potencia.</li><li><b>Refrigeración:</b> 15W de gran área, ideal para evitar lag (PUBG, COD).</li><li><b>Fijación:</b> Magnético nativo y clip trasero (2 en 1).</li><li><b>Estética:</b> Pantalla digital y RGB de 6 colores (apagable).</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Gestión IA:</b> Ajuste automático o 4 niveles manuales de potencia.</li><li><b>Refrigeración:</b> 15W de gran área, ideal para evitar lag (PUBG, COD).</li><li><b>Fijación:</b> Magnético nativo y clip trasero (2 en 1).</li></ul>` },
             
             { id: 'K36', name: 'K36', category: 'COOLERS', price: 85000, oldPrice: 110000, folder: 'COOLERS/K36/', images: ['K36_1_Delante.jpg', 'K36_2_con_Agarraderas.jpg', 'K36_3_Delante_solo.png', 'K36_4_Atrás_solo.png', 'K36_5_Cable_de_carga.png', 'K36_6_Agarraderas.png', 'K36_7_Placa_Magnética.png', 'K36_8_Todo.jpg'], 
               shortDesc: "Enfría 10s · 15W · Gran Área", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Desempeño:</b> 15W, enfría en menos de 10 segundos.</li><li><b>Tamaño:</b> Mediano/Grande para máxima área de disipación.</li><li><b>Control:</b> 3 velocidades ajustables.</li><li><b>Versatilidad:</b> Magnético con opción de colocar clips.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Desempeño:</b> 15W, enfría en menos de 10 segundos.</li><li><b>Tamaño:</b> Mediano/Grande para máxima área de disipación.</li><li><b>Versatilidad:</b> Magnético con opción de colocar clips.</li></ul>` },
             
-            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, oldPrice: 128000, folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'], 
-              shortDesc: "Baja a -9°C · Aeroespacial", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Potencia Aeroespacial:</b> Baja hasta -9°C, una armadura para la batería.</li><li><b>3 Modos:</b> Congelación, Silencioso y Overclocking.</li><li><b>Información:</b> Pantalla HD para temperatura y modo.</li><li><b>Doble Uso:</b> MagSafe nativo o clip universal trasero.</li></ul>` },
+            { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, oldPrice: 128000, tag: 'Pro', folder: 'COOLERS/K51/', images: ['K51_1_delante.png', 'K51_2_ConAgarraderas.png', 'K51_3_DelanteSolo.png', 'K51_4_AtrasSolo.png', 'K51_5_CableDeCarga.png', 'K51_6_Agarraderas.png', 'K51_7_PlacaMagnetica.png', 'K51_8_Todo.png'], 
+              shortDesc: "Baja a -9°C · Pantalla HD", compat: "Universal (Cualquier celular)",
+              desc: `<ul class='specs-list'><li><b>Potencia Aeroespacial:</b> Baja hasta -9°C, una armadura para la batería.</li><li><b>3 Modos:</b> Congelación, Silencioso y Overclocking.</li><li><b>Doble Uso:</b> MagSafe nativo o clip universal trasero.</li></ul>` },
             
             { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'], 
               shortDesc: "Placa 7 Capas · Súper Liviano", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Refrigeración Premium:</b> Sistema de 7 capas (aleación de aviación y cerámica).</li><li><b>Eficiencia:</b> Turbina de 6000 RPM súper silenciosa.</li><li><b>Diseño:</b> Variantes con o sin pantalla digital.</li><li><b>Comodidad:</b> Pesa tan solo 56g.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Refrigeración Premium:</b> Sistema de 7 capas (aleación de aviación y cerámica).</li><li><b>Eficiencia:</b> Turbina de 6000 RPM súper silenciosa.</li><li><b>Comodidad:</b> Pesa tan solo 56g.</li></ul>` },
             
             { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'], 
               shortDesc: "10W Balance · 55g Ultra Mini", compat: "Universal (Magnético / Clip)",
-              desc: `<ul class='specs-list'><li><b>Tecnología Base:</b> 7 capas con placa de cerámica (Modelo SL17).</li><li><b>Balance Ideal:</b> 10W (5V 2A), buen rendimiento sin gastar exceso de energía.</li><li><b>Ultra Compacto:</b> Medidas de 59x23mm y 55g de peso.</li><li><b>Variantes:</b> Con o sin pantalla indicadora de temperatura.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Tecnología Base:</b> 7 capas con placa de cerámica.</li><li><b>Balance Ideal:</b> 10W (5V 2A), buen rendimiento sin gastar exceso de energía.</li><li><b>Ultra Compacto:</b> Medidas de 59x23mm y 55g de peso.</li></ul>` },
             
             { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'], 
               shortDesc: "TEC 15W · MagSafe · Bidireccional", compat: "MagSafe iPhone / Android con placa",
-              desc: `<ul class='specs-list'><li><b>Refrigeración TEC 15W:</b> 3 niveles (Vídeo, 120 FPS y Transmisión).</li><li><b>MagSafe Superior:</b> 32 imanes ultra potentes integrados.</li><li><b>Ergonomía:</b> Flujo bidireccional, no quema ni sopla calor a las manos.</li><li><b>Silencio Absoluto:</b> < 25 dB de ruido operativo.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Refrigeración TEC 15W:</b> 3 niveles (Vídeo, 120 FPS y Transmisión).</li><li><b>MagSafe Superior:</b> 32 imanes ultra potentes integrados.</li><li><b>Ergonomía:</b> Flujo bidireccional, no quema ni sopla calor a las manos.</li></ul>` },
             
             { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png', 'S6X_2_DelanteSolo.png', 'S6X_3_AtrasSolo.png', 'S6X_4_PlacaMagnetica.png', 'S6X_5_CableDeCarga.png', 'S6X_6_Todo.png'], 
               shortDesc: "Rosca Trípode · 5500 RPM", compat: "Universal (Magnético con placa incluída)",
-              desc: `<ul class='specs-list'><li><b>Para Streamers:</b> Rosca de cobre integrada para montar en trípodes.</li><li><b>Doble Tecnología:</b> TEC de 5 niveles (panel de aluminio y cobre).</li><li><b>Fijación:</b> Magnético de alta potencia (MagSafe compatible).</li><li><b>RGB:</b> Efecto de "respiración" en el ventilador de 5500 RPM.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Para Streamers:</b> Rosca de cobre integrada para montar en trípodes.</li><li><b>Doble Tecnología:</b> TEC de 5 niveles (panel de aluminio y cobre).</li><li><b>RGB:</b> Efecto de "respiración" en el ventilador de 5500 RPM.</li></ul>` },
             
             { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'], 
               shortDesc: "15W Constante · Cerámica · 60g", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Poder TEC:</b> 15W, capaz de congelación rápida en pleno verano.</li><li><b>Materiales:</b> Construcción robusta en ABS, metal y cerámica.</li><li><b>Comodidad:</b> Ultraligero (60g).</li><li><b>Conexión:</b> Alimentación estable mediante puerto USB Tipo-C.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Poder TEC:</b> 15W, capaz de congelación rápida en pleno verano.</li><li><b>Materiales:</b> Construcción robusta en ABS, metal y cerámica.</li><li><b>Comodidad:</b> Ultraligero (60g).</li></ul>` },
             
-            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, oldPrice: 105000, tag: '🔥 Top Ventas', folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], 
+            { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, oldPrice: 105000, tag: 'Top Ventas', folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], 
               shortDesc: "Conducto Vertical · 0°C en 30s", compat: "Universal (Celulares 4.7\" a 6.9\")",
-              desc: `<ul class='specs-list'><li><b>Rendimiento Pro:</b> Reduce temperatura hasta 40°C, llegando a 0°C en 30s.</li><li><b>Comodidad:</b> Conducto de aire vertical que no sopla hacia las manos.</li><li><b>Compatibilidad:</b> Magnético o abrazadera universal (4.7" a 6.9").</li><li><b>Ambiente:</b> RGB personalizable y silencio para chats de voz.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Rendimiento Pro:</b> Reduce temperatura hasta 40°C, llegando a 0°C en 30s.</li><li><b>Comodidad:</b> Conducto de aire vertical que no sopla hacia las manos.</li><li><b>Compatibilidad:</b> Magnético o abrazadera universal (4.7" a 6.9").</li></ul>` },
             
             { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, oldPrice: 125000, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png', 'TH18_2_ConAgarraderas.png', 'TH18_3_DelanteSolo.png', 'TH18_4_AtrasSolo.png', 'TH18_5_PlacaMagnetica.png', 'TH18_6_Agarraderas.png', 'TH18_7_CableDeCarga.png', 'TH18_8_Todo.png'], 
               shortDesc: "Poder Masivo 30W · Escarcha Real", compat: "Universal (Requiere cargador 30W+)",
-              desc: `<ul class='specs-list'><li><b>Poder Masivo:</b> 30W. Alcanza escarcha gracias a aletas engrosadas y turbo.</li><li><b>ATENCIÓN:</b> Requiere cargador PD (9V/3A) mínimo 30W. No usar Powerbanks.</li><li><b>IA & Pantalla:</b> Regulación automática en 3 niveles con pantalla digital.</li><li><b>Fijación:</b> Magnética o mediante clip desmontable.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Poder Masivo:</b> 30W. Alcanza escarcha gracias a aletas engrosadas y turbo.</li><li><b>ATENCIÓN:</b> Requiere cargador PD (9V/3A) mínimo 30W. No usar Powerbanks.</li><li><b>IA & Pantalla:</b> Regulación automática en 3 niveles con pantalla digital.</li></ul>` },
             
             { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'], 
               shortDesc: "Baja a -3°C · Auto-apagado", compat: "Universal (Cualquier celular)",
-              desc: `<ul class='specs-list'><li><b>Versatilidad:</b> 3 modos ajustables (9W, 10W, 12W).</li><li><b>Disipación Máxima:</b> 7 capas térmicas para llevar la temperatura a -3°C.</li><li><b>Seguridad:</b> Apagado automático a los 70°C por seguridad.</li><li><b>Doble Sujeción:</b> Imán o clip, pesando apenas 56g.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Versatilidad:</b> 3 modos ajustables (9W, 10W, 12W).</li><li><b>Disipación Máxima:</b> 7 capas térmicas para llevar la temperatura a -3°C.</li><li><b>Seguridad:</b> Apagado automático a los 70°C por seguridad.</li></ul>` },
             
             { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'], 
               shortDesc: "Inalámbrico (Batería) · 3 Niveles", compat: "Móviles de 4.7 a 7.5 pulgadas",
-              desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Tecnología Fría:</b> Chip semiconductor de alto rendimiento (23x23mm).</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` },
             
             { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'], 
               shortDesc: "Inalámbrico (Batería) · Ligero", compat: "Móviles de 4.7 a 7.5 pulgadas",
-              desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad (Modo Huracán) en motor sin escobillas.</li><li><b>Tecnología Fría:</b> Chip semiconductor de alto rendimiento (23x23mm).</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` },
+              desc: `<ul class='specs-list'><li><b>Libertad:</b> Batería interna de 300mAh para uso sin cables.</li><li><b>Turbo Silencioso:</b> 3 niveles de velocidad en motor sin escobillas.</li><li><b>Sujeción Segura:</b> Abrazadera L compatible de 4.7 a 7.5 pulgadas.</li></ul>` },
               
-            // Accesorios
-            { id: 'ACC-CARG25W', name: 'Cargador Rápido 25W', category: 'Accesorios', price: 30000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Potencia para tu Cooler", compat: "Universal", desc: `<ul class='specs-list'><li><b>Potencia Real:</b> 25W para sacar el máximo rendimiento.</li></ul>` },
-            { id: 'ACC-CABLE2M', name: 'Cable Tipo-C 2M', category: 'Accesorios', price: 15000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Juega sin tirones", compat: "Universal", desc: `<ul class='specs-list'><li><b>Comodidad:</b> 2 metros de largo.</li></ul>` },
-            { id: 'ACC-DEDALES-N', name: 'Dedales Gamer (Normales)', category: 'Accesorios', price: 3000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Deslizamiento suave", compat: "Talla única", desc: `<ul class='specs-list'><li><b>Mejora táctil:</b> Reduce fricción básica.</li></ul>` },
-            { id: 'ACC-DEDALES-PRO', name: 'Dedales Gamer Pro', category: 'Accesorios', price: 5000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Cero fricción · Plata", compat: "Talla única", desc: `<ul class='specs-list'><li><b>Precisión 100%:</b> Fibra de plata antisudor.</li></ul>` },
-            { id: 'ACC-PLACA', name: 'Placa Magnética Normal', category: 'Accesorios', price: 3000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Adhesivo 3M", compat: "Cualquier celular", desc: `<ul class='specs-list'><li><b>Adaptabilidad:</b> Convierte cualquier celular en compatible con MagSafe.</li></ul>` }
+            // Accesorios Extras (Ocultos del catálogo principal, solo para Upsell y Carrito)
+            { id: 'ACC-CARG25W', name: 'Cargador Rápido 25W', category: 'Accesorios', price: 30000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Ideal para el máximo rendimiento TEC.", compat: "Universal" },
+            { id: 'ACC-CABLE2M', name: 'Cable Tipo-C 2M', category: 'Accesorios', price: 15000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Juega cómodamente sin tirones.", compat: "Universal" },
+            { id: 'ACC-DEDALES-PRO', name: 'Dedales Gamer Pro', category: 'Accesorios', price: 5000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Fibra de plata, cero fricción, anti sudor.", compat: "Talla única" },
+            { id: 'ACC-DEDALES-N', name: 'Dedales Gamer (Normales)', category: 'Accesorios', price: 3000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Deslizamiento suave y fluido.", compat: "Talla única" },
+            { id: 'ACC-PLACA', name: 'Placa Magnética Normal', category: 'Accesorios', price: 3000, folder: 'Accesorios/', images: ['placeholder.jpg'], shortDesc: "Para usar coolers magnéticos en cualquier celular.", compat: "Cualquier celular" }
         ];
 
         let currentCategory = 'Todos';
@@ -492,11 +473,10 @@
         const searchInput = document.getElementById('search-input');
         const modalSlider = document.getElementById('modal-slider');
 
-        // Persistencia del Carrito (Optimizado)
         function loadCart() { const sc = localStorage.getItem('aj_cart'); if(sc) { cart = JSON.parse(sc); updateCartBadge(); } }
         function saveCart() { localStorage.setItem('aj_cart', JSON.stringify(cart)); }
 
-        // Tabs de Categorías
+        // Tabs
         document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -506,17 +486,10 @@
             });
         });
 
-        // Buscador Inteligente
         searchInput.addEventListener('input', renderProducts);
         
         document.getElementById('sort-btn').addEventListener('click', (e) => {
             sortDesc = !sortDesc; e.target.textContent = sortDesc ? 'Ordenar: Mayor Precio ▼' : 'Ordenar: Menor Precio ▲'; renderProducts();
-        });
-
-        // Visibilidad botón subir
-        window.addEventListener('scroll', () => {
-            const upBtn = document.getElementById('scroll-top-btn');
-            if (window.scrollY > 300) upBtn.classList.add('visible'); else upBtn.classList.remove('visible');
         });
 
         function renderProducts() {
@@ -524,9 +497,9 @@
             const queryWords = searchInput.value.toLowerCase().split(' ').filter(w => w);
 
             let filtered = products.filter(p => {
-                const matchCat = (currentCategory === 'Todos' && p.category !== 'Accesorios') || // Oculta accesorios en "Todos"
+                const matchCat = (currentCategory === 'Todos' && p.category !== 'Accesorios') || 
                                  (p.category === currentCategory) || 
-                                 (currentCategory === 'Ofertas' && p.oldPrice);
+                                 (currentCategory === 'Ofertas' && p.oldPrice && p.category !== 'Accesorios');
                 
                 const cleanDesc = p.desc ? p.desc.replace(/<[^>]*>/g, ' ') : '';                 
                 const searchableText = `${p.name} ${p.shortDesc} ${cleanDesc} ${p.tag || ''} ${p.category}`.toLowerCase();
@@ -537,16 +510,16 @@
 
             filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
 
-            if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No se encontraron productos con esa búsqueda.</p>'; return; }
+            if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top: 20px;">No se encontraron productos.</p>'; return; }
 
             if (currentCategory === 'Todos' && queryWords.length === 0) {
                 const controles = filtered.filter(p => p.category === 'Controles');
                 const coolers = filtered.filter(p => p.category === 'COOLERS');
 
-                if (controles.length > 0) { addCategoryTitle('CONTROLES GAMER'); controles.forEach((p, i) => createProductCard(p, 'ctrl-' + i)); }
-                if (coolers.length > 0) { addCategoryTitle('VENTILADORES / COOLERS'); coolers.forEach((p, i) => createProductCard(p, 'cool-' + i)); }
+                if (controles.length > 0) { addCategoryTitle('CONTROLES GAMER'); controles.forEach((p) => createProductCard(p)); }
+                if (coolers.length > 0) { addCategoryTitle('VENTILADORES / COOLERS'); coolers.forEach((p) => createProductCard(p)); }
             } else {
-                filtered.forEach((p, i) => createProductCard(p, 'item-' + i));
+                filtered.forEach((p) => createProductCard(p));
             }
         }
 
@@ -554,22 +527,22 @@
             const separator = document.createElement('div'); separator.className = 'category-separator'; separator.textContent = title; grid.appendChild(separator);
         }
 
-        function createProductCard(product, uniqueId) {
+        function createProductCard(product) {
             const card = document.createElement('div'); card.className = 'product-card';
             
             let badgesHTML = '';
             if (product.oldPrice) {
                 const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
                 badgesHTML += `<div class="card-badge discount-badge">-${discount}%</div>`;
+            } else if (product.tag) { 
+                badgesHTML += `<div class="card-badge tag-badge">${product.tag}</div>`; 
             }
-            if (product.tag) { badgesHTML += `<div class="card-badge tag-badge">${product.tag}</div>`; }
             
-            // Etiqueta de escasez y urgencia en productos clave
+            // Etiqueta de escasez (Blink animado)
             if (['CX07', 'SR02PRO', 'CT20'].includes(product.id)) { 
-                badgesHTML += `<div class="card-badge scarcity-badge">🔥 ¡Solo quedan 2!</div>`; 
+                badgesHTML += `<div class="scarcity-badge">🔥 ¡Solo quedan 2!</div>`; 
             }
 
-            // Imágenes dinámicas sin onerror inline para evitar fragilidad en navegadores
             const trackImages = product.images.map(img => `<img src="${product.folder + img}" alt="${product.name}" loading="lazy" class="track-img">`).join('');
 
             let priceDisplayHTML = '';
@@ -581,27 +554,28 @@
 
             card.innerHTML = `
                 ${badgesHTML}
-                <div class="img-container"><div class="card-track" id="${uniqueId}">${trackImages}</div></div>
+                <button class="quick-add-btn" aria-label="Añadir rápido">🛒</button>
+                <div class="img-container"><div class="card-track" id="track-${product.id}">${trackImages}</div></div>
                 <div class="card-reviews">${getFakeReviews(product.id)}</div>
                 <h3 class="product-title">${product.name}</h3>
                 <p class="card-short-desc">${product.shortDesc}</p>
                 <div class="price-container">${priceDisplayHTML}</div>
-                <button class="quick-add-btn" aria-label="Añadir rápido">🛒</button>
             `;
             
+            // Hover animado de imágenes
             const startCycle = () => {
-                let imgIndex = 0; const maxImages = product.images.length; const trackEl = document.getElementById(uniqueId);
-                if (hoverIntervals[uniqueId]) clearInterval(hoverIntervals[uniqueId]);
-                hoverIntervals[uniqueId] = setInterval(() => { imgIndex = (imgIndex + 1) % maxImages; trackEl.style.transform = `translateX(-${imgIndex * 100}%)`; }, 1500); 
+                let imgIndex = 0; const maxImages = product.images.length; const trackEl = document.getElementById(`track-${product.id}`);
+                if (hoverIntervals[product.id]) clearInterval(hoverIntervals[product.id]);
+                hoverIntervals[product.id] = setInterval(() => { imgIndex = (imgIndex + 1) % maxImages; if(trackEl) trackEl.style.transform = `translateX(-${imgIndex * 100}%)`; }, 1500); 
             };
-
-            const stopCycle = () => { clearInterval(hoverIntervals[uniqueId]); const trackEl = document.getElementById(uniqueId); if(trackEl) trackEl.style.transform = `translateX(0)`; };
+            const stopCycle = () => { clearInterval(hoverIntervals[product.id]); const trackEl = document.getElementById(`track-${product.id}`); if(trackEl) trackEl.style.transform = `translateX(0)`; };
 
             card.addEventListener('mouseenter', startCycle); card.addEventListener('mouseleave', stopCycle);
             card.addEventListener('touchstart', startCycle, {passive: true}); card.addEventListener('touchend', stopCycle); card.addEventListener('touchcancel', stopCycle);
+            
+            // Eventos seguros (Clicks)
             card.addEventListener('click', () => openModal(product));
             
-            // Botón de compra rápida inteligente
             const quickAddBtn = card.querySelector('.quick-add-btn');
             quickAddBtn.addEventListener('click', (e) => { 
                 e.stopPropagation(); 
@@ -609,16 +583,12 @@
                 else { addToCart(product); showGlobalToast("¡Añadido al carrito!"); }
             });
             
-            grid.appendChild(card);
-
-            // MANEJO SEGURO DE ERRORES DE IMAGEN POR JS
+            // Manejo de errores en imágenes
             card.querySelectorAll('.track-img').forEach(img => {
-                img.onerror = () => {
-                    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E';
-                    img.style.background = 'rgba(255,255,255,0.05)';
-                    img.style.opacity = '0.2';
-                };
+                img.onerror = () => { img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E'; img.style.background = 'rgba(255,255,255,0.05)'; img.style.opacity = '0.2'; };
             });
+
+            grid.appendChild(card);
         }
 
         let modalAutoPlayInterval; let isInteractingWithModal = false;
@@ -627,43 +597,42 @@
             document.getElementById('modal-cat-crumb').textContent = `Inicio > ${product.category}`;
             document.getElementById('modal-title').textContent = product.name;
             
-            // Subtítulo contextual UX
-            const catSubtitle = product.category === 'Controles' ? 'Control Gamer Profesional' : (product.category === 'COOLERS' ? 'Ventilador / Cooler para celular' : 'Accesorio Gamer');
+            const catSubtitle = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
             document.getElementById('modal-subtitle').textContent = catSubtitle;
-            
             document.getElementById('modal-reviews').innerHTML = getFakeReviews(product.id);
             document.getElementById('modal-compat').textContent = product.compat;
             
+            const priceContainer = document.getElementById('modal-price');
             if (product.oldPrice) {
-                document.getElementById('modal-price').innerHTML = `<span class="old-price" style="font-size: 1.2rem; text-shadow: none; display: block;">${formatter.format(product.oldPrice)}</span> ${formatter.format(product.price)}`;
+                priceContainer.innerHTML = `<span class="old-price">${formatter.format(product.oldPrice)}</span><span class="current">${formatter.format(product.price)}</span>`;
             } else {
-                document.getElementById('modal-price').textContent = formatter.format(product.price);
+                priceContainer.innerHTML = `<span class="current" style="margin-top:12px;">${formatter.format(product.price)}</span>`;
             }
             
             const descContainer = document.getElementById('modal-desc');
             if (product.desc) { descContainer.innerHTML = product.desc; descContainer.style.display = 'block'; } else { descContainer.style.display = 'none'; }
 
-            document.getElementById('modal-add-cart').onclick = () => { 
-                if(product.category === 'COOLERS') { openUpsell(product, 'cart'); }
-                else { addToCart(product); showGlobalToast("¡Añadido al carrito!"); closeModal('product-modal'); }
-            };
-            
-            document.getElementById('modal-whatsapp').onclick = () => {
+            // Acciones botones del modal
+            document.getElementById('modal-whatsapp').onclick = (e) => {
+                e.preventDefault();
                 if(product.category === 'COOLERS') { openUpsell(product, 'buy'); }
                 else {
                     const wsMensaje = encodeURIComponent(`Hola, me interesa el ${product.name}`);
                     window.open(`https://wa.me/573232452698?text=${wsMensaje}`, '_blank', 'noopener,noreferrer');
                 }
             };
-
+            
+            document.getElementById('modal-add-cart').onclick = () => { 
+                if(product.category === 'COOLERS') { openUpsell(product, 'cart'); }
+                else { addToCart(product); showGlobalToast("¡Añadido al carrito!"); closeModal('product-modal'); }
+            };
+            
             document.getElementById('modal-share-btn').onclick = () => { copyProductLink(product.id); };
 
+            // Renderizar Galería
             modalSlider.innerHTML = '';
             product.images.forEach(imgName => { 
-                const img = document.createElement('img'); 
-                img.src = product.folder + imgName; 
-                img.alt = `Vista de ${product.name}`; 
-                img.loading = 'lazy'; 
+                const img = document.createElement('img'); img.src = product.folder + imgName; img.alt = `Vista de ${product.name}`; img.loading = 'lazy'; 
                 img.onerror = () => { img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E'; img.style.background = 'rgba(255,255,255,0.05)'; img.style.opacity = '0.2'; };
                 modalSlider.appendChild(img); 
             });
@@ -687,9 +656,7 @@
         modalSlider.addEventListener('mouseenter', () => isInteractingWithModal = true); modalSlider.addEventListener('mouseleave', () => isInteractingWithModal = false);
         modalSlider.addEventListener('touchstart', () => isInteractingWithModal = true, {passive: true}); modalSlider.addEventListener('touchend', () => { setTimeout(()=> isInteractingWithModal = false, 2000); });
 
-        // ==========================================
-        // SISTEMA UPSELL (VENTA ADICIONAL INTELIGENTE)
-        // ==========================================
+        // UPSELL LOGIC
         let currentUpsellAction = '';
         let currentUpsellProduct = null;
         let selectedUpsells = [];
@@ -701,15 +668,14 @@
             const accs = products.filter(p => p.category === 'Accesorios');
             accs.forEach(acc => {
                 const div = document.createElement('div');
-                div.style = "display:flex; justify-content:space-between; align-items:center; padding:15px; background:rgba(255,255,255,0.03); border-radius:12px; margin-bottom:10px; border:1px solid rgba(255,255,255,0.05);";
+                div.style = "display:flex; justify-content:space-between; align-items:center; padding:15px; background:rgba(255,255,255,0.03); border-radius:12px; margin-bottom:10px; border:1px solid rgba(255,255,255,0.05); text-align:left;";
                 div.innerHTML = `
-                    <div style="flex:1; text-align:left;">
-                        <div style="color:#fff; font-weight:bold; font-size:0.95rem; margin-bottom:3px;">${acc.name}</div>
+                    <div style="flex:1; padding-right: 10px;">
+                        <div style="color:#fff; font-weight:700; font-size:0.95rem; margin-bottom:2px; line-height: 1.2;">${acc.name}</div>
+                        <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:4px;">${acc.shortDesc}</div>
                         <div style="color:var(--price-green); font-size:0.9rem; font-weight:bold;">+${formatter.format(acc.price)}</div>
                     </div>
-                    <label class="custom-checkbox" style="position:relative; cursor:pointer;">
-                        <input type="checkbox" style="width:24px; height:24px; accent-color:var(--accent-ice); cursor:pointer;" value="${acc.id}" onchange="toggleUpsell('${acc.id}', this.checked)">
-                    </label>
+                    <input type="checkbox" style="width:22px; height:22px; accent-color:var(--accent-ice); cursor:pointer; flex-shrink: 0;" value="${acc.id}" onchange="toggleUpsell('${acc.id}', this.checked)">
                 `;
                 container.appendChild(div);
             });
@@ -719,8 +685,7 @@
         }
 
         window.toggleUpsell = function(id, isChecked) {
-            if(isChecked) selectedUpsells.push(id);
-            else selectedUpsells = selectedUpsells.filter(x => x !== id);
+            if(isChecked) selectedUpsells.push(id); else selectedUpsells = selectedUpsells.filter(x => x !== id);
         };
 
         window.confirmUpsell = function() {
@@ -745,9 +710,7 @@
 
         window.skipUpsell = function() { selectedUpsells = []; confirmUpsell(); };
 
-        // ==========================================
-        // SISTEMA DE CARRITO ROBUSTO
-        // ==========================================
+        // CARRITO LOGIC
         function updateCartBadge() {
             const countSpan = document.getElementById('cart-count');
             const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
@@ -757,40 +720,24 @@
 
         function addToCart(product) { 
             let existingItem = cart.find(item => item.id === product.id);
-            if(existingItem) {
-                existingItem.quantity = (existingItem.quantity || 1) + 1;
-            } else {
-                cart.push({...product, quantity: 1});
-            }
-            saveCart(); 
-            updateCartBadge(); 
-            if (document.getElementById('cart-modal').style.display === 'flex') {
-                renderCartUI();
-            }
+            if(existingItem) existingItem.quantity = (existingItem.quantity || 1) + 1;
+            else cart.push({...product, quantity: 1});
+            saveCart(); updateCartBadge(); 
+            if (document.getElementById('cart-modal').style.display === 'flex') renderCartUI();
         }
 
         function changeQuantity(productId, delta) {
             const i = cart.findIndex(item => item.id === productId);
             if (i === -1) return;
-            
-            if (cart[i].quantity + delta > 0) {
-                cart[i].quantity += delta;
-            } else {
-                cart.splice(i, 1);
-            }
-            saveCart();
-            updateCartBadge();
+            if (cart[i].quantity + delta > 0) cart[i].quantity += delta;
+            else cart.splice(i, 1);
+            saveCart(); updateCartBadge();
             if (document.getElementById('cart-modal').style.display === 'flex') renderCartUI();
         }
 
         function removeFromCart(productId) { 
             const i = cart.findIndex(item => item.id === productId);
-            if (i > -1) {
-                cart.splice(i, 1); 
-                saveCart(); 
-                updateCartBadge(); 
-                if (document.getElementById('cart-modal').style.display === 'flex') renderCartUI(); 
-            }
+            if (i > -1) { cart.splice(i, 1); saveCart(); updateCartBadge(); if (document.getElementById('cart-modal').style.display === 'flex') renderCartUI(); }
         }
 
         function openCart() { renderCartUI(); document.getElementById('cart-modal').style.display = 'flex'; }
@@ -800,7 +747,7 @@
             const shippingInfo = document.getElementById('cart-shipping-info'); shippingInfo.innerHTML = '';
             
             if(cart.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px 0;">Tu carrito está vacío.</p>';
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 40px 0;">Tu carrito está vacío.</p>';
                 document.getElementById('cart-total-price').textContent = formatter.format(0);
                 document.getElementById('cart-whatsapp-btn').href = "#"; document.getElementById('cart-whatsapp-btn').style.opacity = '0.5'; document.getElementById('cart-whatsapp-btn').style.pointerEvents = 'none';
                 return;
@@ -808,15 +755,10 @@
 
             let total = 0; let wpMessage = "Hola, me interesa comprar estos artículos:\n\n";
             cart.forEach((p) => {
-                const qty = p.quantity || 1;
-                const subtotal = p.price * qty;
-                total += subtotal; 
-                wpMessage += `- ${qty}x ${p.name}\n`;
+                const qty = p.quantity || 1; const subtotal = p.price * qty; total += subtotal; wpMessage += `- ${qty}x ${p.name}\n`;
                 const imgSrc = p.folder + p.images[0];
                 
-                const item = document.createElement('div');
-                item.className = 'cart-item';
-                
+                const item = document.createElement('div'); item.className = 'cart-item';
                 item.innerHTML = `
                     <img src="${imgSrc}" class="cart-item-img" alt="${p.name}">
                     <div class="cart-item-info">
@@ -824,25 +766,22 @@
                         <span class="cart-item-price">${formatter.format(subtotal)}</span>
                     </div>
                     <div class="cart-item-controls">
-                        <button class="cart-btn-ctrl" onclick="changeQuantity('${p.id}', -1)" aria-label="Restar uno">−</button>
+                        <button class="cart-btn-ctrl" onclick="changeQuantity('${p.id}', -1)">−</button>
                         <span class="cart-item-qty">${qty}</span>
-                        <button class="cart-btn-ctrl" onclick="changeQuantity('${p.id}', 1)" aria-label="Sumar uno">+</button>
+                        <button class="cart-btn-ctrl" onclick="changeQuantity('${p.id}', 1)">+</button>
                     </div>
-                    <button class="cart-btn-del" onclick="removeFromCart('${p.id}')" aria-label="Eliminar producto">✖</button>
+                    <button class="cart-btn-del" onclick="removeFromCart('${p.id}')">✖</button>
                 `;
-                
-                const imgEl = item.querySelector('.cart-item-img');
-                imgEl.onerror = () => { imgEl.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E'; imgEl.style.opacity = '0.2'; };
-                
+                const imgEl = item.querySelector('.cart-item-img'); imgEl.onerror = () => { imgEl.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E'; imgEl.style.opacity = '0.2'; };
                 container.appendChild(item);
             });
 
-            // Lógica de Envío Gratis
+            // Lógica Envío Gratis
             if (total < 120000) {
-                shippingInfo.innerHTML = `<div style="text-align:center; color: var(--fire-light); font-size: 0.85rem; padding: 10px 20px; font-weight: bold;">¡Te faltan ${formatter.format(120000 - total)} para Envío GRATIS en Bogotá!</div>`;
+                shippingInfo.innerHTML = `<div style="background: rgba(255, 60, 0, 0.1); border: 1px solid rgba(255, 60, 0, 0.3); border-radius: 8px; text-align:center; color: var(--fire-light); font-size: 0.85rem; padding: 12px; margin-bottom: 10px; font-weight: 600;">¡Te faltan ${formatter.format(120000 - total)} para Envío GRATIS en Bogotá!</div>`;
                 wpMessage += `\n*Total a pagar (sin envío): ${formatter.format(total)}*`;
             } else {
-                shippingInfo.innerHTML = `<div style="text-align:center; color: var(--price-green); font-size: 0.85rem; padding: 10px 20px; font-weight: bold;">¡Felicidades! Tienes Envío GRATIS en Bogotá. 🚚</div>`;
+                shippingInfo.innerHTML = `<div style="background: rgba(0, 255, 115, 0.1); border: 1px solid rgba(0, 255, 115, 0.3); border-radius: 8px; text-align:center; color: var(--price-green); font-size: 0.85rem; padding: 12px; margin-bottom: 10px; font-weight: 600;">¡Felicidades! Tienes Envío GRATIS en Bogotá. 🚚</div>`;
                 wpMessage += `\n*Total a pagar: ${formatter.format(total)} (Envío GRATIS en Bogotá)*`;
             }
 
@@ -855,11 +794,8 @@
         function copyProductLink(productId) {
             let urlSinParams = window.location.href.split('?')[0].split('#')[0];
             const linkToCopy = urlSinParams + '?p=' + productId;
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(linkToCopy).then(() => showGlobalToast("¡Enlace copiado al portapapeles!"));
-            } else {
-                const tempInput = document.createElement('input'); tempInput.value = linkToCopy; document.body.appendChild(tempInput); tempInput.select(); document.execCommand('copy'); document.body.removeChild(tempInput); showGlobalToast("¡Enlace copiado al portapapeles!");
-            }
+            if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(linkToCopy).then(() => showGlobalToast("¡Enlace copiado!"));
+            } else { const tempInput = document.createElement('input'); tempInput.value = linkToCopy; document.body.appendChild(tempInput); tempInput.select(); document.execCommand('copy'); document.body.removeChild(tempInput); showGlobalToast("¡Enlace copiado!"); }
         }
 
         function checkUrlForProduct() {
@@ -867,13 +803,9 @@
             if (productId) { const product = products.find(p => p.id === productId); if (product) { setTimeout(() => { openModal(product); }, 300); } }
         }
 
-        window.addEventListener('click', (e) => {
-            if (e.target.matches('.modal')) closeModal(e.target.id);
-        });
+        window.addEventListener('click', (e) => { if (e.target.matches('.modal')) closeModal(e.target.id); });
 
-        // ==========================================
-        // SISTEMA FOMO (NOTIFICACIONES DE PRUEBA SOCIAL)
-        // ==========================================
+        // SISTEMA FOMO
         const fomoNames = ['Carlos M.', 'Andrés F.', 'Diego R.', 'Sebastián', 'Felipe G.', 'Camilo', 'Mateo', 'Juan C.', 'David', 'Santiago'];
         const fomoCities = ['Bogotá', 'Medellín', 'Cali', 'Bucaramanga', 'Barranquilla'];
         const fomoTimes = ['hace 10 min', 'hace 2 horas', 'hace 5 horas', 'hace 1 día', 'hace 2 días'];
@@ -886,26 +818,24 @@
             let msg = '';
             
             if (type === 'purchase') {
-                const p = products.filter(pr => pr.category !== 'Accesorios')[Math.floor(Math.random() * (products.length - 5))];
+                const coolProducts = products.filter(pr => pr.category !== 'Accesorios');
+                const p = coolProducts[Math.floor(Math.random() * coolProducts.length)];
                 const name = fomoNames[Math.floor(Math.random() * fomoNames.length)];
                 const city = fomoCities[Math.floor(Math.random() * fomoCities.length)];
                 const time = fomoTimes[Math.floor(Math.random() * fomoTimes.length)];
                 msg = `🛒 <b>${name}</b> (${city}) compró <b>${p ? p.name : 'CX07'}</b> ${time}`;
             } else {
                 const viewers = Math.floor(Math.random() * 5) + 2; 
-                msg = `👀 <b>${viewers} personas</b> están viendo artículos ahora mismo.`;
+                msg = `👀 <b>${viewers} personas</b> viendo artículos ahora mismo.`;
             }
             
-            toast.innerHTML = msg;
-            toast.classList.add('show-fomo');
+            toast.innerHTML = msg; toast.classList.add('show-fomo');
             setTimeout(() => { toast.classList.remove('show-fomo'); }, 5000); 
         }
         
         setTimeout(() => { showFomoNotification(); setInterval(showFomoNotification, Math.random() * 15000 + 20000); }, 4000);
 
-        // ==========================================
-        // FONDO INTERACTIVO CON LIMITE DE RENDIMIENTO
-        // ==========================================
+        // CANVAS BACKGROUND
         const canvas = document.getElementById('trail-canvas'); const ctx = canvas.getContext('2d'); 
         let width, height; let particles = []; let bgNodes = []; let mouse = { x: -1000, y: -1000 };
 
@@ -918,7 +848,7 @@
         if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
             window.addEventListener('resize', initCanvas); initCanvas();
             function spawnParticles(x, y) { 
-                if (particles.length > 80) return; // Tope máximo de partículas
+                if (particles.length > 80) return;
                 for(let i=0; i < 2; i++) particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5 - 0.5, life: 1, size: Math.random() * 3 + 1, color: Math.random() > 0.5 ? '0, 240, 255' : '10, 100, 255' }); 
             }
             window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; spawnParticles(mouse.x, mouse.y); });
