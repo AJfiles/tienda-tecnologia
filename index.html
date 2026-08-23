@@ -2,14 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- META SEO / COMPARTIR -->
     <title>AJ-STORE | Tecnología y Gaming</title>
     <meta name="description" content="Tienda de controles gaming y coolers para celular en Colombia. Envío contra entrega en Bogotá y a todo el país.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <meta property="og:title" content="AJ-STORE 🎮❄️ | Tecnología y Gaming">
+    <meta property="og:description" content="Descubre los mejores Controles y Coolers para móviles. Envíos a todo el país y contra entrega en Bogotá. 🔥">
+    <meta property="og:type" content="website">
     
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Space+Grotesk:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -19,82 +25,95 @@
             --accent-glow: rgba(0, 240, 255, 0.3);
             --fire-color: #ff3c00;
             --fire-glow: rgba(255, 60, 0, 0.6);
-            --price-green: #00ff73;
+            --fire-light: #ffaa00;
             --text-main: #ffffff;
             --text-muted: #8b9bb4;
+            --price-green: #00ff73;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
-        
-        header { display: flex; flex-direction: column; align-items: center; padding: 25px 20px 15px; position: relative; z-index: 50; }
-        .promo-banner { background: var(--accent-ice); color: #000; text-align: center; padding: 8px 15px; font-weight: 800; font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif; position: relative; z-index: 100; box-shadow: 0 0 15px var(--accent-glow); letter-spacing: 0.5px; }
-        
-        h1.logo { font-family: 'Syncopate', sans-serif; font-size: 2.5rem; letter-spacing: 5px; color: #fff; margin: 0 0 15px 0; text-align: center; text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); }
 
-        .search-bar { width: 100%; max-width: 500px; padding: 12px 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(10, 17, 34, 0.8); color: white; font-family: 'Montserrat', sans-serif; text-align: center; font-size: 0.95rem; backdrop-filter: blur(10px); margin-bottom: 15px; }
-        .search-bar:focus { outline: none; border-color: var(--accent-ice); box-shadow: 0 0 15px var(--accent-glow); }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
+
+        /* BANNER ENVÍO */
+        .top-promo-banner { background: var(--price-green); color: #000; text-align: center; padding: 8px 10px; font-weight: 700; font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.5px; z-index: 100; position: relative; box-shadow: 0 0 15px rgba(0, 255, 115, 0.3); }
+
+        /* HEADER & LOGO */
+        header { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px 20px 20px; position: relative; z-index: 50; }
+        @keyframes neonPulseSoft { 0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); } 50% { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; } }
+        h1.logo { font-family: 'Syncopate', sans-serif; font-size: 2.8rem; letter-spacing: 6px; color: #fff; margin: 0 0 20px 0; text-align: center; animation: neonPulseSoft 2.5s infinite alternate; }
 
         /* NAVEGACIÓN STICKY */
-        .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        .sticky-nav-container { position: sticky; top: 0; z-index: 100; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        .categories-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 800px; margin: 0 auto; }
         .cat-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 8px 16px; border-radius: 30px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
         .cat-btn.active { background: rgba(0, 240, 255, 0.1); border-color: var(--accent-ice); color: var(--accent-ice); box-shadow: 0 0 15px var(--accent-glow); }
-        .cat-btn.ofertas-btn { border-color: rgba(255, 60, 0, 0.5); color: #ffaa00; }
+        .cat-btn.ofertas-btn { border-color: rgba(255, 60, 0, 0.5); color: var(--fire-light); }
         .cat-btn.ofertas-btn.active { background: rgba(255, 60, 0, 0.1); border-color: var(--fire-color); color: #fff; }
 
-        .htb-minimal { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); background: linear-gradient(90deg, transparent, rgba(0,240,255,0.05), transparent); position: relative; z-index: 40; }
+        /* CÓMO COMPRAR (HORIZONTAL Y SUTIL) */
+        .htb-minimal { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent); }
         .htb-step { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); font-weight: 600; text-transform: uppercase; }
         .htb-icon { font-size: 1.1rem; }
         .htb-arrow { color: var(--text-muted); opacity: 0.5; font-size: 0.8rem; }
-        @media (max-width: 600px) { .htb-minimal { gap: 8px; } .htb-step { font-size: 0.65rem; } }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; padding: 25px 20px 60px; max-width: 1300px; margin: 0 auto; position: relative; z-index: 10; }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; padding: 40px; } }
+        /* BUSCADOR Y FILTROS */
+        .controls-area { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; max-width: 500px; margin: 20px auto 0; }
+        .search-bar { width: 100%; padding: 12px 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); background: rgba(10, 17, 34, 0.8); color: white; font-family: 'Montserrat', sans-serif; text-align: center; font-size: 0.95rem; transition: all 0.3s; }
+        .search-bar:focus { outline: none; border-color: var(--accent-ice); box-shadow: 0 0 15px var(--accent-glow); }
+        .sort-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; text-decoration: underline; }
 
-        .category-title-subtle { grid-column: 1 / -1; font-family: 'Syncopate', sans-serif; font-size: 1rem; color: var(--text-muted); opacity: 0.7; letter-spacing: 2px; display: flex; align-items: center; text-transform: uppercase; margin: 10px 0; }
-        .category-title-subtle::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin-left: 15px; }
+        .category-separator { grid-column: 1 / -1; width: 100%; text-align: center; margin: 20px 0 5px; font-family: 'Syncopate', sans-serif; font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; display: flex; align-items: center; opacity: 0.7; }
+        .category-separator::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin-left: 20px; }
 
-        .product-card { background-color: var(--surface-color); border-radius: 14px; padding: 15px; text-align: center; cursor: pointer; transition: transform 0.3s, border-color 0.3s; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .product-card:hover { transform: translateY(-5px); border-color: rgba(0,240,255,0.3); }
+        /* GRID Y PRODUCTOS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 30px 20px 80px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
+        @media (max-width: 600px) { .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 20px 10px 60px; } }
 
-        /* Etiquetas y Badges */
+        .product-card { background-color: var(--surface-color); border-radius: 16px; padding: 15px; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+
+        /* Badges (Etiquetas) Arregladas */
         .card-badge { position: absolute; z-index: 15; padding: 3px 8px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; }
-        .discount-badge { top: 10px; left: 10px; background: var(--fire-color); color: #fff; }
-        .tag-badge { top: 10px; left: 10px; background: var(--accent-ice); color: #000; }
+        .discount-badge { top: 10px; left: 10px; background: var(--fire-color); color: #fff; box-shadow: 0 2px 8px rgba(255,60,0,0.5); }
+        .tag-badge { top: 10px; right: 10px; background: var(--accent-ice); color: #000; }
+
+        @keyframes fadeScarcity { 0%, 15%, 85%, 100% { opacity: 0; transform: scale(0.9); } 25%, 75% { opacity: 1; transform: scale(1); } }
+        .scarcity-badge { position: absolute; top: 38px; left: 10px; background: rgba(255, 170, 0, 0.9); color: #000; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; z-index: 14; animation: fadeScarcity 8s infinite; pointer-events: none; }
+        .scarcity-badge.alone { top: 10px; }
+
+        /* Quick Add reubicado al contenedor de la imagen */
+        .img-container { height: 180px; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.3); }
+        @media (max-width: 600px) { .img-container { height: 150px; } }
         
-        @keyframes fadeScarcity { 0%, 20%, 80%, 100% { opacity: 0; } 30%, 70% { opacity: 1; } }
-        .scarcity-badge { position: absolute; top: 35px; left: 10px; background: rgba(255, 60, 0, 0.9); border: 1px solid #ffaa00; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; animation: fadeScarcity 8s infinite; z-index: 15; pointer-events: none; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
-        .scarcity-badge-alone { top: 10px; } /* Si no hay descuento arriba */
+        .card-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s ease; }
+        .track-media { flex: 0 0 100%; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
 
-        .quick-add-btn { position: absolute; top: 10px; right: 10px; background: rgba(0,240,255,0.15); border: 1px solid var(--accent-ice); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 20; cursor: pointer; backdrop-filter: blur(5px); transition: 0.3s; font-size: 1.1rem; }
-        .quick-add-btn:active { transform: scale(0.9); background: var(--accent-ice); color: #000; }
-
-        /* Media Track (Hover Carousel) */
-        .img-container { height: 160px; display: flex; align-items: center; overflow: hidden; margin-bottom: 10px; border-radius: 8px; position: relative; z-index: 2; width: 100%; }
-        @media (min-width: 768px) { .img-container { height: 200px; } }
-        .card-track { display: flex; height: 100%; width: 100%; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .track-media { flex: 0 0 100%; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); pointer-events: none; }
+        .quick-add-btn { position: absolute; bottom: 8px; right: 8px; background: rgba(0, 240, 255, 0.2); border: 1px solid var(--accent-ice); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; z-index: 20; backdrop-filter: blur(5px); transition: 0.3s; }
+        .quick-add-btn:hover { background: var(--accent-ice); color: #000; transform: scale(1.1); }
 
         .product-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; color: #fff; line-height: 1.2; }
-        .card-reviews { font-size: 0.8rem; color: #ffaa00; margin-bottom: 8px; }
+        .card-reviews { font-size: 0.8rem; color: #ffaa00; margin-bottom: 6px; }
         .card-reviews span { color: var(--text-muted); font-size: 0.7rem; margin-left: 3px; }
-        .card-short-desc { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; line-height: 1.3; }
+        .card-short-desc { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; flex-grow: 1; line-height: 1.3; }
 
-        .price-container { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 2px; margin-top: auto; }
-        .old-price { text-decoration: line-through; color: #ff3c00; font-size: 0.8rem; font-weight: 500; opacity: 0.8; }
+        .price-container { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 2px; }
+        .old-price { text-decoration: line-through; color: #ff3c00; font-size: 0.85rem; font-weight: 500; opacity: 0.8; }
         .product-price { color: var(--price-green); font-size: 1.2rem; font-weight: 700; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: flex-end; }
+        /* MODAL APP-LIKE */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: flex-end; }
         @media (min-width: 600px) { .modal { align-items: center; } }
         
-        .modal-content { background: var(--surface-color); width: 100%; max-width: 500px; max-height: 90vh; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; position: relative; border-top: 1px solid rgba(0,240,255,0.2); animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-content { background: var(--surface-color); width: 100%; max-width: 500px; max-height: 92vh; border-radius: 20px 20px 0 0; display: flex; flex-direction: column; position: relative; border-top: 1px solid rgba(0,240,255,0.2); animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @media (min-width: 600px) { .modal-content { border-radius: 20px; border: 1px solid rgba(0,240,255,0.2); animation: popIn 0.3s forwards; } }
 
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .close-btn { position: absolute; top: 12px; right: 15px; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 50; background: rgba(0,0,0,0.6); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .close-btn { position: absolute; top: 12px; right: 15px; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 50; background: rgba(0,0,0,0.5); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
 
         .gallery-wrapper { position: relative; width: 100%; height: 32vh; min-height: 250px; background: #000; flex-shrink: 0; border-radius: 20px 20px 0 0; overflow: hidden; }
         @media (min-width: 600px) { .gallery-wrapper { border-radius: 20px 20px 0 0; } }
@@ -107,16 +126,16 @@
         .nav-prev { left: 10px; } .nav-next { right: 10px; }
 
         .modal-scroll-area { overflow-y: auto; flex: 1; padding: 20px; scrollbar-width: none; }
-        .modal-header-info { margin-bottom: 15px; text-align: left; }
-        #modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
-        #modal-subtitle { color: var(--accent-ice); font-size: 0.8rem; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .modal-header-info { margin-bottom: 15px; }
+        #modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 2px; line-height: 1.2; }
+        #modal-subtitle { color: var(--accent-ice); font-size: 0.75rem; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         #modal-reviews { font-size: 0.85rem; color: #ffaa00; margin-bottom: 15px; }
 
         .chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
         .info-chip { background: rgba(255,255,255,0.03); border: 1px solid rgba(0, 255, 115, 0.2); padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; color: #e2e8f0; display: flex; align-items: center; gap: 6px; }
         .info-chip strong { color: var(--price-green); }
 
-        .modal-description { font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); }
+        .modal-description { font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); }
         .specs-list { list-style: none; padding: 0; margin: 0; }
         .specs-list li { margin-bottom: 10px; padding-left: 15px; position: relative; }
         .specs-list li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-ice); }
@@ -125,20 +144,31 @@
         .modal-footer-sticky { padding: 15px 20px; background: rgba(10, 17, 34, 0.98); border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 15px; z-index: 10; }
         .price-glow { display: flex; flex-direction: column; }
         .price-glow .old { font-size: 0.85rem; color: #ff3c00; text-decoration: line-through; margin-bottom: -2px; }
-        .price-glow .curr { color: var(--price-green); font-size: 1.5rem; font-weight: 700; }
+        .price-glow .curr { color: var(--price-green); font-size: 1.4rem; font-weight: 700; }
         
-        .btn-base { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: 700; padding: 12px; border-radius: 12px; cursor: pointer; border: none; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
+        .action-buttons { display: flex; gap: 8px; flex: 1; }
+        .btn-base { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: 700; padding: 12px 5px; border-radius: 12px; cursor: pointer; border: none; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; text-decoration: none; transition: 0.3s; text-align: center; }
         .wp-btn { background: linear-gradient(45deg, #25D366, #128C7E); color: white; }
         .cart-add-btn { background: rgba(0,240,255,0.1); color: var(--accent-ice); border: 1px solid var(--accent-ice); }
 
+        /* UPSELL Y CARRITO */
         .cart-modal-content { height: auto; max-height: 85vh; border-radius: 20px; margin: auto; }
         .cart-items-wrapper { flex: 1; overflow-y: auto; padding: 10px 20px; }
         .cart-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
+        .cart-item.prize-item { background: rgba(0, 255, 115, 0.1); border: 1px solid var(--price-green); border-radius: 8px; padding: 10px; margin-top: 10px; }
         .cart-item-img { width: 50px; height: 50px; object-fit: contain; background: rgba(255,255,255,0.03); border-radius: 8px; }
         
         .roulette-upsell-btn { width: 100%; background: rgba(0, 255, 115, 0.1); border: 1px solid var(--price-green); color: var(--price-green); padding: 12px; border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 8px; animation: pulseG 2s infinite; }
         @keyframes pulseG { 0%, 100% { box-shadow: 0 0 5px rgba(0,255,115,0.2); } 50% { box-shadow: 0 0 15px rgba(0,255,115,0.6); } }
 
+        /* RULETA */
+        .wheel-container { position: relative; width: 260px; height: 260px; margin: 20px auto; }
+        .wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #fff; z-index: 10; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.5)); }
+        .wheel { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); box-shadow: 0 0 25px rgba(0,240,255,0.3); border: 3px solid var(--accent-ice); }
+        .wheel-slice { position: absolute; top: 0; right: 0; width: 50%; height: 50%; transform-origin: 0% 100%; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, 0 100%); }
+        .wheel-text { position: absolute; top: 30px; left: 10px; transform: rotate(45deg); color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 0.75rem; text-align: center; width: 80px; text-shadow: 1px 1px 2px #000; }
+
+        /* CONFIANZA FINAL */
         .trust-footer { padding: 40px 20px; background: linear-gradient(0deg, rgba(0,0,0,0.5), transparent); border-top: 1px solid rgba(0,240,255,0.1); margin-top: 20px; }
         .trust-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 20px; text-align: center; }
         @media (min-width: 768px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -147,44 +177,45 @@
         .trust-item h3 { font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; color: #fff; text-transform: uppercase; }
         .trust-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
-        .global-floating { position: fixed; z-index: 1000; }
-        .float-top-right { top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-        .float-bottom-right { bottom: 20px; right: 20px; }
-        
-        .floating-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5); cursor: pointer; border: none; position: relative; text-decoration: none; }
+        /* FOMO TOP */
+        .fomo-top-toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%) translateY(-50px); background: rgba(10, 17, 34, 0.95); border: 1px solid var(--price-green); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: 0.8rem; box-shadow: 0 5px 15px rgba(0,255,115,0.3); opacity: 0; visibility: hidden; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 3000; backdrop-filter: blur(5px); text-align: center; width: max-content; max-width: 90vw; }
+        .fomo-top-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+
+        /* FLOTANTES */
+        .global-floating { position: fixed; z-index: 1000; bottom: 20px; }
+        .float-left { left: 20px; } .float-right { right: 20px; }
+        .floating-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5); cursor: pointer; border: none; text-decoration: none; position: relative; }
         .wa-global-btn { background: #25D366; animation: pulseG 2s infinite; }
         .cart-global-btn { background: var(--surface-color); border: 2px solid var(--accent-ice); color: var(--accent-ice); }
         .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--fire-color); color: white; font-size: 0.75rem; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: none; justify-content: center; align-items: center; }
 
-        .fomo-toast { background: rgba(10, 17, 34, 0.95); border: 1px solid var(--accent-ice); color: #fff; padding: 10px 18px; border-radius: 30px; font-size: 0.8rem; box-shadow: 0 5px 15px rgba(0,240,255,0.3); opacity: 0; transition: 0.5s ease; backdrop-filter: blur(5px); margin-bottom: 10px; pointer-events: none; }
-        .fomo-toast.show { opacity: 1; pointer-events: auto; }
-
-        /* Animación Ruleta */
-        .wheel-container { position: relative; width: 260px; height: 260px; margin: 20px auto; }
-        .wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #fff; z-index: 10; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.5)); }
-        .wheel { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); box-shadow: 0 0 25px rgba(0,240,255,0.3); border: 3px solid var(--accent-ice); }
-        .wheel-slice { position: absolute; top: 0; right: 0; width: 50%; height: 50%; transform-origin: 0% 100%; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 0, 100% 0, 0 100%); }
-        .wheel-text { position: absolute; top: 30px; left: 10px; transform: rotate(45deg); color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 0.7rem; text-align: center; width: 80px; text-shadow: 1px 1px 2px #000; }
-
         #trail-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
+        @media (hover: none) and (pointer: coarse) { #trail-canvas { display: none !important; } }
     </style>
 </head>
 <body>
     <canvas id="trail-canvas"></canvas>
     
-    <div class="promo-banner">🚚 ENVÍO GRATIS EN BOGOTÁ POR COMPRAS MAYORES A $120.000 COP</div>
+    <div id="fomo-toast" class="fomo-top-toast"></div>
+
+    <div class="top-promo-banner">🚚 ENVÍO GRATIS EN BOGOTÁ POR COMPRAS MAYORES A $120.000 COP</div>
 
     <header>
         <h1 class="logo">AJ-STORE</h1>
-        <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar controles, coolers...">
     </header>
 
-    <div class="sticky-nav">
-        <button class="cat-btn active" data-cat="Todos">Todos</button>
-        <button class="cat-btn" data-cat="Controles">Controles</button>
-        <button class="cat-btn" data-cat="COOLERS">Ventiladores</button>
-        <button class="cat-btn ofertas-btn" data-cat="Ofertas">🔥 Ofertas</button>
-        <button class="cat-btn" data-cat="Agotados" style="border-color: #555; color: #888;">⏳ Bajo Pedido</button>
+    <div class="sticky-nav-container">
+        <nav class="categories-tabs">
+            <button class="cat-btn active" data-cat="Todos">Todos</button>
+            <button class="cat-btn" data-cat="Controles">Controles</button>
+            <button class="cat-btn" data-cat="COOLERS">Ventiladores</button>
+            <button class="cat-btn ofertas-btn" data-cat="Ofertas">🔥 Ofertas</button>
+            <button class="cat-btn" data-cat="Agotados" style="border-color: #555; color: #888;">⏳ Bajo Pedido</button>
+        </nav>
+        
+        <div class="controls-area">
+            <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar controles, coolers...">
+        </div>
     </div>
 
     <div class="htb-minimal">
@@ -225,7 +256,7 @@
 
             <div class="modal-footer-sticky">
                 <div id="modal-price" class="price-glow"></div>
-                <div class="action-buttons" style="display:flex; gap:8px; flex: 1;">
+                <div class="action-buttons">
                     <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir</button>
                     <button class="btn-base wp-btn" id="modal-buy-btn">Comprar 💬</button>
                 </div>
@@ -238,15 +269,30 @@
         <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('upsell-modal')">&times;</button>
             <div style="padding: 20px;">
-                <button class="roulette-upsell-btn" onclick="openRoulette()">🎁 Prueba tu suerte (Gana descuentos)</button>
+                <button id="btn-open-roulette" class="roulette-upsell-btn" onclick="openRoulette()">🎁 Prueba tu suerte (Gana premios y DCTOS)</button>
                 <h2 style="color:var(--accent-ice); font-family:'Space Grotesk'; font-size:1.2rem; text-align:center;">¡Mejora tu experiencia! ⚡</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:5px;">Agrega accesorios útiles para tu ventilador.</p>
+                <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:5px;">Agrega accesorios útiles a tu compra.</p>
             </div>
             <div id="upsell-items" class="cart-items-wrapper"></div>
             <div style="padding: 15px; background: rgba(5,9,20,0.95); border-top: 1px solid rgba(255,255,255,0.05); display:flex; gap:10px;">
-                <button class="btn-base" style="background:rgba(255,255,255,0.05); color:#fff;" onclick="skipUpsell()">Solo llevar cooler</button>
+                <button class="btn-base" style="background:rgba(255,255,255,0.05); color:#fff; font-size:0.8rem;" onclick="skipUpsell()">Omitir</button>
                 <button class="btn-base wp-btn" onclick="confirmUpsell()">Continuar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Ruleta -->
+    <div id="roulette-modal" class="modal" style="align-items: center; z-index: 2500;">
+        <div class="modal-content cart-modal-content" style="background: var(--bg-color); text-align:center; padding: 30px 20px;">
+            <button class="close-btn" onclick="closeModal('roulette-modal')">&times;</button>
+            <h2 style="color:var(--accent-ice); font-family:'Syncopate'; margin-bottom:10px;">¡GIRA Y GANA!</h2>
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="wheel" id="wheel"></div>
+            </div>
+            <button id="spin-btn" class="btn-base wp-btn" style="margin: 20px auto 0; max-width: 200px;" onclick="spinWheel()">GIRAR AHORA</button>
+            <div id="roulette-result" style="margin-top: 20px; font-weight:bold; font-size:1.1rem; color:var(--price-green); display:none;"></div>
+            <button class="btn-base" id="roulette-close-win" style="background:rgba(0,240,255,0.1); border:1px solid var(--accent-ice); color:var(--accent-ice); margin-top:15px; display:none;" onclick="applyPrizeAndClose()">Reclamar y Continuar</button>
         </div>
     </div>
 
@@ -269,36 +315,20 @@
         </div>
     </div>
 
-    <!-- Modal Ruleta -->
-    <div id="roulette-modal" class="modal" style="align-items: center;">
-        <div class="modal-content cart-modal-content" style="background: var(--bg-color); text-align:center; padding: 30px 20px;">
-            <button class="close-btn" onclick="closeModal('roulette-modal')">&times;</button>
-            <h2 style="color:var(--accent-ice); font-family:'Syncopate'; margin-bottom:10px;">¡GIRA Y GANA!</h2>
-            <div class="wheel-container">
-                <div class="wheel-pointer"></div>
-                <div class="wheel" id="wheel"></div>
-            </div>
-            <button id="spin-btn" class="btn-base wp-btn" style="margin: 20px auto 0; max-width: 200px;" onclick="spinWheel()">GIRAR AHORA</button>
-            <div id="roulette-result" style="margin-top: 20px; font-weight:bold; font-size:1.1rem; color:var(--price-green); display:none;"></div>
-            <button class="btn-base" id="roulette-close-win" style="background:rgba(0,240,255,0.1); border:1px solid var(--accent-ice); color:var(--accent-ice); margin-top:15px; display:none;" onclick="closeModal('roulette-modal')">Continuar mi compra</button>
-        </div>
-    </div>
-
     <section class="trust-footer">
         <div class="trust-grid">
             <div class="trust-item"><div class="trust-icon">🚚</div><h3>Logística Nacional</h3><p>Envíos en Bogotá desde $6.000 COP (Contra Entrega). Resto de Colombia por Servientrega o Inter Rapidísimo.</p></div>
             <div class="trust-item"><div class="trust-icon">📱</div><h3>Pagos Digitales</h3><p>Transferencia rápida: Nequi, Daviplata, Bancolombia, Banco Nu, Dale.</p></div>
             <div class="trust-item"><div class="trust-icon">⭐</div><h3>Experiencia Comprobada</h3><p>Operando desde enero de 2024 con historial intachable y clientes 100% satisfechos.</p></div>
-            <div class="trust-item"><div class="trust-icon">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos atención personalizada para encontrar el equipo perfecto.</p></div>
+            <div class="trust-item"><div class="trust-icon">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos atención personalizada para el equipo perfecto.</p></div>
         </div>
     </section>
 
-    <div class="global-floating float-top-right">
-        <div id="fomo-toast" class="fomo-toast"></div>
+    <div class="global-floating float-left">
         <button class="floating-btn cart-global-btn" onclick="openCart()">🛒<span class="cart-badge" id="cart-count">0</span></button>
     </div>
-    <div class="global-floating float-bottom-right">
-        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos." target="_blank" rel="noopener noreferrer">💬</a>
+    <div class="global-floating float-right">
+        <a class="floating-btn wa-global-btn" href="https://wa.me/573232452698?text=Hola,%20tengo%20una%20duda." target="_blank" rel="noopener noreferrer">💬</a>
     </div>
 
     <script>
@@ -311,58 +341,70 @@
             return `⭐ ${rating} <span>(${count} reseñas)</span>`;
         }
 
-        // Base de datos exacta y depurada (Requisito: Cantidades reales de stock y K31 con video al final)
         const products = [
-            // K31 NUEVO
+            // K31 NUEVO Y ESTRELLA (Video de primero)
             { id: 'K31', name: 'K31 Cooler AI', category: 'COOLERS', price: 90000, oldPrice: 140000, tag: '🔥 Nuevo', inStock: true, stockCount: 10, folder: 'COOLERS/K31/', 
-              images: ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '1.mp4'],
-              shortDesc: "15W · IA · Escarcha Real", compat: "Universal (Magnético / Clip)", 
+              images: ['1.mp4', '1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg'],
+              shortDesc: "15W · Inteligencia IA · Escarcha Real", compat: "Universal (Magnético / Clip)", 
               desc: `<ul class='specs-list'>
                 <li><b>Congelación Verdadera:</b> Chip semiconductor de 15W (5V/3A) que baja la temperatura formando hielo real. Evita el lag y caídas de FPS.</li>
-                <li><b>Tecnología AI:</b> Ajusta automáticamente la potencia según el uso.</li>
+                <li><b>Tecnología AI:</b> Ajusta automáticamente la potencia según la exigencia del juego para no gastar energía extra.</li>
                 <li><b>Doble Uso 2 en 1:</b> Magnético nativo o con clip universal incluido.</li>
-                <li><b>Pantalla HD y 3 Modos:</b> P2 Max (Potencia total), P1 (Silencioso) y Modo Inteligente IA.</li>
+                <li><b>Pantalla HD y 3 Modos:</b> P2 Max (Potencia total e-sports), P1 (Silencioso) y Modo Inteligente IA.</li>
               </ul>` },
 
             // CONTROLES
-            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, oldPrice: 195000, tag: '🎮 Pro', inStock: true, stockCount: 5, folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'],
-              shortDesc: "Hall Effect · 5N Vibración", compat: "Android y iPhone 15+", desc: `<ul class='specs-list'><li><b>Precisión:</b> Sticks Hall Effect (sin drift).</li><li><b>Profesional:</b> Botones traseros programables.</li></ul>` },
+            { id: 'EasySMXM15', name: 'EasySMX M15', category: 'Controles', price: 160000, oldPrice: 195000, tag: '🎮 Pro', inStock: true, stockCount: 3, folder: 'Controles/EasySMXM15/', images: ['EasySmxM15_1.jpg', 'EasySmxM15_2.jpg', 'EasySmxM15_3.jpg', 'EasySmxM15_4.jpg', 'EasySmxM15_5.jpg', 'EasySmxM15_6.jpg'],
+              shortDesc: "Hall Effect · 5N Vibración", compat: "Android y iPhone 15+", 
+              desc: `<ul class='specs-list'><li><b>Precisión Absoluta:</b> Sticks y gatillos Hall Effect (sin drift).</li><li><b>Profesional:</b> Botones traseros programables y 5 niveles de vibración.</li></ul>` },
             
-            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, oldPrice: 175000, inStock: true, stockCount: 5, folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'],
-              shortDesc: "Hall Effect · 135g · Pass-through", compat: "Android y iPhone 15+", desc: `<ul class='specs-list'><li><b>Ligereza:</b> Solo 135g.</li><li><b>Conveniencia:</b> Carga tu celular mientras juegas.</li></ul>` },
+            { id: 'GameSirX5Lite', name: 'GameSir X5 Lite', category: 'Controles', price: 140000, oldPrice: 175000, inStock: true, stockCount: 2, folder: 'Controles/GameSirX5Lite/', images: ['GameSirX5Lite_1.png', 'GameSirX5Lite_2.png', 'GameSirX5Lite_3.png', 'GameSirX5Lite_4.png', 'GameSirX5Lite_5.png'],
+              shortDesc: "Hall Effect · 135g · Pass-through", compat: "Android y iPhone 15+", 
+              desc: `<ul class='specs-list'><li><b>Ligereza:</b> Solo 135g, ideal para largas sesiones.</li><li><b>Conveniencia:</b> Carga tu celular mientras juegas (Pass-through).</li></ul>` },
 
-            // COOLERS (STOCK REAL SOLICITADO)
+            // COOLERS (STOCK ACTUALIZADO SEGÚN INSTRUCCIONES)
             { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, inStock: true, stockCount: 1, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], 
-              shortDesc: "Magnético · Enfría y Carga 15W", compat: "Universal", desc: "<ul class='specs-list'><li><b>2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética tipo MagSafe.</li></ul>" },
+              shortDesc: "Magnético · Enfría y Carga 15W", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética tipo MagSafe, súper práctica.</li></ul>" },
             
             { id: 'SL70', name: 'SL70', category: 'COOLERS', price: 75000, inStock: true, stockCount: 2, folder: 'COOLERS/SL70/', images: ['SL70_1_Delante.png', 'SL70_2_Con_Agarraderas.png', 'SL70_3_Delante_Solo.png', 'SL70_4_Atras_Solo.png', 'SL70_5_CableDeCarga.png', 'SL70_6_Agarraderas.png', 'SL70_7_PlacaMagnetica.png', 'SL70_8_Todo.png'], 
-              shortDesc: "15W Constante · Cerámica · 60g", compat: "Universal", desc: "<ul class='specs-list'><li><b>Poder TEC:</b> 15W de enfriamiento continuo.</li><li><b>Comodidad:</b> Ultraligero (60g).</li></ul>" },
+              shortDesc: "15W Constante · Cerámica · 60g", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Poder TEC:</b> 15W de enfriamiento continuo.</li><li><b>Comodidad:</b> Ultraligero (60g).</li></ul>" },
             
             { id: 'SR02PRO', name: 'SR02 PRO', category: 'COOLERS', price: 80000, oldPrice: 105000, tag: '🔥 Top', inStock: true, stockCount: 4, folder: 'COOLERS/SR02PRO/', images: ['SR02PRO_1_DELANTE.png', 'SR02PRO_2_CON_AGARRADERAS.png', 'SR02PRO_3_Delante_Solo.png', 'SR02PRO_4_Atras_Solo.png', 'SR02PRO_5_Cable_De_Carga.png', 'SR02PRO_6_Agarraderas.png', 'SR02PRO_7_PlacaMagnetica.png', 'SR02PRO_8_Todo.png'], 
-              shortDesc: "Conducto Vertical · 0°C en 30s", compat: "Universal", desc: "<ul class='specs-list'><li><b>Rendimiento:</b> 0°C en 30s.</li><li><b>Comodidad:</b> Aire vertical, no quema las manos.</li></ul>" },
+              shortDesc: "Conducto Vertical · 0°C en 30s", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Rendimiento:</b> Baja hasta 0°C en 30s.</li><li><b>Ergonomía:</b> Aire vertical, no te quema ni sopla a las manos mientras juegas.</li></ul>" },
             
-            { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, inStock: true, stockCount: 1, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png', 'Y02_2_AtrasSolo.png', 'Y02_3_DelanteSolo.png', 'Y02_4_CableDeCarga.png', 'Y02_5_Todo.png'], 
-              shortDesc: "Inalámbrico (Batería)", compat: "Universal", desc: "<ul class='specs-list'><li><b>Libertad:</b> Batería interna (sin cables).</li><li><b>Motor:</b> 3 niveles de velocidad.</li></ul>" },
+            { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, inStock: true, stockCount: 1, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png', 'Y05_2_AtrasSolo.png', 'Y05_3_CableDeCarga.png', 'Y05_4_Todo.png'], 
+              shortDesc: "Inalámbrico (Batería) · Ligero", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Libertad:</b> Batería interna, juega sin cables molestos.</li><li><b>Motor:</b> 3 niveles de velocidad silenciosos.</li></ul>" },
             
             { id: 'TL07', name: 'TL07', category: 'COOLERS', price: 75000, inStock: true, stockCount: 1, folder: 'COOLERS/TL07/', images: ['TL07_1_Delante.png', 'TL07_2_ConAgarraderas.png', 'TL07_3_DelanteSolo.png', 'TL07_4_AtrasSolo.png', 'TL07_5_CableDeCarga.png', 'TL07_6_Agarraderas.png', 'TL07_7_PlacaMagnetica.png', 'TL07_8_Todo.png'], 
-              shortDesc: "Baja a -3°C · Auto-apagado", compat: "Universal", desc: "<ul class='specs-list'><li><b>Disipación Máxima:</b> Baja hasta -3°C.</li><li><b>Seguridad:</b> Auto-apagado térmico.</li></ul>" },
+              shortDesc: "Baja a -3°C · Auto-apagado", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Disipación Máxima:</b> 7 capas térmicas, baja hasta -3°C.</li><li><b>Seguridad:</b> Auto-apagado inteligente para evitar daños.</li></ul>" },
             
             { id: 'FS01', name: 'FS01', category: 'COOLERS', price: 70000, inStock: true, stockCount: 1, folder: 'COOLERS/FS01/', images: ['FS01_1_Delante.png', 'FS01_2_DelanteSolo.png', 'FS01_3_AtrasSolo.png', 'FS01_4_CableDeCarga.png', 'FS01_5_Todo.png'], 
-              shortDesc: "Doble Turbina", compat: "Móviles anchos", desc: "<ul class='specs-list'><li><b>Innovación:</b> Doble turbina para mayor cobertura.</li><li><b>Ligero:</b> Entre 44g y 53g.</li></ul>" },
+              shortDesc: "Doble Turbina", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Innovación:</b> Doble turbina para enfriar un área muchísimo mayor.</li><li><b>Súper Ligero:</b> Pesa tan solo 50g.</li></ul>" },
             
             { id: 'CT20', name: 'CT20', category: 'COOLERS', price: 80000, oldPrice: 100000, inStock: true, stockCount: 1, folder: 'COOLERS/CT20/', images: ['CT20_1_delante.png', 'CT20_2_Con_Agarraderas.png', 'CT20_3_DelanteSolo.png', 'CT20_4_AtrasSolo.png', 'CT20_5_CableDeCarga.png', 'CT20_6_Agarraderas.png', 'CT20_7_PlacaMagnetica.png', 'CT20_8_Todo.png'], 
-              shortDesc: "Dual (Clip/Mag) · Pantalla", compat: "Universal", desc: "<ul class='specs-list'><li><b>Dual:</b> Úsalo con MagSafe o clips.</li><li><b>Potente:</b> 6000 RPM de velocidad.</li></ul>" },
+              shortDesc: "Dual (Clip/Mag) · Pantalla", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Potencia Bruta:</b> 6000 RPM de velocidad constante.</li><li><b>Tecnología:</b> Pantalla digital y ajuste de niveles de potencia.</li></ul>" },
             
             { id: 'RADS', name: 'RADS', category: 'COOLERS', price: 70000, inStock: true, stockCount: 1, folder: 'COOLERS/RADS/', images: ['RADS_1_Delante.png', 'RADS_2_ConAgarraderas.png', 'RADS_3_DelanteSolo.png', 'RADS_4_AtrasSolo.png', 'RADS_5_Agarraderas.png', 'RADS_6_CableDeCarga.png', 'RADS_7_PlacaMagnetica.png', 'RADS_8_Todo.png'], 
-              shortDesc: "Placa 7 Capas · Súper Liviano", compat: "Universal", desc: "<ul class='specs-list'><li><b>Enfriamiento:</b> Aleación de aviación 7 capas.</li><li><b>Súper Silencioso:</b> Motor ultra estable.</li></ul>" },
+              shortDesc: "Placa 7 Capas · Súper Liviano", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Enfriamiento Aeroespacial:</b> Aleación de aviación en 7 capas.</li><li><b>Súper Silencioso:</b> Motor sin escobillas ultra estable, no molesta el chat de voz.</li></ul>" },
             
             { id: 'RD', name: 'RD', category: 'COOLERS', price: 65000, inStock: true, stockCount: 1, folder: 'COOLERS/RD/', images: ['RD_1_Delante.png', 'RD_2_DelanteSolo.png', 'RD_3_AtrasSolo.png', 'RD_4_CableDeCarga.png', 'RD_5_PlacaMagnetica.png', 'RD_6_Todo.png'], 
-              shortDesc: "10W Balance · 55g Ultra Mini", compat: "Universal", desc: "<ul class='specs-list'><li><b>Balance:</b> 10W, perfecto sin gastar mucha energía.</li><li><b>Mini:</b> Solo 55g de peso.</li></ul>" },
+              shortDesc: "10W Balance · 55g Ultra Mini", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>Balance Perfecto:</b> 10W, refrigera sin drenar demasiada energía de la fuente.</li><li><b>Ultra Mini:</b> Compacto y pesando solo 55g.</li></ul>" },
             
             { id: 'S25', name: 'S25', category: 'COOLERS', price: 70000, inStock: true, stockCount: 1, folder: 'COOLERS/S25/', images: ['S25_1_delante.png', 'S25_2_DelanteSolo.png', 'S25_3_AtrasSolo.png', 'S25_4_PlacaMagnetica.png', 'S25_5_CableDeCarga.png', 'S25_6_Todo.png'], 
-              shortDesc: "TEC 15W · MagSafe · Bidireccional", compat: "Universal", desc: "<ul class='specs-list'><li><b>Potencia TEC:</b> 15W regulables en 3 niveles.</li><li><b>Flujo:</b> Aire bidireccional que no molesta.</li></ul>" },
+              shortDesc: "TEC 15W · MagSafe · Bidireccional", compat: "Universal", 
+              desc: "<ul class='specs-list'><li><b>MagSafe Nativo:</b> Imán fortísimo integrado.</li><li><b>Ergonómico:</b> Flujo de aire bidireccional, no te calienta las manos.</li></ul>" },
 
-            // AGOTADOS (Bajo pedido) - Los que pediste retirar del stock activo
+            // AGOTADOS (Bajo pedido)
+            { id: 'Y02', name: 'Y02', category: 'COOLERS', price: 65000, inStock: false, stockCount: 0, folder: 'COOLERS/Y02/', images: ['Y02_1_delante.png'], shortDesc: "Inalámbrico (Batería)", desc: "Agotado temporalmente. Puedes encargarlo." },
             { id: 'CX07', name: 'CX07', category: 'COOLERS', price: 75000, inStock: false, stockCount: 0, folder: 'COOLERS/CX07/', images: ['Cx07_1_Delante.jpg'], shortDesc: "15W TEC · 68g", desc: "Agotado. Traemos por encargo." },
             { id: 'CX15', name: 'CX15', category: 'COOLERS', price: 95000, inStock: false, stockCount: 0, folder: 'COOLERS/CX15/', images: ['CX15_1_Delante.png'], shortDesc: "20W AI · Pantalla HD", desc: "Agotado. Traemos por encargo." },
             { id: 'K22', name: 'K22', category: 'COOLERS', price: 90000, inStock: false, stockCount: 0, folder: 'COOLERS/K22/', images: ['K22_1_Delante.png'], shortDesc: "Gestión IA · 15W", desc: "Agotado. Traemos por encargo." },
@@ -370,15 +412,14 @@
             { id: 'K51', name: 'K51', category: 'COOLERS', price: 90000, inStock: false, stockCount: 0, folder: 'COOLERS/K51/', images: ['K51_1_delante.png'], shortDesc: "Baja a -9°C", desc: "Agotado. Traemos por encargo." },
             { id: 'S6X', name: 'S6X', category: 'COOLERS', price: 65000, inStock: false, stockCount: 0, folder: 'COOLERS/S6X/', images: ['S6X_1_Delante.png'], shortDesc: "Rosca Trípode", desc: "Agotado. Traemos por encargo." },
             { id: 'TH18', name: 'TH18', category: 'COOLERS', price: 90000, inStock: false, stockCount: 0, folder: 'COOLERS/TH18/', images: ['TH18_1_Delante.png'], shortDesc: "Masivo 30W", desc: "Agotado. Traemos por encargo." },
-            { id: 'Y05', name: 'Y05', category: 'COOLERS', price: 60000, inStock: false, stockCount: 0, folder: 'COOLERS/Y05/', images: ['Y05_1_delante.png'], shortDesc: "Batería Ligero", desc: "Agotado. Traemos por encargo." },
             { id: 'GameSirX3Pro', name: 'GameSir X3 Pro', category: 'Controles', price: 290000, inStock: false, stockCount: 0, folder: 'Controles/GameSirX3Pro/', images: ['GameSirX3Pro_1.png'], shortDesc: "Cooler Incluido", desc: "Agotado. Traemos por encargo." },
 
-            // ACCESORIOS (Para el Upsell, con los precios solicitados)
+            // ACCESORIOS UPSELL (PRECIOS ACTUALIZADOS)
             { id: 'ACC-CARG25W', name: 'Cargador 25W', category: 'Accesorios', price: 30000, inStock: true, folder: '', images: [], shortDesc: "Para máximo rendimiento." },
             { id: 'ACC-CABLE2M', name: 'Cable Tipo-C 2M', category: 'Accesorios', price: 15000, inStock: true, folder: '', images: [], shortDesc: "Juega cómodamente a distancia." },
             { id: 'ACC-DEDALES-PRO', name: 'Dedales Calidad PRO', category: 'Accesorios', price: 5000, inStock: true, folder: '', images: [], shortDesc: "Anti-sudor, cero fricción." },
             { id: 'ACC-DEDALES-N', name: 'Dedales Normales', category: 'Accesorios', price: 3000, inStock: true, folder: '', images: [], shortDesc: "Mejora el deslizamiento." },
-            { id: 'ACC-PLACA', name: 'Placa Metálica Normal', category: 'Accesorios', price: 3000, inStock: true, folder: '', images: [], shortDesc: "Adhesiva para celulares." }
+            { id: 'ACC-PLACA', name: 'Placa Metálica Normal', category: 'Accesorios', price: 3000, inStock: true, folder: '', images: [], shortDesc: "Adhesiva magnética extra." }
         ];
 
         const grid = document.getElementById('product-grid');
@@ -397,25 +438,22 @@
 
             let filtered = products.filter(p => {
                 if (p.category === 'Accesorios') return false;
-                const searchable = `${p.name} ${p.shortDesc} ${p.category}`.toLowerCase();
-                const matchSearch = queryWords.every(w => searchable.includes(w));
-                
+                const matchSearch = queryWords.every(w => `${p.name} ${p.shortDesc} ${p.category}`.toLowerCase().includes(w));
                 if (currentCategory === 'Agotados') return !p.inStock && matchSearch;
                 if (!p.inStock) return false;
-                
                 const matchCat = (currentCategory === 'Todos') || (p.category === currentCategory) || (currentCategory === 'Ofertas' && p.oldPrice);
                 return matchCat && matchSearch;
             });
 
             filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
 
-            if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No hay resultados.</p>'; return; }
+            if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No hay resultados.</p>'; return; }
 
             if (currentCategory === 'Todos' && queryWords.length === 0) {
                 const ctrls = filtered.filter(p => p.category === 'Controles');
                 const cools = filtered.filter(p => p.category === 'COOLERS');
-                if (ctrls.length > 0) { const title = document.createElement('div'); title.className = 'category-title-subtle'; title.textContent = 'Controles Gamer'; grid.appendChild(title); ctrls.forEach((p, i) => createCard(p, 'ctrl'+i)); }
-                if (cools.length > 0) { const title = document.createElement('div'); title.className = 'category-title-subtle'; title.textContent = 'Ventiladores / Coolers'; grid.appendChild(title); cools.forEach((p, i) => createCard(p, 'cool'+i)); }
+                if (ctrls.length > 0) { const title = document.createElement('div'); title.className = 'category-separator'; title.textContent = 'CONTROLES GAMER'; grid.appendChild(title); ctrls.forEach((p, i) => createCard(p, 'ctrl'+i)); }
+                if (cools.length > 0) { const title = document.createElement('div'); title.className = 'category-separator'; title.textContent = 'VENTILADORES / COOLERS'; grid.appendChild(title); cools.forEach((p, i) => createCard(p, 'cool'+i)); }
             } else {
                 filtered.forEach((p, i) => createCard(p, 'item'+i));
             }
@@ -424,17 +462,16 @@
         function createCard(product, uniqueId) {
             const card = document.createElement('div'); card.className = 'product-card';
             
-            let badges = '';
-            let hasDiscount = false;
+            let badges = ''; let hasDiscount = false;
             if (product.oldPrice) { hasDiscount = true; const disc = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100); badges += `<div class="card-badge discount-badge">-${disc}%</div>`; }
-            if (product.tag) badges += `<div class="card-badge tag-badge" style="right:10px; left:auto;">${product.tag}</div>`;
+            if (product.tag) badges += `<div class="card-badge tag-badge">${product.tag}</div>`;
             
-            // Etiqueta de escasez (solo si el stock es <= 4 y no es agotado)
             if (product.inStock && product.stockCount > 0 && product.stockCount <= 4) {
-                const scClass = hasDiscount ? 'scarcity-badge' : 'scarcity-badge scarcity-badge-alone';
+                const scClass = hasDiscount ? 'scarcity-badge' : 'scarcity-badge alone';
                 badges += `<div class="${scClass}">Solo ${product.stockCount} und</div>`;
             }
 
+            // Inyectar TODAS las imágenes/videos para el Hover ocultas en el track
             let trackHtml = product.images.map(img => {
                 const src = product.folder + img;
                 if(src.endsWith('.mp4')) return `<video src="${src}" class="track-media" autoplay loop muted playsinline></video>`;
@@ -442,25 +479,33 @@
             }).join('');
 
             let priceHtml = product.oldPrice ? `<span class="old-price">${formatter.format(product.oldPrice)}</span><span class="product-price">${formatter.format(product.price)}</span>` : `<span class="product-price">${formatter.format(product.price)}</span>`;
-            let quickAddBtn = product.inStock ? `<button class="quick-add-btn" onclick="event.stopPropagation(); quickAdd('${product.id}')">➕</button>` : '';
+            
+            // Botón "+" dentro de la imagen
+            let quickAddBtn = product.inStock ? `<button class="quick-add-btn" onclick="event.stopPropagation(); triggerUpsell('${product.id}', 'cart')">+</button>` : '';
 
             card.innerHTML = `
-                ${badges} ${quickAddBtn}
-                <div class="img-container"><div class="card-track" id="track-${uniqueId}">${trackHtml}</div></div>
+                ${badges}
+                <div class="img-container">
+                    <div class="card-track" id="track-${uniqueId}">${trackHtml}</div>
+                    ${quickAddBtn}
+                </div>
                 <h3 class="product-title">${product.name}</h3>
                 <div class="card-reviews">${getFakeReviews(product.id)}</div>
                 <p class="card-short-desc">${product.shortDesc}</p>
                 <div class="price-container">${priceHtml}</div>
             `;
 
-            // Lógica Carrusel Hover
-            const trackEl = card.querySelector('.card-track');
+            // Lógica Carrusel Hover Reconstruida y Funcional
             const startCycle = () => {
+                const trackEl = document.getElementById(`track-${uniqueId}`); if(!trackEl) return;
                 let idx = 0; const max = product.images.length;
                 if(hoverIntervals[uniqueId]) clearInterval(hoverIntervals[uniqueId]);
                 hoverIntervals[uniqueId] = setInterval(() => { idx = (idx + 1) % max; trackEl.style.transform = `translateX(-${idx * 100}%)`; }, 1500);
             };
-            const stopCycle = () => { clearInterval(hoverIntervals[uniqueId]); trackEl.style.transform = `translateX(0)`; };
+            const stopCycle = () => { 
+                clearInterval(hoverIntervals[uniqueId]); 
+                const trackEl = document.getElementById(`track-${uniqueId}`); if(trackEl) trackEl.style.transform = `translateX(0)`; 
+            };
             
             card.addEventListener('mouseenter', startCycle); card.addEventListener('mouseleave', stopCycle);
             card.addEventListener('touchstart', startCycle, {passive: true}); card.addEventListener('touchend', () => setTimeout(stopCycle, 1000));
@@ -475,7 +520,7 @@
         function openModal(product) {
             modalProduct = product;
             document.getElementById('modal-title').textContent = product.name;
-            document.getElementById('modal-subtitle').textContent = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler';
+            document.getElementById('modal-subtitle').textContent = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
             document.getElementById('modal-reviews').innerHTML = getFakeReviews(product.id);
             document.getElementById('modal-compat').textContent = product.compat || "Universal";
             
@@ -488,8 +533,8 @@
             if (product.inStock) {
                 sChip.innerHTML = `<span>✅</span> <strong>En Stock (${product.stockCount} disp.)</strong>`;
                 btnAdd.style.display = 'flex'; btnBuy.textContent = 'Comprar 💬';
-                btnAdd.onclick = () => triggerUpsell(product, 'cart');
-                btnBuy.onclick = () => triggerUpsell(product, 'buy');
+                btnAdd.onclick = () => triggerUpsell(product.id, 'cart');
+                btnBuy.onclick = () => triggerUpsell(product.id, 'buy');
             } else {
                 sChip.innerHTML = `<span>⏳</span> <strong>Bajo pedido</strong>`;
                 btnAdd.style.display = 'none'; btnBuy.textContent = 'Encargar 💬';
@@ -509,25 +554,25 @@
             document.getElementById('product-modal').style.display = 'flex'; modalSlider.scrollLeft = 0;
         }
 
-        function scrollGallery(dir) {
-            const w = modalSlider.clientWidth;
-            modalSlider.scrollBy({ left: dir * w, behavior: 'smooth' });
-        }
-
+        function scrollGallery(dir) { const w = modalSlider.clientWidth; modalSlider.scrollBy({ left: dir * w, behavior: 'smooth' }); }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        function quickAdd(id) { const p = products.find(x => x.id === id); if(p && p.inStock) { addToCart(p); showFomo("¡Producto añadido al carrito!"); } }
 
-        let upsellAction = ''; let selectedUpsells = [];
+        let upsellAction = ''; let selectedUpsells = []; let wonPrize = null;
         
-        function triggerUpsell(product, action) {
+        function triggerUpsell(productId, action) {
             closeModal('product-modal');
+            const product = products.find(p => p.id === productId); if(!product) return;
+            modalProduct = product;
+
             if (product.category !== 'COOLERS') {
                 if (action === 'cart') { addToCart(product); openCart(); }
-                else window.open(`https://wa.me/573232452698?text=${encodeURIComponent('Hola, quiero el ' + product.name)}`);
+                else window.open(`https://wa.me/573232452698?text=${encodeURIComponent('Hola, quiero comprar el ' + product.name)}`);
                 return;
             }
             upsellAction = action; selectedUpsells = [];
+            document.getElementById('btn-open-roulette').innerHTML = wonPrize ? `✅ Premio Guardado: ${wonPrize}` : `🎁 Prueba tu suerte (Gana premios y DCTOS)`;
+            document.getElementById('btn-open-roulette').disabled = wonPrize ? true : false;
+            
             const container = document.getElementById('upsell-items'); container.innerHTML = '';
             const accs = products.filter(p => p.category === 'Accesorios');
             
@@ -553,74 +598,25 @@
             if (upsellAction === 'cart') {
                 addToCart(modalProduct);
                 selectedUpsells.forEach(id => { const acc = products.find(x => x.id === id); if(acc) addToCart(acc); });
+                checkAndApplyPrizeToCart();
                 closeModal('upsell-modal'); openCart();
             } else {
-                let msg = `Hola, quiero comprar:\n- 1x ${modalProduct.name}\n`; let t = modalProduct.price;
+                let msg = `Hola, mi pedido es:\n\n- 1x ${modalProduct.name}\n`; let t = modalProduct.price;
                 selectedUpsells.forEach(id => { const acc = products.find(x => x.id === id); if(acc){ msg += `- 1x ${acc.name}\n`; t += acc.price; }});
-                msg += `\n*Total (Sin envío): ${formatter.format(t)}*`;
-                window.open(`https://wa.me/573232452698?text=${encodeURIComponent(msg)}`); closeModal('upsell-modal');
+                if(wonPrize && wonPrize !== "Nada 😢") { msg += `\n🎁 *PREMIO GANADO:* ${wonPrize} (Aplicar al cobro)\n`; }
+                msg += `\n*Total a pagar (Sin envío): ${formatter.format(t)}*`;
+                window.open(`https://wa.me/573232452698?text=${encodeURIComponent(msg)}`); 
+                closeModal('upsell-modal');
             }
         }
         function skipUpsell() { selectedUpsells = []; confirmUpsell(); }
 
-        // Core Carrito
-        function loadCart() { const sc = localStorage.getItem('aj_cart'); if(sc) { cart = JSON.parse(sc); updateCartBadge(); } }
-        function saveCart() { localStorage.setItem('aj_cart', JSON.stringify(cart)); }
-        function updateCartBadge() { const c = cart.reduce((s, i) => s + (i.qty || 1), 0); const b = document.getElementById('cart-count'); b.textContent = c; b.style.display = c>0?'flex':'none'; }
-        
-        function addToCart(p) { 
-            let i = cart.find(x => x.id === p.id); if(i) i.qty = (i.qty || 1) + 1; else cart.push({...p, qty: 1}); 
-            saveCart(); updateCartBadge(); if(document.getElementById('cart-modal').style.display === 'flex') renderCart(); 
-        }
-        
-        function changeQty(id, delta) {
-            let i = cart.findIndex(x => x.id === id); if(i === -1) return;
-            if(cart[i].qty + delta > 0) cart[i].qty += delta; else cart.splice(i, 1);
-            saveCart(); updateCartBadge(); renderCart();
-        }
-        
-        function openCart() { renderCart(); document.getElementById('cart-modal').style.display = 'flex'; }
-
-        function renderCart() {
-            const cont = document.getElementById('cart-items-container'); const info = document.getElementById('cart-shipping-info'); cont.innerHTML = ''; info.innerHTML = '';
-            if(cart.length === 0) { cont.innerHTML = '<p style="text-align:center; padding: 20px;">Carrito vacío.</p>'; document.getElementById('cart-total-price').textContent = "$0"; return; }
-            
-            let total = 0; let msg = "Hola, mi pedido es:\n\n";
-            cart.forEach(p => {
-                const sub = p.price * p.qty; total += sub; msg += `- ${p.qty}x ${p.name}\n`;
-                const src = (p.images && p.images[0]) ? p.folder + p.images[0] : '';
-                const imgHtml = src.endsWith('.mp4') ? `<video src="${src}" class="cart-item-img"></video>` : `<img src="${src}" class="cart-item-img">`;
-                cont.innerHTML += `
-                    <div class="cart-item">
-                        ${imgHtml}
-                        <div style="flex:1;"><div style="color:#fff; font-size:0.9rem;">${p.name}</div><div style="color:var(--price-green); font-weight:bold;">${formatter.format(sub)}</div></div>
-                        <div style="display:flex; background:rgba(0,0,0,0.4); border-radius:20px; border:1px solid rgba(0,240,255,0.2);"><button onclick="changeQty('${p.id}', -1)" style="background:none; color:#fff; border:none; padding:4px 10px; cursor:pointer;">−</button><span style="color:#fff; padding:4px;">${p.qty}</span><button onclick="changeQty('${p.id}', 1)" style="background:none; color:#fff; border:none; padding:4px 10px; cursor:pointer;">+</button></div>
-                    </div>`;
-            });
-            
-            if (total < 120000) { info.innerHTML = `<div style="background:rgba(255,60,0,0.1); border:1px solid rgba(255,60,0,0.3); padding:10px; border-radius:8px; text-align:center; color:#ffaa00; font-size:0.8rem;">Faltan ${formatter.format(120000 - total)} para Envío Gratis en Bogotá</div>`; msg += `\n*Total: ${formatter.format(total)}*`; } 
-            else { info.innerHTML = `<div style="background:rgba(0,255,115,0.1); border:1px solid rgba(0,255,115,0.3); padding:10px; border-radius:8px; text-align:center; color:var(--price-green); font-size:0.8rem;">¡Envío GRATIS en Bogotá aplicado! 🚚</div>`; msg += `\n*Total: ${formatter.format(total)} (Envío Gratis BOG)*`; }
-            
-            document.getElementById('cart-total-price').textContent = formatter.format(total);
-            document.getElementById('cart-whatsapp-btn').href = `https://wa.me/573232452698?text=${encodeURIComponent(msg)}`;
-        }
-
-        // FOMO
-        const fNames = ['Carlos', 'Andrés', 'Felipe', 'Diego', 'Mateo', 'Juan'];
-        function showFomo(txt) { const t = document.getElementById('fomo-toast'); t.innerHTML = txt; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 4000); }
-        setInterval(() => {
-            if(Math.random() > 0.6) {
-                const n = fNames[Math.floor(Math.random()*fNames.length)];
-                const p = products.filter(x => x.category === 'COOLERS')[Math.floor(Math.random()*4)];
-                showFomo(`🛒 <b>${n}</b> compró un <b>${p.name}</b> hace ${Math.floor(Math.random()*50)+2} min`);
-            }
-        }, 15000);
-
-        // Ruleta
+        // Ruleta Lógica
         const prizes = ["10% DCTO", "Nada 😢", "15% DCTO", "Placa GRATIS", "Envío Gratis", "Dedales GRATIS"];
-        let isSpinning = false;
+        let isSpinning = false; let currentPrizeIndex = -1;
         
         function openRoulette() {
+            if(wonPrize) return; // Ya ganó
             const w = document.getElementById('wheel'); w.innerHTML = '';
             prizes.forEach((p, i) => { w.innerHTML += `<div class="wheel-slice" style="transform: rotate(${i*60}deg); background:${i%2===0?'#0a1122':'#00f0ff'};"><span class="wheel-text" style="color:${i%2===0?'#fff':'#000'};">${p}</span></div>`; });
             document.getElementById('roulette-modal').style.display = 'flex';
@@ -635,34 +631,120 @@
             
             setTimeout(() => {
                 const finalDeg = deg % 360; const pointer = (360 - finalDeg) % 360; const idx = Math.floor(pointer / 60);
-                const won = prizes[idx];
-                if(won.includes("Nada")) { res.textContent = "Ups... No hubo suerte."; res.style.color = "var(--text-muted)"; } 
-                else { res.textContent = `¡Felicidades! Ganaste: ${won}`; res.style.color = "var(--price-green)"; document.getElementById('modal-buy-btn').onclick = () => { window.open(`https://wa.me/573232452698?text=${encodeURIComponent('Hola! Gane ' + won + ' en la ruleta y quiero usarlo al comprar mi ' + modalProduct.name)}`); }; }
+                wonPrize = prizes[idx];
+                if(wonPrize.includes("Nada")) { res.textContent = "Ups... No hubo suerte esta vez."; res.style.color = "var(--text-muted)"; wonPrize = null; } 
+                else { res.textContent = `¡Felicidades! Ganaste: ${wonPrize}`; res.style.color = "var(--price-green)"; }
                 res.style.display = 'block'; btn.style.display = 'block'; isSpinning = false;
             }, 4200);
         }
 
-        // Canvas Particles (Optimizado para correr siempre, pero muy ligero)
-        const cvs = document.getElementById('trail-canvas'); const ctx = cvs.getContext('2d');
-        let w, h, nodes = []; let mx = -1000, my = -1000;
+        function applyPrizeAndClose() {
+            closeModal('roulette-modal');
+            const btn = document.getElementById('btn-open-roulette');
+            btn.innerHTML = wonPrize ? `✅ Premio Guardado: ${wonPrize}` : `🎁 Prueba tu suerte (Gana premios y DCTOS)`;
+            btn.disabled = wonPrize ? true : false;
+        }
+
+        function checkAndApplyPrizeToCart() {
+            if(wonPrize && wonPrize !== "Nada 😢") {
+                let prizeExists = cart.find(x => x.id === 'PRIZE');
+                if(!prizeExists) {
+                    cart.push({ id: 'PRIZE', name: `🎁 Premio Ganado: ${wonPrize}`, price: 0, qty: 1, isPrize: true, folder: '', images: [] });
+                }
+            }
+        }
+
+        function loadCart() { const sc = localStorage.getItem('aj_cart'); if(sc) { cart = JSON.parse(sc); updateCartBadge(); } }
+        function saveCart() { localStorage.setItem('aj_cart', JSON.stringify(cart)); }
+        function updateCartBadge() { 
+            const c = cart.reduce((s, i) => s + (i.qty || 1), 0); 
+            const b = document.getElementById('cart-count'); b.textContent = c; b.style.display = c>0?'flex':'none'; 
+        }
         
+        function addToCart(p) { 
+            let i = cart.find(x => x.id === p.id); if(i) i.qty = (i.qty || 1) + 1; else cart.push({...p, qty: 1}); 
+            saveCart(); updateCartBadge(); if(document.getElementById('cart-modal').style.display === 'flex') renderCart(); 
+        }
+        
+        function changeQty(id, delta) {
+            let i = cart.findIndex(x => x.id === id); if(i === -1) return;
+            if(cart[i].qty + delta > 0) cart[i].qty += delta; else cart.splice(i, 1);
+            
+            // Limpiar premio si se vacía el carrito
+            if(cart.length === 1 && cart[0].isPrize) { cart = []; wonPrize = null; }
+            saveCart(); updateCartBadge(); renderCart();
+        }
+        
+        function openCart() { renderCart(); document.getElementById('cart-modal').style.display = 'flex'; }
+
+        function renderCart() {
+            const cont = document.getElementById('cart-items-container'); const info = document.getElementById('cart-shipping-info'); cont.innerHTML = ''; info.innerHTML = '';
+            if(cart.length === 0) { cont.innerHTML = '<p style="text-align:center; padding: 20px;">Carrito vacío.</p>'; document.getElementById('cart-total-price').textContent = "$0"; return; }
+            
+            let total = 0; let msg = "Hola, mi pedido es:\n\n";
+            cart.forEach(p => {
+                const sub = p.price * p.qty; total += sub;
+                
+                if(p.isPrize) {
+                    msg += `- ${p.name}\n`;
+                    cont.innerHTML += `<div class="cart-item prize-item"><div style="flex:1;"><div style="color:var(--price-green); font-weight:bold; font-size:0.95rem;">${p.name}</div><div style="color:var(--text-muted); font-size:0.75rem;">Se aplicará al enviarte el total a pagar.</div></div><button onclick="changeQty('${p.id}', -1)" class="close-btn" style="position:static; width:30px; height:30px; font-size:1.2rem; color:#ff3c00; background:none;">&times;</button></div>`;
+                } else {
+                    msg += `- ${p.qty}x ${p.name}\n`;
+                    const src = (p.images && p.images[0]) ? p.folder + p.images[0] : '';
+                    const imgHtml = src.endsWith('.mp4') ? `<video src="${src}" class="cart-item-img"></video>` : (src ? `<img src="${src}" class="cart-item-img">` : `<div class="cart-item-img" style="display:flex; justify-content:center; align-items:center; font-size:1.5rem;">⚙️</div>`);
+                    
+                    cont.innerHTML += `
+                        <div class="cart-item">
+                            ${imgHtml}
+                            <div style="flex:1;"><div style="color:#fff; font-size:0.9rem;">${p.name}</div><div style="color:var(--price-green); font-weight:bold;">${formatter.format(sub)}</div></div>
+                            <div style="display:flex; background:rgba(0,0,0,0.4); border-radius:20px; border:1px solid rgba(0,240,255,0.2);"><button onclick="changeQty('${p.id}', -1)" style="background:none; color:#fff; border:none; padding:4px 10px; cursor:pointer;">−</button><span style="color:#fff; padding:4px;">${p.qty}</span><button onclick="changeQty('${p.id}', 1)" style="background:none; color:#fff; border:none; padding:4px 10px; cursor:pointer;">+</button></div>
+                        </div>`;
+                }
+            });
+            
+            if (total > 0 && total < 120000) { 
+                info.innerHTML = `<div style="background:rgba(255,60,0,0.1); border:1px solid rgba(255,60,0,0.3); padding:10px; border-radius:8px; text-align:center; color:#ffaa00; font-size:0.8rem;">Faltan ${formatter.format(120000 - total)} para Envío Gratis en Bogotá</div>`; 
+                msg += `\n*Total a pagar: ${formatter.format(total)}*`; 
+            } 
+            else if (total >= 120000) { 
+                info.innerHTML = `<div style="background:rgba(0,255,115,0.1); border:1px solid rgba(0,255,115,0.3); padding:10px; border-radius:8px; text-align:center; color:var(--price-green); font-size:0.8rem;">¡Envío GRATIS en Bogotá aplicado! 🚚</div>`; 
+                msg += `\n*Total a pagar: ${formatter.format(total)} (Envío Gratis BOG)*`; 
+            }
+            
+            document.getElementById('cart-total-price').textContent = formatter.format(total);
+            document.getElementById('cart-whatsapp-btn').href = `https://wa.me/573232452698?text=${encodeURIComponent(msg)}`;
+        }
+
+        // FOMO Superior Realista
+        const fNames = ['Carlos', 'Andrés', 'Felipe', 'Diego', 'Mateo', 'Juan', 'Sebastián', 'David'];
+        function showFomo(txt) { const t = document.getElementById('fomo-toast'); t.innerHTML = txt; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 4500); }
+        
+        setInterval(() => {
+            if(Math.random() > 0.4) {
+                const n = fNames[Math.floor(Math.random()*fNames.length)];
+                const pList = products.filter(x => x.category !== 'Accesorios');
+                const p = pList[Math.floor(Math.random()*pList.length)];
+                const timeText = p.inStock ? `hace ${Math.floor(Math.random()*4)+1} día(s)` : `hace ${Math.floor(Math.random()*3)+1} semana(s)`;
+                showFomo(`🛒 <b>${n}</b> compró <b>${p.name}</b> ${timeText}`);
+            }
+        }, 15000);
+
+        // Partículas Background Optimizado
+        const cvs = document.getElementById('trail-canvas'); const ctx = cvs.getContext('2d');
+        let w, h, nodes = []; 
         function initCvs() { 
             w = window.innerWidth; h = window.innerHeight; cvs.width = w; cvs.height = h; nodes = [];
-            let count = Math.min(Math.floor(w/25), 40); // Límite estricto
-            for(let i=0; i<count; i++) nodes.push({x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5});
+            let count = Math.min(Math.floor(w/30), 30); 
+            for(let i=0; i<count; i++) nodes.push({x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3});
         }
         window.addEventListener('resize', initCvs);
-        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-        window.addEventListener('touchmove', e => { mx = e.touches[0].clientX; my = e.touches[0].clientY; }, {passive:true});
         
         function animCvs() {
-            ctx.clearRect(0,0,w,h); ctx.fillStyle = 'rgba(0, 240, 255, 0.4)'; ctx.lineWidth = 0.5;
+            ctx.clearRect(0,0,w,h); ctx.fillStyle = 'rgba(0, 240, 255, 0.3)';
             for(let i=0; i<nodes.length; i++) {
                 let n = nodes[i]; n.x += n.vx; n.y += n.vy;
                 if(n.x<0 || n.x>w) n.vx*=-1; if(n.y<0 || n.y>h) n.vy*=-1;
-                ctx.beginPath(); ctx.arc(n.x, n.y, 1.5, 0, Math.PI*2); ctx.fill();
-                let dx = n.x - mx, dy = n.y - my; let d = Math.sqrt(dx*dx + dy*dy);
-                if(d < 120) { ctx.strokeStyle = `rgba(0, 240, 255, ${0.3 - d/400})`; ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(mx, my); ctx.stroke(); }
+                ctx.beginPath(); ctx.arc(n.x, n.y, 1.2, 0, Math.PI*2); ctx.fill();
             }
             requestAnimationFrame(animCvs);
         }
