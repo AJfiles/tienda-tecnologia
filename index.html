@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Se eliminó user-scalable=no para permitir el zoom a usuarios con baja visión -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>AJ-STORE | Tecnología y Gaming</title>
@@ -40,7 +39,7 @@
         @keyframes neonPulseSoft { 0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); } 50% { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; } }
         h1.logo { font-family: 'Syncopate', sans-serif; font-size: 2.8rem; letter-spacing: 6px; color: #fff; margin: 0 0 20px 0; text-align: center; animation: neonPulseSoft 2.5s infinite alternate; }
 
-        .sticky-nav-container { position: sticky; top: 38px; z-index: 90; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        .sticky-nav-container { position: sticky; z-index: 90; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: top 0.1s; }
         .categories-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 800px; margin: 0 auto; }
         .cat-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 8px 16px; border-radius: 30px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
         .cat-btn:hover { background: rgba(0, 240, 255, 0.05); color: #fff; }
@@ -72,7 +71,7 @@
 
         @keyframes fadeScarcity { 0%, 10% { opacity: 0; } 20%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
         .scarcity-badge { position: absolute; left: 10px; top: 40px; background: rgba(255, 170, 0, 0.95); color: #000; padding: 3px 7px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; z-index: 14; animation: fadeScarcity 10s infinite; pointer-events: none; }
-        .scarcity-alone { top: 10px; } /* Si no hay descuento, sube la posición */
+        .scarcity-alone { top: 10px; } 
 
         .img-container { height: 180px; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.3); }
         @media (max-width: 600px) { .img-container { height: 150px; } }
@@ -102,6 +101,7 @@
         @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .close-btn { position: absolute; top: 12px; right: 15px; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 50; background: rgba(0,0,0,0.5); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); border: none; }
+        .close-btn:focus { outline: 2px solid var(--accent-ice); outline-offset: 2px; }
 
         .gallery-wrapper { position: relative; width: 100%; height: 32vh; min-height: 250px; background: #000; flex-shrink: 0; border-radius: 20px 20px 0 0; overflow: hidden; }
         @media (min-width: 600px) { .gallery-wrapper { border-radius: 20px 20px 0 0; } }
@@ -148,12 +148,10 @@
         .roulette-upsell-btn { width: 100%; background: rgba(0, 255, 115, 0.1); border: 1px solid var(--price-green); color: var(--price-green); padding: 12px; border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 8px; animation: pulseG 2s infinite; }
         @keyframes pulseG { 0%, 100% { box-shadow: 0 0 5px rgba(0,255,115,0.2); } 50% { box-shadow: 0 0 15px rgba(0,255,115,0.6); } }
 
-        /* RULETA - Renderizado Perfecto con Conic-Gradient */
         .wheel-container { position: relative; width: 260px; height: 260px; margin: 20px auto; }
         .wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #fff; z-index: 10; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.5)); }
         
         .wheel { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); box-shadow: 0 0 25px rgba(0,240,255,0.3); border: 3px solid var(--accent-ice);
-            /* Conic gradient divide el círculo en 6 porciones matemáticas exactas de 60 grados */
             background: conic-gradient(from -90deg, 
                 #0a1122 0deg 60deg, #00f0ff 60deg 120deg,
                 #0a1122 120deg 180deg, #00f0ff 180deg 240deg,
@@ -185,7 +183,6 @@
         .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--fire-color); color: white; font-size: 0.75rem; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: none; justify-content: center; align-items: center; }
 
         #trail-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
-        /* Optimización: Se elimina el display:none abrupto para móviles, pero limitaremos las partículas por JS para rendimiento */
     </style>
 </head>
 <body>
@@ -214,7 +211,6 @@
         </div>
     </div>
 
-    <!-- Htb Minimalista sin expandir -->
     <div class="htb-minimal">
         <div class="htb-step"><span aria-hidden="true">🛍️</span> 1. Elige</div>
         <div class="htb-arrow">➔</div>
@@ -225,7 +221,6 @@
 
     <main id="product-grid" class="grid"></main>
 
-    <!-- Modal Producto -->
     <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('product-modal')" aria-label="Cerrar ventana">&times;</button>
@@ -261,7 +256,6 @@
         </div>
     </div>
 
-    <!-- Modal Upsell -->
     <div id="upsell-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="upsell-title" style="align-items: center;">
         <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('upsell-modal')" aria-label="Cerrar sugerencias">&times;</button>
@@ -278,14 +272,12 @@
         </div>
     </div>
 
-    <!-- Modal Ruleta Optimizada -->
     <div id="roulette-modal" class="modal" role="dialog" aria-modal="true" style="align-items: center; z-index: 2500;">
         <div class="modal-content cart-modal-content" style="background: var(--bg-color); text-align:center; padding: 30px 20px;">
             <button class="close-btn" onclick="closeModal('roulette-modal')" aria-label="Cerrar ruleta">&times;</button>
             <h2 style="color:var(--accent-ice); font-family:'Syncopate'; margin-bottom:10px;">¡GIRA Y GANA!</h2>
             <div class="wheel-container">
                 <div class="wheel-pointer"></div>
-                <!-- Conic Gradient CSS hace el trabajo sin SVG complejo -->
                 <div class="wheel" id="wheel"></div>
             </div>
             <button id="spin-btn" class="btn-base wp-btn" style="margin: 20px auto 0; max-width: 200px;" onclick="spinWheel()">GIRAR AHORA</button>
@@ -294,7 +286,6 @@
         </div>
     </div>
 
-    <!-- Modal Carrito -->
     <div id="cart-modal" class="modal" role="dialog" aria-modal="true" style="align-items: center;">
         <div class="modal-content cart-modal-content">
             <button class="close-btn" onclick="closeModal('cart-modal')" aria-label="Cerrar carrito">&times;</button>
@@ -308,7 +299,6 @@
                 <span id="cart-total-price" style="color: var(--price-green);">0</span>
             </div>
             <div style="padding: 15px;">
-                <!-- A11y Security rel="noopener noreferrer" -->
                 <a id="cart-whatsapp-btn" class="btn-base wp-btn" href="#" target="_blank" rel="noopener noreferrer">Confirmar Pedido 💬</a>
             </div>
         </div>
@@ -341,9 +331,20 @@
         let currentCategory = 'Todos'; 
         let sortDesc = true; 
         
-        // Objeto global de intervalos para evitar fugas de memoria
+        // Prevención de memory leaks y gestión de foco A11y
         let hoverIntervals = {}; 
+        let lastFocusedElement = null;
         
+        // Sticky Header Dinámico Responsivo
+        function updateStickyNav() {
+            const banner = document.querySelector('.top-promo-banner');
+            const nav = document.querySelector('.sticky-nav-container');
+            if (banner && nav) {
+                nav.style.top = banner.offsetHeight + 'px';
+            }
+        }
+        window.addEventListener('resize', updateStickyNav);
+
         function getFakeReviews(idStr) {
             let hash = 0; for (let i = 0; i < idStr.length; i++) hash += idStr.charCodeAt(i);
             const count = (hash % 80) + 15; const rating = (4.5 + (hash % 5) * 0.1).toFixed(1);
@@ -351,7 +352,7 @@
         }
 
         const products = [
-            // K31 - NUEVO ESTRELLA (Fotos primero, video último)
+            // K31
             { id: 'K31', name: 'K31 Cooler AI', category: 'COOLERS', price: 90000, oldPrice: 140000, tag: '🔥 Nuevo', inStock: true, stockCount: 10, folder: 'COOLERS/K31/', 
               images: ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '1.mp4'],
               shortDesc: "15W · IA Inteligente · Escarcha Real", compat: "IPhone / Android", 
@@ -372,7 +373,7 @@
               shortDesc: "Hall Effect · 135g · Pass-through", compat: "Android y iPhone 15+", 
               desc: `<ul class='specs-list'><li><b>Ligereza:</b> Solo 135g, ideal para largas sesiones.</li><li><b>Conveniencia:</b> Carga tu celular mientras juegas (Pass-through).</li></ul>` },
 
-            // COOLERS ACTIVOS SEGÚN INVENTARIO (con descripciones)
+            // COOLERS
             { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, inStock: true, stockCount: 1, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], 
               shortDesc: "Magnético · Enfría y Carga 15W", compat: "Universal", 
               desc: "<ul class='specs-list'><li><b>2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética tipo MagSafe, súper práctica.</li></ul>" },
@@ -444,7 +445,7 @@
         searchInput.addEventListener('input', renderProducts);
 
         function renderProducts() {
-            // CORRECCIÓN MEMORY LEAK: Limpiar todos los intervalos de hover antes de vaciar el DOM
+            // CORRECCIÓN MEMORY LEAK: Limpiar intervalos de hover antes de vaciar el DOM
             for (let key in hoverIntervals) { clearInterval(hoverIntervals[key]); }
             hoverIntervals = {};
             grid.innerHTML = ''; 
@@ -461,7 +462,6 @@
             });
 
             filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
-
             if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No hay resultados.</p>'; return; }
 
             if (currentCategory === 'Todos' && queryWords.length === 0) {
@@ -491,13 +491,12 @@
             }
             if (product.tag) badges += `<div class="card-badge tag-badge">${product.tag}</div>`;
             
-            // Etiqueta de escasez que parpadea
             if (product.inStock && product.stockCount > 0 && product.stockCount <= 4) {
                 const scClass = hasDiscount ? 'scarcity-badge' : 'scarcity-badge scarcity-alone';
                 badges += `<div class="${scClass}">Solo ${product.stockCount} und</div>`;
             }
 
-            // CORRECCIÓN DE RENDIMIENTO: Videos con preload="none" y sin autoplay
+            // CORRECCIÓN RENDIMIENTO: Videos con preload="none" y sin autoplay
             let trackHtml = product.images.map(img => {
                 const src = product.folder + img;
                 if(src.endsWith('.mp4')) return `<video src="${src}" class="track-media" loop muted playsinline preload="none"></video>`;
@@ -505,8 +504,6 @@
             }).join('');
 
             let priceHtml = product.oldPrice ? `<span class="old-price">${formatter.format(product.oldPrice)}</span><span class="product-price">${formatter.format(product.price)}</span>` : `<span class="product-price">${formatter.format(product.price)}</span>`;
-            
-            // Botón Quick Add con ARIA
             let quickAddBtn = product.inStock ? `<button class="quick-add-btn" aria-label="Añadir rápido" onclick="event.stopPropagation(); triggerUpsell('${product.id}', 'cart')">+</button>` : '';
 
             card.innerHTML = `
@@ -523,8 +520,6 @@
 
             const startCycle = () => {
                 const trackEl = document.getElementById(`track-${uniqueId}`); if(!trackEl) return;
-                
-                // Reproducir videos solo al hacer hover
                 trackEl.querySelectorAll('video').forEach(v => { v.play().catch(()=>{}); });
 
                 let idx = 0; const max = product.images.length;
@@ -539,7 +534,6 @@
                 const trackEl = document.getElementById(`track-${uniqueId}`); 
                 if(trackEl) {
                     trackEl.style.transform = `translateX(0)`; 
-                    // Pausar y resetear videos al quitar hover
                     trackEl.querySelectorAll('video').forEach(v => { v.pause(); });
                 }
             };
@@ -547,14 +541,22 @@
             card.addEventListener('mouseenter', startCycle); card.addEventListener('mouseleave', stopCycle);
             card.addEventListener('touchstart', startCycle, {passive: true}); card.addEventListener('touchend', stopCycle);
             card.addEventListener('click', () => openModal(product));
-            
             grid.appendChild(card);
         }
 
         let modalProduct = null;
         const modalSlider = document.getElementById('modal-slider');
 
+        // Observer para Videos en Modal (Solo reproduce si están en pantalla)
+        const modalVideoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.play().catch(()=>{}); } 
+                else { entry.target.pause(); }
+            });
+        }, { root: modalSlider, threshold: 0.5 });
+
         function openModal(product) {
+            lastFocusedElement = document.activeElement; // Guardar foco
             modalProduct = product;
             document.getElementById('modal-title').textContent = product.name;
             document.getElementById('modal-subtitle').textContent = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
@@ -591,8 +593,12 @@
             const mod = document.getElementById('product-modal');
             mod.style.display = 'flex'; 
             modalSlider.scrollLeft = 0;
-            // Reproducir videos del modal abierto
-            mod.querySelectorAll('video').forEach(v => { v.play().catch(()=>{}); });
+            
+            // Asignar observador a los videos del modal
+            mod.querySelectorAll('video').forEach(v => modalVideoObserver.observe(v));
+            
+            // Dar foco al botón de cerrar por accesibilidad
+            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
         }
 
         function scrollGallery(dir) { const w = modalSlider.clientWidth; modalSlider.scrollBy({ left: dir * w, behavior: 'smooth' }); }
@@ -600,18 +606,23 @@
         function closeModal(id) { 
             const mod = document.getElementById(id);
             mod.style.display = 'none'; 
-            // Apagar videos para no gastar recursos ocultos
-            mod.querySelectorAll('video').forEach(v => v.pause());
+            // Apagar videos y desenlazar observer
+            mod.querySelectorAll('video').forEach(v => {
+                v.pause();
+                modalVideoObserver.unobserve(v);
+            });
+            // Restaurar foco al origen
+            if(lastFocusedElement) { lastFocusedElement.focus(); lastFocusedElement = null; }
         }
 
         let upsellAction = ''; let selectedUpsells = []; let wonPrize = null;
         
         function triggerUpsell(productId, action) {
+            if(!lastFocusedElement) lastFocusedElement = document.activeElement;
             closeModal('product-modal');
             const product = products.find(p => p.id === productId); if(!product) return;
             modalProduct = product;
 
-            // Validación de stock al añadir desde botones directos
             let i = cart.find(x => x.id === product.id);
             const currentQty = i ? i.qty : 0;
             if (action === 'cart' && product.inStock && currentQty >= product.stockCount) {
@@ -644,7 +655,9 @@
                 `;
                 container.appendChild(div);
             });
-            document.getElementById('upsell-modal').style.display = 'flex';
+            const mod = document.getElementById('upsell-modal');
+            mod.style.display = 'flex';
+            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
         }
 
         function toggleUps(chk) { if(chk.checked) selectedUpsells.push(chk.value); else selectedUpsells = selectedUpsells.filter(x => x !== chk.value); }
@@ -671,16 +684,20 @@
         
         function openRoulette() {
             if(wonPrize) return; 
+            if(!lastFocusedElement) lastFocusedElement = document.activeElement;
             const w = document.getElementById('wheel'); w.innerHTML = '';
             
-            // Calculamos posición exacta (6 premios = 60 grados cada uno)
+            // Renderizado perfecto de textos con rotación offset -90deg por el conic-gradient
             const sliceDeg = 360 / prizes.length;
             prizes.forEach((p, i) => { 
                 const color = (i % 2 === 0) ? '#fff' : '#000';
-                const rotation = i * sliceDeg + (sliceDeg / 2);
+                // La rebanada 0 arranca en top (-90deg), su centro es a los 30deg visuales.
+                const rotation = (i * sliceDeg) + (sliceDeg / 2) - 90;
                 w.innerHTML += `<div class="wheel-text" style="color:${color}; transform: translateY(-50%) rotate(${rotation}deg);">${p}</div>`; 
             });
-            document.getElementById('roulette-modal').style.display = 'flex';
+            const mod = document.getElementById('roulette-modal');
+            mod.style.display = 'flex';
+            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
         }
         
         function spinWheel() {
@@ -691,8 +708,8 @@
             w.style.transform = `rotate(${deg}deg)`;
             
             setTimeout(() => {
-                // Cálculo matemático del índice basado en conic-gradient (-90deg offset superior)
-                const topAngle = (270 - (deg % 360) + 360) % 360;
+                // CORRECCIÓN MATEMÁTICA: Fórmula exacta para conic-gradient desde top
+                const topAngle = (360 - (deg % 360)) % 360;
                 const idx = Math.floor(topAngle / 60);
                 
                 wonPrize = prizes[idx];
@@ -726,7 +743,6 @@
         function addToCart(p) { 
             let i = cart.find(x => x.id === p.id); 
             const currentQty = i ? (i.qty || 1) : 0;
-            // VALIDACIÓN DE STOCK
             if (p.inStock && currentQty >= p.stockCount && p.stockCount > 0) {
                 showStockError(`Límite: Solo quedan ${p.stockCount} unds en stock.`);
                 return;
@@ -737,8 +753,6 @@
         
         function changeQty(id, delta) {
             let i = cart.findIndex(x => x.id === id); if(i === -1) return;
-            
-            // VALIDACIÓN DE STOCK AL SUMAR
             if (delta > 0) {
                 const productRef = products.find(p => p.id === id);
                 if (productRef && productRef.inStock && cart[i].qty >= productRef.stockCount) {
@@ -746,13 +760,18 @@
                     return;
                 }
             }
-
             if(cart[i].qty + delta > 0) cart[i].qty += delta; else cart.splice(i, 1);
-            if(cart.length === 1 && cart[0].isPrize) { cart = []; wonPrize = null; } // Limpiar premio si carro vacío
+            if(cart.length === 1 && cart[0].isPrize) { cart = []; wonPrize = null; } 
             saveCart(); updateCartBadge(); renderCart();
         }
         
-        function openCart() { renderCart(); document.getElementById('cart-modal').style.display = 'flex'; }
+        function openCart() { 
+            if(!lastFocusedElement) lastFocusedElement = document.activeElement;
+            renderCart(); 
+            const mod = document.getElementById('cart-modal');
+            mod.style.display = 'flex'; 
+            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
+        }
 
         function renderCart() {
             const cont = document.getElementById('cart-items-container'); const info = document.getElementById('cart-shipping-info'); cont.innerHTML = ''; info.innerHTML = '';
@@ -768,7 +787,10 @@
                 } else {
                     msg += `- ${p.qty}x ${p.name}\n`;
                     const src = (p.images && p.images[0]) ? p.folder + p.images[0] : '';
-                    const imgHtml = src.endsWith('.mp4') ? `<video src="${src}" class="cart-item-img" muted loop autoplay playsinline></video>` : (src ? `<img src="${src}" class="cart-item-img" alt="">` : `<div class="cart-item-img">⚙️</div>`);
+                    // CORRECCIÓN A11Y / RENDIMIENTO: Cero videos ocultos autoplay en carrito
+                    const imgHtml = src.endsWith('.mp4') 
+                        ? `<video src="${src}" class="cart-item-img" muted playsinline preload="metadata"></video>` 
+                        : (src ? `<img src="${src}" class="cart-item-img" alt="${p.name}">` : `<div class="cart-item-img">⚙️</div>`);
                     
                     cont.innerHTML += `
                         <div class="cart-item">
@@ -806,12 +828,11 @@
             }
         }, 15000);
 
-        // Optimización del Canvas: Se activa, pero filtra su consumo
         const cvs = document.getElementById('trail-canvas'); const ctx = cvs.getContext('2d');
         let w, h, nodes = []; 
         function initCvs() { 
             w = window.innerWidth; h = window.innerHeight; cvs.width = w; cvs.height = h; nodes = [];
-            let count = Math.min(Math.floor(w/30), 25); // Limite estricto de nodos
+            let count = Math.min(Math.floor(w/30), 25); 
             for(let i=0; i<count; i++) nodes.push({x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3});
         }
         window.addEventListener('resize', initCvs);
@@ -828,7 +849,7 @@
 
         window.addEventListener('click', e => { if(e.target.matches('.modal')) closeModal(e.target.id); });
         
-        document.addEventListener("DOMContentLoaded", () => { initCvs(); animCvs(); loadCart(); renderProducts(); });
+        document.addEventListener("DOMContentLoaded", () => { initCvs(); animCvs(); updateStickyNav(); loadCart(); renderProducts(); });
     </script>
 </body>
 </html>
