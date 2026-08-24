@@ -39,7 +39,7 @@
         @keyframes neonPulseSoft { 0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); } 50% { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; } }
         h1.logo { font-family: 'Syncopate', sans-serif; font-size: 2.8rem; letter-spacing: 6px; color: #fff; margin: 0 0 20px 0; text-align: center; animation: neonPulseSoft 2.5s infinite alternate; }
 
-        .sticky-nav-container { position: sticky; z-index: 90; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: top 0.1s; }
+        .sticky-nav-container { position: sticky; z-index: 90; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
         .categories-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 800px; margin: 0 auto; }
         .cat-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 8px 16px; border-radius: 30px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
         .cat-btn:hover { background: rgba(0, 240, 255, 0.05); color: #fff; }
@@ -71,7 +71,7 @@
 
         @keyframes fadeScarcity { 0%, 10% { opacity: 0; } 20%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
         .scarcity-badge { position: absolute; left: 10px; top: 40px; background: rgba(255, 170, 0, 0.95); color: #000; padding: 3px 7px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; z-index: 14; animation: fadeScarcity 10s infinite; pointer-events: none; }
-        .scarcity-alone { top: 10px; } 
+        .scarcity-alone { top: 10px; }
 
         .img-container { height: 180px; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.3); }
         @media (max-width: 600px) { .img-container { height: 150px; } }
@@ -101,7 +101,7 @@
         @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .close-btn { position: absolute; top: 12px; right: 15px; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 50; background: rgba(0,0,0,0.5); width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); border: none; }
-        .close-btn:focus { outline: 2px solid var(--accent-ice); outline-offset: 2px; }
+        .close-btn:focus-visible { outline: 2px solid var(--accent-ice); outline-offset: 2px; }
 
         .gallery-wrapper { position: relative; width: 100%; height: 32vh; min-height: 250px; background: #000; flex-shrink: 0; border-radius: 20px 20px 0 0; overflow: hidden; }
         @media (min-width: 600px) { .gallery-wrapper { border-radius: 20px 20px 0 0; } }
@@ -151,8 +151,12 @@
         .wheel-container { position: relative; width: 260px; height: 260px; margin: 20px auto; }
         .wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #fff; z-index: 10; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.5)); }
         
-        .wheel { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); box-shadow: 0 0 25px rgba(0,240,255,0.3); border: 3px solid var(--accent-ice);
-            background: conic-gradient(from -90deg, 
+        .wheel { 
+            width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; 
+            transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); 
+            box-shadow: 0 0 25px rgba(0,240,255,0.3); border: 3px solid var(--accent-ice);
+            /* Gradiente matemático exacto sin el offset de -90deg para cuadrar formula */
+            background: conic-gradient(
                 #0a1122 0deg 60deg, #00f0ff 60deg 120deg,
                 #0a1122 120deg 180deg, #00f0ff 180deg 240deg,
                 #0a1122 240deg 300deg, #00f0ff 300deg 360deg
@@ -173,6 +177,10 @@
         
         .global-toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: rgba(255, 60, 0, 0.95); color: #fff; padding: 12px 25px; border-radius: 30px; font-weight: bold; z-index: 3500; opacity: 0; visibility: hidden; transition: 0.3s ease; box-shadow: 0 5px 25px rgba(255,60,0,0.5); font-family: 'Space Grotesk', sans-serif; text-align: center; }
         .global-toast.show { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
+        
+        /* Toast Verde para Éxito */
+        .success-toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: rgba(0, 255, 115, 0.95); color: #000; padding: 12px 25px; border-radius: 30px; font-weight: bold; z-index: 3600; opacity: 0; visibility: hidden; transition: 0.3s ease; box-shadow: 0 5px 25px rgba(0,255,115,0.5); font-family: 'Space Grotesk', sans-serif; text-align: center; }
+        .success-toast.show { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
 
         .global-floating { position: fixed; z-index: 1000; bottom: 20px; }
         .float-left { left: 20px; } .float-right { right: 20px; }
@@ -189,7 +197,8 @@
     <canvas id="trail-canvas" aria-hidden="true"></canvas>
     
     <div id="fomo-toast" class="fomo-top-toast" role="status" aria-live="polite"></div>
-    <div id="stock-error-toast" class="global-toast" role="alert">Mensaje de stock</div>
+    <div id="stock-error-toast" class="global-toast" role="alert"></div>
+    <div id="success-toast" class="success-toast" role="status">¡Listo!</div>
 
     <div class="top-promo-banner">🚚 ENVÍO GRATIS EN BOGOTÁ POR COMPRAS MAYORES A $120.000 COP</div>
 
@@ -211,6 +220,7 @@
         </div>
     </div>
 
+    <!-- Htb Minimalista -->
     <div class="htb-minimal">
         <div class="htb-step"><span aria-hidden="true">🛍️</span> 1. Elige</div>
         <div class="htb-arrow">➔</div>
@@ -221,9 +231,10 @@
 
     <main id="product-grid" class="grid"></main>
 
+    <!-- Modal Producto -->
     <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('product-modal')" aria-label="Cerrar ventana">&times;</button>
+            <button class="close-btn" onclick="closeModalWithFocus('product-modal')" aria-label="Cerrar ventana">&times;</button>
             <div class="gallery-wrapper">
                 <button class="nav-btn nav-prev" onclick="scrollGallery(-1)" aria-label="Imagen anterior">&#10094;</button>
                 <div class="slider" id="modal-slider"></div>
@@ -256,9 +267,10 @@
         </div>
     </div>
 
+    <!-- Modal Upsell -->
     <div id="upsell-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="upsell-title" style="align-items: center;">
         <div class="modal-content cart-modal-content">
-            <button class="close-btn" onclick="closeModal('upsell-modal')" aria-label="Cerrar sugerencias">&times;</button>
+            <button class="close-btn" onclick="closeModalWithFocus('upsell-modal')" aria-label="Cerrar sugerencias">&times;</button>
             <div style="padding: 20px;">
                 <button id="btn-open-roulette" class="roulette-upsell-btn" onclick="openRoulette()">🎁 Prueba tu suerte (Gana premios)</button>
                 <h2 id="upsell-title" style="color:var(--accent-ice); font-family:'Space Grotesk'; font-size:1.2rem; text-align:center;">¡Mejora tu experiencia! ⚡</h2>
@@ -272,10 +284,11 @@
         </div>
     </div>
 
-    <div id="roulette-modal" class="modal" role="dialog" aria-modal="true" style="align-items: center; z-index: 2500;">
+    <!-- Modal Ruleta (Con Aria-Label añadido) -->
+    <div id="roulette-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="roulette-title" style="align-items: center; z-index: 2500;">
         <div class="modal-content cart-modal-content" style="background: var(--bg-color); text-align:center; padding: 30px 20px;">
-            <button class="close-btn" onclick="closeModal('roulette-modal')" aria-label="Cerrar ruleta">&times;</button>
-            <h2 style="color:var(--accent-ice); font-family:'Syncopate'; margin-bottom:10px;">¡GIRA Y GANA!</h2>
+            <button class="close-btn" onclick="closeModalWithFocus('roulette-modal')" aria-label="Cerrar ruleta">&times;</button>
+            <h2 id="roulette-title" style="color:var(--accent-ice); font-family:'Syncopate'; margin-bottom:10px;">¡GIRA Y GANA!</h2>
             <div class="wheel-container">
                 <div class="wheel-pointer"></div>
                 <div class="wheel" id="wheel"></div>
@@ -286,11 +299,12 @@
         </div>
     </div>
 
-    <div id="cart-modal" class="modal" role="dialog" aria-modal="true" style="align-items: center;">
+    <!-- Modal Carrito (Con Aria-Label añadido) -->
+    <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-title" style="align-items: center;">
         <div class="modal-content cart-modal-content">
-            <button class="close-btn" onclick="closeModal('cart-modal')" aria-label="Cerrar carrito">&times;</button>
+            <button class="close-btn" onclick="closeModalWithFocus('cart-modal')" aria-label="Cerrar carrito">&times;</button>
             <div style="padding: 20px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                <h2 style="color: #fff; font-family: 'Space Grotesk';">Tu Carrito 🛒</h2>
+                <h2 id="cart-title" style="color: #fff; font-family: 'Space Grotesk';">Tu Carrito 🛒</h2>
             </div>
             <div id="cart-shipping-info" style="padding: 10px 20px 0;"></div>
             <div id="cart-items-container" class="cart-items-wrapper"></div>
@@ -331,20 +345,8 @@
         let currentCategory = 'Todos'; 
         let sortDesc = true; 
         
-        // Prevención de memory leaks y gestión de foco A11y
         let hoverIntervals = {}; 
-        let lastFocusedElement = null;
         
-        // Sticky Header Dinámico Responsivo
-        function updateStickyNav() {
-            const banner = document.querySelector('.top-promo-banner');
-            const nav = document.querySelector('.sticky-nav-container');
-            if (banner && nav) {
-                nav.style.top = banner.offsetHeight + 'px';
-            }
-        }
-        window.addEventListener('resize', updateStickyNav);
-
         function getFakeReviews(idStr) {
             let hash = 0; for (let i = 0; i < idStr.length; i++) hash += idStr.charCodeAt(i);
             const count = (hash % 80) + 15; const rating = (4.5 + (hash % 5) * 0.1).toFixed(1);
@@ -352,7 +354,7 @@
         }
 
         const products = [
-            // K31
+            // K31 
             { id: 'K31', name: 'K31 Cooler AI', category: 'COOLERS', price: 90000, oldPrice: 140000, tag: '🔥 Nuevo', inStock: true, stockCount: 10, folder: 'COOLERS/K31/', 
               images: ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '1.mp4'],
               shortDesc: "15W · IA Inteligente · Escarcha Real", compat: "IPhone / Android", 
@@ -373,7 +375,7 @@
               shortDesc: "Hall Effect · 135g · Pass-through", compat: "Android y iPhone 15+", 
               desc: `<ul class='specs-list'><li><b>Ligereza:</b> Solo 135g, ideal para largas sesiones.</li><li><b>Conveniencia:</b> Carga tu celular mientras juegas (Pass-through).</li></ul>` },
 
-            // COOLERS
+            // COOLERS ACTIVOS
             { id: 'CoolerWC', name: 'Cooler WC', category: 'COOLERS', price: 60000, inStock: true, stockCount: 1, folder: 'COOLERS/CoolerWC/', images: ['CoolerWC_1_Delante.png', 'CoolerWC_2_CargaInhalambrica.png', 'CoolerWC_3_AtrasSolo.png', 'CoolerWC_4_Todo.png'], 
               shortDesc: "Magnético · Enfría y Carga 15W", compat: "Universal", 
               desc: "<ul class='specs-list'><li><b>2 en 1:</b> Enfría y carga inalámbricamente (máx 15W).</li><li><b>Fijación:</b> Magnética tipo MagSafe, súper práctica.</li></ul>" },
@@ -433,6 +435,72 @@
             { id: 'ACC-PLACA', name: 'Placa Metálica Normal', category: 'Accesorios', price: 3000, inStock: true, folder: '', images: [], shortDesc: "Adhesiva para celulares." }
         ];
 
+        let focusStack = [];
+        
+        function openModalWithFocus(id) {
+            focusStack.push(document.activeElement);
+            const mod = document.getElementById(id);
+            mod.style.display = 'flex';
+            setTimeout(() => {
+                const closeBtn = mod.querySelector('.close-btn');
+                if (closeBtn) closeBtn.focus();
+            }, 10);
+        }
+
+        function closeModalWithFocus(id) {
+            const mod = document.getElementById(id);
+            mod.style.display = 'none';
+            // Stop hidden videos to save CPU/Data
+            mod.querySelectorAll('video').forEach(v => {
+                v.pause();
+                if (typeof modalVideoObserver !== 'undefined') modalVideoObserver.unobserve(v);
+            });
+            const prev = focusStack.pop();
+            if (prev && document.contains(prev)) prev.focus();
+        }
+
+        // Focus Trap & Esc Listener
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const openModals = [...document.querySelectorAll('.modal')].filter(m => m.style.display === 'flex');
+                if (openModals.length) closeModalWithFocus(openModals[openModals.length - 1].id);
+            }
+            if (e.key === 'Tab') {
+                const openModals = [...document.querySelectorAll('.modal')].filter(m => m.style.display === 'flex');
+                if (!openModals.length) return;
+                const modal = openModals[openModals.length - 1];
+                const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (!focusable.length) return;
+                
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                
+                if (e.shiftKey && document.activeElement === first) {
+                    last.focus();
+                    e.preventDefault();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    first.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+        function updateStickyNav() {
+            const banner = document.querySelector('.top-promo-banner');
+            const nav = document.querySelector('.sticky-nav-container');
+            if (banner && nav) {
+                nav.style.top = banner.offsetHeight + 'px';
+            }
+        }
+        window.addEventListener('resize', updateStickyNav);
+        window.addEventListener('load', updateStickyNav);
+
+        const bannerEl = document.querySelector('.top-promo-banner');
+        if (bannerEl && window.ResizeObserver) {
+            const ro = new ResizeObserver(() => updateStickyNav());
+            ro.observe(bannerEl);
+        }
+
         const grid = document.getElementById('product-grid');
         const searchInput = document.getElementById('search-input');
 
@@ -445,7 +513,7 @@
         searchInput.addEventListener('input', renderProducts);
 
         function renderProducts() {
-            // CORRECCIÓN MEMORY LEAK: Limpiar intervalos de hover antes de vaciar el DOM
+            // Clean Memory Leaks
             for (let key in hoverIntervals) { clearInterval(hoverIntervals[key]); }
             hoverIntervals = {};
             grid.innerHTML = ''; 
@@ -462,6 +530,7 @@
             });
 
             filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
+
             if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No hay resultados.</p>'; return; }
 
             if (currentCategory === 'Todos' && queryWords.length === 0) {
@@ -496,7 +565,6 @@
                 badges += `<div class="${scClass}">Solo ${product.stockCount} und</div>`;
             }
 
-            // CORRECCIÓN RENDIMIENTO: Videos con preload="none" y sin autoplay
             let trackHtml = product.images.map(img => {
                 const src = product.folder + img;
                 if(src.endsWith('.mp4')) return `<video src="${src}" class="track-media" loop muted playsinline preload="none"></video>`;
@@ -504,6 +572,7 @@
             }).join('');
 
             let priceHtml = product.oldPrice ? `<span class="old-price">${formatter.format(product.oldPrice)}</span><span class="product-price">${formatter.format(product.price)}</span>` : `<span class="product-price">${formatter.format(product.price)}</span>`;
+            
             let quickAddBtn = product.inStock ? `<button class="quick-add-btn" aria-label="Añadir rápido" onclick="event.stopPropagation(); triggerUpsell('${product.id}', 'cart')">+</button>` : '';
 
             card.innerHTML = `
@@ -520,6 +589,7 @@
 
             const startCycle = () => {
                 const trackEl = document.getElementById(`track-${uniqueId}`); if(!trackEl) return;
+                
                 trackEl.querySelectorAll('video').forEach(v => { v.play().catch(()=>{}); });
 
                 let idx = 0; const max = product.images.length;
@@ -541,14 +611,14 @@
             card.addEventListener('mouseenter', startCycle); card.addEventListener('mouseleave', stopCycle);
             card.addEventListener('touchstart', startCycle, {passive: true}); card.addEventListener('touchend', stopCycle);
             card.addEventListener('click', () => openModal(product));
+            
             grid.appendChild(card);
         }
 
         let modalProduct = null;
         const modalSlider = document.getElementById('modal-slider');
-
-        // Observer para Videos en Modal (Solo reproduce si están en pantalla)
-        const modalVideoObserver = new IntersectionObserver((entries) => {
+        
+        let modalVideoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) { entry.target.play().catch(()=>{}); } 
                 else { entry.target.pause(); }
@@ -556,7 +626,6 @@
         }, { root: modalSlider, threshold: 0.5 });
 
         function openModal(product) {
-            lastFocusedElement = document.activeElement; // Guardar foco
             modalProduct = product;
             document.getElementById('modal-title').textContent = product.name;
             document.getElementById('modal-subtitle').textContent = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
@@ -590,36 +659,19 @@
                 }
             });
 
-            const mod = document.getElementById('product-modal');
-            mod.style.display = 'flex'; 
+            openModalWithFocus('product-modal');
             modalSlider.scrollLeft = 0;
             
-            // Asignar observador a los videos del modal
+            const mod = document.getElementById('product-modal');
             mod.querySelectorAll('video').forEach(v => modalVideoObserver.observe(v));
-            
-            // Dar foco al botón de cerrar por accesibilidad
-            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
         }
 
         function scrollGallery(dir) { const w = modalSlider.clientWidth; modalSlider.scrollBy({ left: dir * w, behavior: 'smooth' }); }
         
-        function closeModal(id) { 
-            const mod = document.getElementById(id);
-            mod.style.display = 'none'; 
-            // Apagar videos y desenlazar observer
-            mod.querySelectorAll('video').forEach(v => {
-                v.pause();
-                modalVideoObserver.unobserve(v);
-            });
-            // Restaurar foco al origen
-            if(lastFocusedElement) { lastFocusedElement.focus(); lastFocusedElement = null; }
-        }
-
         let upsellAction = ''; let selectedUpsells = []; let wonPrize = null;
         
         function triggerUpsell(productId, action) {
-            if(!lastFocusedElement) lastFocusedElement = document.activeElement;
-            closeModal('product-modal');
+            closeModalWithFocus('product-modal');
             const product = products.find(p => p.id === productId); if(!product) return;
             modalProduct = product;
 
@@ -631,10 +683,11 @@
             }
 
             if (product.category !== 'COOLERS') {
-                if (action === 'cart') { addToCart(product); showStockError("Añadido al carrito!"); openCart(); }
+                if (action === 'cart') { addToCart(product); showSuccessToast("¡Añadido al carrito! 🛒"); openCart(); }
                 else window.open(`https://wa.me/573232452698?text=${encodeURIComponent('Hola, quiero comprar el ' + product.name)}`);
                 return;
             }
+            
             upsellAction = action; selectedUpsells = [];
             document.getElementById('btn-open-roulette').innerHTML = wonPrize ? `✅ Premio Guardado: ${wonPrize}` : `🎁 Prueba tu suerte (Gana premios)`;
             document.getElementById('btn-open-roulette').disabled = wonPrize ? true : false;
@@ -655,9 +708,7 @@
                 `;
                 container.appendChild(div);
             });
-            const mod = document.getElementById('upsell-modal');
-            mod.style.display = 'flex';
-            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
+            openModalWithFocus('upsell-modal');
         }
 
         function toggleUps(chk) { if(chk.checked) selectedUpsells.push(chk.value); else selectedUpsells = selectedUpsells.filter(x => x !== chk.value); }
@@ -667,14 +718,16 @@
                 addToCart(modalProduct);
                 selectedUpsells.forEach(id => { const acc = products.find(x => x.id === id); if(acc) addToCart(acc); });
                 checkAndApplyPrizeToCart();
-                closeModal('upsell-modal'); openCart();
+                closeModalWithFocus('upsell-modal'); 
+                openCart();
+                showSuccessToast("¡Añadido al carrito! 🛒");
             } else {
                 let msg = `Hola, mi pedido es:\n\n- 1x ${modalProduct.name}\n`; let t = modalProduct.price;
                 selectedUpsells.forEach(id => { const acc = products.find(x => x.id === id); if(acc){ msg += `- 1x ${acc.name}\n`; t += acc.price; }});
                 if(wonPrize && wonPrize !== "Nada 😢") { msg += `\n🎁 *PREMIO APLICADO:* ${wonPrize}\n`; }
                 msg += `\n*Total a pagar (Sin envío): ${formatter.format(t)}*`;
                 window.open(`https://wa.me/573232452698?text=${encodeURIComponent(msg)}`); 
-                closeModal('upsell-modal');
+                closeModalWithFocus('upsell-modal');
             }
         }
         function skipUpsell() { selectedUpsells = []; confirmUpsell(); }
@@ -684,31 +737,28 @@
         
         function openRoulette() {
             if(wonPrize) return; 
-            if(!lastFocusedElement) lastFocusedElement = document.activeElement;
             const w = document.getElementById('wheel'); w.innerHTML = '';
             
-            // Renderizado perfecto de textos con rotación offset -90deg por el conic-gradient
+            // Fórmula exacta sin offset de -90deg
             const sliceDeg = 360 / prizes.length;
             prizes.forEach((p, i) => { 
                 const color = (i % 2 === 0) ? '#fff' : '#000';
-                // La rebanada 0 arranca en top (-90deg), su centro es a los 30deg visuales.
-                const rotation = (i * sliceDeg) + (sliceDeg / 2) - 90;
+                const rotation = (i * sliceDeg) + (sliceDeg / 2); // Removido el -90
                 w.innerHTML += `<div class="wheel-text" style="color:${color}; transform: translateY(-50%) rotate(${rotation}deg);">${p}</div>`; 
             });
-            const mod = document.getElementById('roulette-modal');
-            mod.style.display = 'flex';
-            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
+            openModalWithFocus('roulette-modal');
         }
         
         function spinWheel() {
             if(isSpinning) return; isSpinning = true;
             const w = document.getElementById('wheel'); const res = document.getElementById('roulette-result'); const btn = document.getElementById('roulette-close-win');
             res.style.display = 'none'; btn.style.display = 'none';
+            
             const deg = 360 * 5 + Math.floor(Math.random() * 360);
             w.style.transform = `rotate(${deg}deg)`;
             
             setTimeout(() => {
-                // CORRECCIÓN MATEMÁTICA: Fórmula exacta para conic-gradient desde top
+                // Cálculo matemático estricto y preciso con el conic-gradient de 0deg arriba
                 const topAngle = (360 - (deg % 360)) % 360;
                 const idx = Math.floor(topAngle / 60);
                 
@@ -720,7 +770,7 @@
         }
 
         function applyPrizeAndClose() {
-            closeModal('roulette-modal');
+            closeModalWithFocus('roulette-modal');
             const btn = document.getElementById('btn-open-roulette');
             btn.innerHTML = wonPrize ? `✅ Premio Guardado: ${wonPrize}` : `🎁 Prueba tu suerte (Gana premios)`;
             btn.disabled = wonPrize ? true : false;
@@ -753,6 +803,7 @@
         
         function changeQty(id, delta) {
             let i = cart.findIndex(x => x.id === id); if(i === -1) return;
+            
             if (delta > 0) {
                 const productRef = products.find(p => p.id === id);
                 if (productRef && productRef.inStock && cart[i].qty >= productRef.stockCount) {
@@ -760,18 +811,13 @@
                     return;
                 }
             }
+
             if(cart[i].qty + delta > 0) cart[i].qty += delta; else cart.splice(i, 1);
             if(cart.length === 1 && cart[0].isPrize) { cart = []; wonPrize = null; } 
             saveCart(); updateCartBadge(); renderCart();
         }
         
-        function openCart() { 
-            if(!lastFocusedElement) lastFocusedElement = document.activeElement;
-            renderCart(); 
-            const mod = document.getElementById('cart-modal');
-            mod.style.display = 'flex'; 
-            setTimeout(() => { const closeBtn = mod.querySelector('.close-btn'); if(closeBtn) closeBtn.focus(); }, 10);
-        }
+        function openCart() { renderCart(); openModalWithFocus('cart-modal'); }
 
         function renderCart() {
             const cont = document.getElementById('cart-items-container'); const info = document.getElementById('cart-shipping-info'); cont.innerHTML = ''; info.innerHTML = '';
@@ -787,10 +833,9 @@
                 } else {
                     msg += `- ${p.qty}x ${p.name}\n`;
                     const src = (p.images && p.images[0]) ? p.folder + p.images[0] : '';
-                    // CORRECCIÓN A11Y / RENDIMIENTO: Cero videos ocultos autoplay en carrito
-                    const imgHtml = src.endsWith('.mp4') 
-                        ? `<video src="${src}" class="cart-item-img" muted playsinline preload="metadata"></video>` 
-                        : (src ? `<img src="${src}" class="cart-item-img" alt="${p.name}">` : `<div class="cart-item-img">⚙️</div>`);
+                    
+                    // Optimización: No cargar videos autoplay en el carrito, reemplazamos con icono estetico o la imagen base
+                    const imgHtml = src.endsWith('.mp4') ? `<div class="cart-item-img" style="display:flex; justify-content:center; align-items:center; font-size:1.5rem;">🎬</div>` : (src ? `<img src="${src}" class="cart-item-img" alt="">` : `<div class="cart-item-img">⚙️</div>`);
                     
                     cont.innerHTML += `
                         <div class="cart-item">
@@ -817,6 +862,7 @@
         const fNames = ['Carlos', 'Andrés', 'Felipe', 'Diego', 'Mateo', 'Juan', 'Sebastián', 'David'];
         function showFomo(txt) { const t = document.getElementById('fomo-toast'); t.innerHTML = txt; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 4500); }
         function showStockError(msg) { const t = document.getElementById('stock-error-toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 3000); }
+        function showSuccessToast(msg) { const t = document.getElementById('success-toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); }
         
         setInterval(() => {
             if(Math.random() > 0.4) {
@@ -847,9 +893,36 @@
             requestAnimationFrame(animCvs);
         }
 
-        window.addEventListener('click', e => { if(e.target.matches('.modal')) closeModal(e.target.id); });
+        window.addEventListener('click', e => { if(e.target.matches('.modal')) closeModalWithFocus(e.target.id); });
         
-        document.addEventListener("DOMContentLoaded", () => { initCvs(); animCvs(); updateStickyNav(); loadCart(); renderProducts(); });
+        function generateSEO() {
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": products.filter(p => p.category !== 'Accesorios').map((p, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "item": {
+                        "@type": "Product",
+                        "name": p.name,
+                        "image": window.location.origin + "/" + p.folder + p.images[0],
+                        "description": p.shortDesc,
+                        "offers": {
+                            "@type": "Offer",
+                            "priceCurrency": "COP",
+                            "price": p.price.toString(),
+                            "availability": p.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+                        }
+                    }
+                }))
+            };
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(schema);
+            document.head.appendChild(script);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => { initCvs(); animCvs(); loadCart(); renderProducts(); generateSEO(); });
     </script>
 </body>
 </html>
