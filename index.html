@@ -9,7 +9,7 @@
     <meta property="og:title" content="AJ-STORE 🎮❄️ | Tecnología y Gaming">
     <meta property="og:description" content="Descubre los mejores Controles y Coolers para móviles. Envíos a todo el país y contra entrega en Bogotá. 🔥">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="logoweb.png">
+    <meta property="og:image" content="https://ajfiles.github.io/tienda-tecnologia/logoweb.png">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -605,13 +605,13 @@
             
             let quickAddBtn = product.inStock ? `<button class="quick-add-btn" aria-label="Añadir rápido" onclick="event.stopPropagation(); triggerUpsell('${product.id}', 'cart')">+</button>` : '';
 
-            card.innerHTML = `
-                ${badges}
-                <div class="img-container">
-                    <div class="card-track" id="track-${uniqueId}">${trackHtml}</div>
-                    ${quickAddBtn}
-                </div>
-                <h3 class="product-title">${product.name}</h3>
+        card.innerHTML = `
+            ${badges}
+            <div class="img-container" role="group" aria-label="Imágenes de ${product.name}">
+                <div class="card-track" id="track-${uniqueId}">${trackHtml}</div>
+                ${quickAddBtn}
+            </div>
+            <h3 class="product-title">${product.name}</h3>
                 <div class="card-reviews">${getFakeReviews(product.id)}</div>
                 <p class="card-short-desc">${product.shortDesc}</p>
                 <div class="price-container">${priceHtml}</div>
@@ -711,6 +711,15 @@
             if(!modalProduct) return;
             const url = new URL(window.location.href);
             url.searchParams.set('p', modalProduct.id);
+            
+            // Actualizar metaetiquetas dinámicamente antes de compartir
+            document.querySelector('meta[property="og:title"]').setAttribute('content', `AJ-STORE | ${modalProduct.name}`);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', modalProduct.shortDesc);
+            
+            const firstImg = modalProduct.images.find(img => !img.endsWith('.mp4')) || modalProduct.images[0];
+            if (firstImg) {
+                document.querySelector('meta[property="og:image"]').setAttribute('content', new URL(modalProduct.folder + firstImg, window.location.href).href);
+            }
             
             if (navigator.share) {
                 navigator.share({
@@ -905,15 +914,22 @@
                     cont.innerHTML += `<div class="cart-item prize-item"><div style="flex:1;"><div style="color:var(--price-green); font-weight:bold; font-size:0.95rem;">${p.name}</div><div style="color:var(--text-muted); font-size:0.75rem;">Se aplicará al enviarte el total.</div></div><button aria-label="Eliminar premio" onclick="changeQty('${p.id}', -1)" class="close-btn" style="position:static; width:30px; height:30px; font-size:1.2rem; color:#ff3c00; background:none; border:none;">&times;</button></div>`;
                 } else {
                     msg += `- ${p.qty}x ${p.name}\n`;
-                    const src = (p.images && p.images[0]) ? p.folder + p.images[0] : '';
                     
-                    // Optimización: No cargar videos autoplay en el carrito, reemplazamos con icono estetico o la imagen base
-                    const imgHtml = src.endsWith('.mp4') ? `<div class="cart-item-img" style="display:flex; justify-content:center; align-items:center; font-size:1.5rem;">🎬</div>` : (src ? `<img src="${src}" class="cart-item-img" alt="">` : `<div class="cart-item-img">⚙️</div>`);
+                    const firstImage = (p.images && p.images.length > 0) ? p.images.find(img => !img.endsWith('.mp4')) : null;
+                    const imgHtml = firstImage 
+                        ? `<img src="${p.folder + firstImage}" class="cart-item-img" alt="${p.name}">` 
+                        : `<div class="cart-item-img">⚙️</div>`;
+                    
+                    const stockWarning = (p.stockCount <= 4 && p.stockCount > 0) ? `<span style="color: var(--fire-light); font-size:0.7rem; display:block; margin-top:2px;">¡Solo quedan ${p.stockCount}!</span>` : '';
                     
                     cont.innerHTML += `
                         <div class="cart-item">
                             ${imgHtml}
-                            <div style="flex:1;"><div style="color:#fff; font-size:0.9rem;">${p.name}</div><div style="color:var(--price-green); font-weight:bold;">${formatter.format(sub)}</div></div>
+                            <div style="flex:1;">
+                                <div style="color:#fff; font-size:0.9rem;">${p.name}</div>
+                                ${stockWarning}
+                                <div style="color:var(--price-green); font-weight:bold; margin-top: 2px;">${formatter.format(sub)}</div>
+                            </div>
                             <div style="display:flex; background:rgba(0,0,0,0.4); border-radius:20px; border:1px solid rgba(0,240,255,0.2);"><button aria-label="Quitar uno" onclick="changeQty('${p.id}', -1)" style="background:none; color:#fff; border:none; padding:4px 10px; cursor:pointer;">−</button><span style="color:#fff; padding:4px;">${p.qty}</span><button aria-label="Añadir uno" onclick="changeQty('${p.id}', 1)" style="background:none; color:#fff; border:none; padding:4px 10px; cursor:pointer;">+</button></div>
                         </div>`;
                 }
@@ -933,19 +949,36 @@
         }
 
         const fNames = ['Carlos', 'Andrés', 'Felipe', 'Diego', 'Mateo', 'Juan', 'Sebastián', 'David'];
+        const fActions = ['compró', 'añadió al carrito', 'está viendo', 'encargó'];
         function showFomo(txt) { const t = document.getElementById('fomo-toast'); t.innerHTML = txt; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 4500); }
         function showStockError(msg) { const t = document.getElementById('stock-error-toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 3000); }
         function showSuccessToast(msg) { const t = document.getElementById('success-toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); }
         
-        setInterval(() => {
-            if(Math.random() > 0.4) {
+        function scheduleNextFomo() {
+            // Intervalo aleatorio entre 25s y 45s
+            const delay = Math.floor(Math.random() * (45000 - 25000 + 1)) + 25000; 
+            setTimeout(() => {
                 const n = fNames[Math.floor(Math.random()*fNames.length)];
+                const action = fActions[Math.floor(Math.random()*fActions.length)];
                 const pList = products.filter(x => x.category !== 'Accesorios');
                 const p = pList[Math.floor(Math.random()*pList.length)];
-                const timeText = p.inStock ? `hace ${Math.floor(Math.random()*4)+1} día(s)` : `hace ${Math.floor(Math.random()*3)+1} semana(s)`;
-                showFomo(`<span aria-hidden="true">🛒</span> <b>${n}</b> compró <b>${p.name}</b> ${timeText}`);
-            }
-        }, 35000); // Reducido el tiempo de notificaciones de FOMO para hacerlo menos invasivo
+                
+                let timeText = '';
+                if (action === 'está viendo' || action === 'añadió al carrito') {
+                    timeText = 'ahora mismo';
+                } else {
+                    timeText = p.inStock ? `hace ${Math.floor(Math.random()*59)+1} min` : `hace ${Math.floor(Math.random()*3)+1} hora(s)`;
+                }
+                
+                const icon = action === 'está viendo' ? '👀' : (action === 'compró' ? '🛍️' : '🛒');
+                showFomo(`<span aria-hidden="true">${icon}</span> <b>${n}</b> ${action} <b>${p.name}</b> ${timeText}`);
+                
+                scheduleNextFomo(); // Repetir el ciclo recursivamente
+            }, delay);
+        }
+        
+        // Iniciar el ciclo de notificaciones
+        scheduleNextFomo();
 
         const cvs = document.getElementById('trail-canvas'); const ctx = cvs.getContext('2d');
         let w, h, nodes = []; 
@@ -977,22 +1010,25 @@
             const schema = {
                 "@context": "https://schema.org",
                 "@type": "ItemList",
-                "itemListElement": products.filter(p => p.category !== 'Accesorios').map((p, index) => ({
-                    "@type": "ListItem",
-                    "position": index + 1,
-                    "item": {
-                        "@type": "Product",
-                        "name": p.name,
-                        "image": window.location.origin + "/" + p.folder + p.images[0],
-                        "description": p.shortDesc,
-                        "offers": {
-                            "@type": "Offer",
-                            "priceCurrency": "COP",
-                            "price": p.price.toString(),
-                            "availability": p.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+                "itemListElement": products.filter(p => p.category !== 'Accesorios').map((p, index) => {
+                    const firstImg = p.images.find(img => !img.endsWith('.mp4')) || p.images[0] || '';
+                    return {
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "item": {
+                            "@type": "Product",
+                            "name": p.name,
+                            "image": firstImg ? new URL(p.folder + firstImg, window.location.href).href : '',
+                            "description": p.shortDesc,
+                            "offers": {
+                                "@type": "Offer",
+                                "priceCurrency": "COP",
+                                "price": p.price.toString(),
+                                "availability": p.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+                            }
                         }
-                    }
-                }))
+                    };
+                })
             };
             const script = document.createElement('script');
             script.type = 'application/ld+json';
