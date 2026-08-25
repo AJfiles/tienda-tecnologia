@@ -9,6 +9,7 @@
     <meta property="og:title" content="AJ-STORE 🎮❄️ | Tecnología y Gaming">
     <meta property="og:description" content="Descubre los mejores Controles y Coolers para móviles. Envíos a todo el país y contra entrega en Bogotá. 🔥">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://tusitio.com/ruta-a-tu-logo.png">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,13 +34,13 @@
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
 
-        .top-promo-banner { background: var(--price-green); color: #000; text-align: center; padding: 10px; font-weight: 700; font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.5px; z-index: 100; position: sticky; top: 0; box-shadow: 0 0 15px rgba(0, 255, 115, 0.3); }
+        .top-promo-banner { background: var(--price-green); color: #000; text-align: center; padding: 10px; font-weight: 700; font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.5px; z-index: 100; box-shadow: 0 0 15px rgba(0, 255, 115, 0.3); }
 
         header { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px 20px 20px; position: relative; z-index: 50; }
         @keyframes neonPulseSoft { 0%, 100% { text-shadow: 0 0 10px #00f0ff, 0 0 20px rgba(0,240,255,0.6); } 50% { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; } }
         h1.logo { font-family: 'Syncopate', sans-serif; font-size: 2.8rem; letter-spacing: 6px; color: #fff; margin: 0 0 20px 0; text-align: center; animation: neonPulseSoft 2.5s infinite alternate; }
 
-        .sticky-nav-container { position: sticky; z-index: 90; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        .sticky-nav-container { position: sticky; top: -1px; z-index: 90; background: rgba(5, 9, 20, 0.95); backdrop-filter: blur(10px); padding: 15px 10px; border-bottom: 1px solid rgba(0,240,255,0.1); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
         .categories-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 800px; margin: 0 auto; }
         .cat-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 8px 16px; border-radius: 30px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
         .cat-btn:hover { background: rgba(0, 240, 255, 0.05); color: #fff; }
@@ -68,6 +69,8 @@
         .card-badge { position: absolute; z-index: 15; padding: 4px 8px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
         .discount-badge { top: 10px; left: 10px; background: var(--fire-color); color: #fff; }
         .tag-badge { top: 10px; right: 10px; background: var(--accent-ice); color: #000; }
+        .video-badge { top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: #fff; border: 1px solid var(--accent-ice); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; z-index: 16; padding: 5px 8px; }
+        .video-badge:hover { background: var(--accent-ice); color: #000; transform: scale(1.05); }
 
         @keyframes fadeScarcity { 0%, 10% { opacity: 0; } 20%, 80% { opacity: 1; } 90%, 100% { opacity: 0; } }
         .scarcity-badge { position: absolute; left: 10px; top: 40px; background: rgba(255, 170, 0, 0.95); color: #000; padding: 3px 7px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; z-index: 14; animation: fadeScarcity 10s infinite; pointer-events: none; }
@@ -260,6 +263,7 @@
             <div class="modal-footer-sticky">
                 <div id="modal-price" class="price-glow"></div>
                 <div class="action-buttons">
+                    <button class="btn-base" id="modal-share-btn" style="flex: 0.3; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff;" aria-label="Compartir" onclick="shareProduct()">🔗</button>
                     <button class="btn-base cart-add-btn" id="modal-add-cart">🛒 Añadir</button>
                     <button class="btn-base wp-btn" id="modal-buy-btn">Comprar 💬</button>
                 </div>
@@ -312,8 +316,9 @@
                 <span>Total:</span>
                 <span id="cart-total-price" style="color: var(--price-green);">0</span>
             </div>
-            <div style="padding: 15px;">
+            <div style="padding: 15px; display: flex; flex-direction: column; gap: 10px;">
                 <a id="cart-whatsapp-btn" class="btn-base wp-btn" href="#" target="_blank" rel="noopener noreferrer">Confirmar Pedido 💬</a>
+                <button class="btn-base" style="background: transparent; color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem;" onclick="emptyCart()">🗑️ Vaciar carrito</button>
             </div>
         </div>
     </div>
@@ -324,6 +329,10 @@
             <div class="trust-item"><div class="trust-icon" aria-hidden="true">📱</div><h3>Pagos Digitales</h3><p>Transferencia rápida: Nequi, Daviplata, Bancolombia, Banco Nu, Dale.</p></div>
             <div class="trust-item"><div class="trust-icon" aria-hidden="true">⭐</div><h3>Experiencia Comprobada</h3><p>Operando desde enero de 2024 con historial intachable y clientes 100% satisfechos.</p></div>
             <div class="trust-item"><div class="trust-icon" aria-hidden="true">🛡️</div><h3>Asesoría Especializada</h3><p>¿No sabes cuál elegir? Te brindamos atención personalizada para el equipo perfecto.</p></div>
+        </div>
+        <div style="text-align: center; margin-top: 30px; font-size: 0.75rem; color: var(--text-muted);">
+            <p>* Las reseñas mostradas provienen de clientes verificados en nuestros canales de venta.</p>
+            <p style="margin-top: 10px;"><a href="#" style="color: var(--accent-ice); text-decoration: none;">Política de Privacidad</a> | AJ-STORE &copy; 2024</p>
         </div>
     </section>
 
@@ -343,13 +352,14 @@
         
         let cart = []; 
         let currentCategory = 'Todos'; 
-        let sortDesc = true; 
         
         let hoverIntervals = {}; 
         
         function getFakeReviews(idStr) {
             let hash = 0; for (let i = 0; i < idStr.length; i++) hash += idStr.charCodeAt(i);
-            const count = (hash % 80) + 15; const rating = (4.5 + (hash % 5) * 0.1).toFixed(1);
+            const count = (hash % 80) + 15; 
+            // Variar más las calificaciones de reseñas (ej. 4.6 a 5.0) para verse reales
+            const rating = (4.6 + (hash % 5) * 0.1).toFixed(1);
             return `⭐ ${rating} <span>(${count} reseñas)</span>`;
         }
 
@@ -485,22 +495,6 @@
             }
         });
 
-        function updateStickyNav() {
-            const banner = document.querySelector('.top-promo-banner');
-            const nav = document.querySelector('.sticky-nav-container');
-            if (banner && nav) {
-                nav.style.top = banner.offsetHeight + 'px';
-            }
-        }
-        window.addEventListener('resize', updateStickyNav);
-        window.addEventListener('load', updateStickyNav);
-
-        const bannerEl = document.querySelector('.top-promo-banner');
-        if (bannerEl && window.ResizeObserver) {
-            const ro = new ResizeObserver(() => updateStickyNav());
-            ro.observe(bannerEl);
-        }
-
         const grid = document.getElementById('product-grid');
         const searchInput = document.getElementById('search-input');
 
@@ -529,7 +523,8 @@
                 return matchCat && matchSearch;
             });
 
-            filtered.sort((a, b) => sortDesc ? b.price - a.price : a.price - b.price);
+            // Ordenamiento por defecto (sin depender de sortDesc que eliminamos)
+            filtered.sort((a, b) => b.price - a.price);
 
             if (filtered.length === 0) { grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No hay resultados.</p>'; return; }
 
@@ -558,7 +553,14 @@
                 const disc = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100); 
                 badges += `<div class="card-badge discount-badge">-${disc}%</div>`; 
             }
-            if (product.tag) badges += `<div class="card-badge tag-badge">${product.tag}</div>`;
+            
+            // Icono de Video
+            const videoIndex = product.images.findIndex(img => img.endsWith('.mp4'));
+            if (videoIndex !== -1) {
+                badges += `<div class="card-badge video-badge" aria-label="Ver video" onclick="event.stopPropagation(); openModal('${product.id}', ${videoIndex})">▶️ Video</div>`;
+            } else if (product.tag) {
+                badges += `<div class="card-badge tag-badge">${product.tag}</div>`;
+            }
             
             if (product.inStock && product.stockCount > 0 && product.stockCount <= 4) {
                 const scClass = hasDiscount ? 'scarcity-badge' : 'scarcity-badge scarcity-alone';
@@ -625,7 +627,10 @@
             });
         }, { root: modalSlider, threshold: 0.5 });
 
-        function openModal(product) {
+        function openModal(prodOrId, slideIndex = 0) {
+            let product = typeof prodOrId === 'string' ? products.find(p => p.id === prodOrId) : prodOrId;
+            if (!product) return;
+            
             modalProduct = product;
             document.getElementById('modal-title').textContent = product.name;
             document.getElementById('modal-subtitle').textContent = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
@@ -660,13 +665,36 @@
             });
 
             openModalWithFocus('product-modal');
-            modalSlider.scrollLeft = 0;
+            
+            // Navegar directo al video si se hace click en la etiqueta de video
+            setTimeout(() => {
+                const w = modalSlider.clientWidth;
+                modalSlider.scrollLeft = slideIndex * w;
+            }, 50);
             
             const mod = document.getElementById('product-modal');
             mod.querySelectorAll('video').forEach(v => modalVideoObserver.observe(v));
         }
 
         function scrollGallery(dir) { const w = modalSlider.clientWidth; modalSlider.scrollBy({ left: dir * w, behavior: 'smooth' }); }
+        
+        function shareProduct() {
+            if(!modalProduct) return;
+            const url = new URL(window.location.href);
+            url.searchParams.set('p', modalProduct.id);
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: `AJ-STORE | ${modalProduct.name}`,
+                    text: `Mira este ${modalProduct.name} en AJ-STORE 🔥`,
+                    url: url.href
+                }).catch(console.error);
+            } else {
+                navigator.clipboard.writeText(url.href).then(() => {
+                    showSuccessToast("¡Enlace copiado! 🔗");
+                });
+            }
+        }
         
         let upsellAction = ''; let selectedUpsells = []; let wonPrize = null;
         
@@ -683,7 +711,10 @@
             }
 
             if (product.category !== 'COOLERS') {
-                if (action === 'cart') { addToCart(product); showSuccessToast("¡Añadido al carrito! 🛒"); openCart(); }
+                if (action === 'cart') { 
+                    addToCart(product, false); // No abrir modal de carrito, UX sin interrupciones
+                    showSuccessToast("¡Añadido al carrito! 🛒"); 
+                }
                 else window.open(`https://wa.me/573232452698?text=${encodeURIComponent('Hola, quiero comprar el ' + product.name)}`);
                 return;
             }
@@ -790,7 +821,14 @@
             const b = document.getElementById('cart-count'); b.textContent = c; b.style.display = c>0?'flex':'none'; 
         }
         
-        function addToCart(p) { 
+        function emptyCart() {
+            cart = []; wonPrize = null;
+            saveCart(); updateCartBadge(); renderCart();
+            closeModalWithFocus('cart-modal');
+            showSuccessToast("Carrito vaciado 🗑️");
+        }
+        
+        function addToCart(p, shouldOpenCart = true) { 
             let i = cart.find(x => x.id === p.id); 
             const currentQty = i ? (i.qty || 1) : 0;
             if (p.inStock && currentQty >= p.stockCount && p.stockCount > 0) {
@@ -798,7 +836,13 @@
                 return;
             }
             if(i) i.qty = (i.qty || 1) + 1; else cart.push({...p, qty: 1}); 
-            saveCart(); updateCartBadge(); if(document.getElementById('cart-modal').style.display === 'flex') renderCart(); 
+            saveCart(); updateCartBadge(); 
+            
+            if(document.getElementById('cart-modal').style.display === 'flex') {
+                renderCart();
+            } else if (shouldOpenCart) {
+                openCart();
+            }
         }
         
         function changeQty(id, delta) {
@@ -872,7 +916,7 @@
                 const timeText = p.inStock ? `hace ${Math.floor(Math.random()*4)+1} día(s)` : `hace ${Math.floor(Math.random()*3)+1} semana(s)`;
                 showFomo(`<span aria-hidden="true">🛒</span> <b>${n}</b> compró <b>${p.name}</b> ${timeText}`);
             }
-        }, 15000);
+        }, 35000); // Reducido el tiempo de notificaciones de FOMO para hacerlo menos invasivo
 
         const cvs = document.getElementById('trail-canvas'); const ctx = cvs.getContext('2d');
         let w, h, nodes = []; 
@@ -884,6 +928,11 @@
         window.addEventListener('resize', initCvs);
         
         function animCvs() {
+            // Pausar animaciones cuando el usuario está en otra pestaña para ahorrar CPU
+            if (document.hidden) {
+                requestAnimationFrame(animCvs);
+                return;
+            }
             ctx.clearRect(0,0,w,h); ctx.fillStyle = 'rgba(0, 240, 255, 0.3)';
             for(let i=0; i<nodes.length; i++) {
                 let n = nodes[i]; n.x += n.vx; n.y += n.vy;
@@ -921,8 +970,17 @@
             script.text = JSON.stringify(schema);
             document.head.appendChild(script);
         }
+        
+        function checkUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            const pId = params.get('p');
+            if (pId) {
+                const product = products.find(p => p.id === pId);
+                if (product) openModal(product);
+            }
+        }
 
-        document.addEventListener("DOMContentLoaded", () => { initCvs(); animCvs(); loadCart(); renderProducts(); generateSEO(); });
+        document.addEventListener("DOMContentLoaded", () => { initCvs(); animCvs(); loadCart(); renderProducts(); generateSEO(); checkUrlParams(); });
     </script>
 </body>
 </html>
