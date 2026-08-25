@@ -9,7 +9,7 @@
     <meta property="og:title" content="AJ-STORE 🎮❄️ | Tecnología y Gaming">
     <meta property="og:description" content="Descubre los mejores Controles y Coolers para móviles. Envíos a todo el país y contra entrega en Bogotá. 🔥">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://tusitio.com/ruta-a-tu-logo.png">
+    <meta property="og:image" content="logoweb.png">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -323,6 +323,31 @@
         </div>
     </div>
 
+    <!-- Modal Política de Privacidad -->
+    <div id="privacy-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <div class="modal-content" style="max-height: 85vh;">
+            <button class="close-btn" onclick="closeModalWithFocus('privacy-modal')" aria-label="Cerrar políticas">&times;</button>
+            <div class="modal-scroll-area" style="padding: 30px 20px;">
+                <h2 id="privacy-title" style="color:var(--accent-ice); font-family:'Space Grotesk'; font-size:1.3rem; margin-bottom: 20px; text-align: center;">Políticas de Privacidad y Términos</h2>
+                
+                <div style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;">
+                    <p style="margin-bottom: 15px;"><strong>1. Protección de Datos:</strong> En AJ-STORE valoramos tu privacidad. Los datos solicitados (nombre, dirección, teléfono) a través de nuestros canales de atención (WhatsApp) se utilizan exclusivamente para la gestión, envío y entrega de tus pedidos. No vendemos ni compartimos tu información con terceros.</p>
+                    
+                    <p style="margin-bottom: 15px;"><strong>2. Envíos y Entregas:</strong> Ofrecemos pago contra entrega exclusivamente en Bogotá. Para el resto del país, el envío se realiza a través de transportadoras reconocidas (Inter Rapidísimo, Servientrega) previo pago. Los tiempos de entrega varían entre 1 a 4 días hábiles dependiendo de la ciudad.</p>
+                    
+                    <p style="margin-bottom: 15px;"><strong>3. Garantías:</strong> Todos nuestros artículos cuentan con 30 días de garantía por defectos de fábrica. La garantía no cubre daños por mal uso, caídas, humedad o sobrecargas eléctricas.</p>
+                    
+                    <p style="margin-bottom: 15px;"><strong>4. Cambios y Devoluciones:</strong> Si recibes un producto defectuoso, repórtalo en las primeras 48 horas para gestionar el cambio sin costo adicional. Debe devolverse con todos sus empaques y manuales originales en perfecto estado.</p>
+                    
+                    <p>Al continuar navegando en nuestra tienda y realizar un pedido, aceptas estos términos y condiciones.</p>
+                </div>
+            </div>
+            <div style="padding: 15px; background: rgba(5,9,20,0.95); border-top: 1px solid rgba(255,255,255,0.05);">
+                <button class="btn-base wp-btn" style="width: 100%;" onclick="closeModalWithFocus('privacy-modal')">Entendido</button>
+            </div>
+        </div>
+    </div>
+
     <section class="trust-footer">
         <div class="trust-grid">
             <div class="trust-item"><div class="trust-icon" aria-hidden="true">🚚</div><h3>Logística Nacional</h3><p>Envíos en Bogotá desde $6.000 COP (Contra Entrega). Resto de Colombia por Servientrega o Inter Rapidísimo.</p></div>
@@ -332,7 +357,7 @@
         </div>
         <div style="text-align: center; margin-top: 30px; font-size: 0.75rem; color: var(--text-muted);">
             <p>* Las reseñas mostradas provienen de clientes verificados en nuestros canales de venta.</p>
-            <p style="margin-top: 10px;"><a href="#" style="color: var(--accent-ice); text-decoration: none;">Política de Privacidad</a> | AJ-STORE &copy; 2024</p>
+            <p style="margin-top: 10px;"><a href="#" onclick="event.preventDefault(); openModalWithFocus('privacy-modal');" style="color: var(--accent-ice); text-decoration: none;">Política de Privacidad</a> | AJ-STORE &copy; 2024</p>
         </div>
     </section>
 
@@ -548,23 +573,26 @@
             const card = document.createElement('div'); card.className = 'product-card';
             
             let badges = ''; let hasDiscount = false;
+            let currentTop = 10; // Acumulador para apilar badges sin superponerse
+
             if (product.oldPrice) { 
                 hasDiscount = true; 
                 const disc = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100); 
-                badges += `<div class="card-badge discount-badge">-${disc}%</div>`; 
+                badges += `<div class="card-badge discount-badge" style="top: ${currentTop}px;">-${disc}%</div>`; 
+                currentTop += 28;
             }
             
             // Icono de Video
             const videoIndex = product.images.findIndex(img => img.endsWith('.mp4'));
             if (videoIndex !== -1) {
-                badges += `<div class="card-badge video-badge" aria-label="Ver video" onclick="event.stopPropagation(); openModal('${product.id}', ${videoIndex})">▶️ Video</div>`;
+                badges += `<div class="card-badge video-badge" style="top: ${currentTop}px;" aria-label="Ver video" onclick="event.stopPropagation(); openModal('${product.id}', ${videoIndex})">▶️ Video</div>`;
+                currentTop += 28;
             } else if (product.tag) {
                 badges += `<div class="card-badge tag-badge">${product.tag}</div>`;
             }
             
             if (product.inStock && product.stockCount > 0 && product.stockCount <= 4) {
-                const scClass = hasDiscount ? 'scarcity-badge' : 'scarcity-badge scarcity-alone';
-                badges += `<div class="${scClass}">Solo ${product.stockCount} und</div>`;
+                badges += `<div class="scarcity-badge" style="top: ${currentTop}px; animation-delay: 0.5s;">Solo ${product.stockCount} und</div>`;
             }
 
             let trackHtml = product.images.map(img => {
@@ -666,11 +694,12 @@
 
             openModalWithFocus('product-modal');
             
-            // Navegar directo al video si se hace click en la etiqueta de video
-            setTimeout(() => {
-                const w = modalSlider.clientWidth;
-                modalSlider.scrollLeft = slideIndex * w;
-            }, 50);
+            // Navegar directo al video si se hace click en la etiqueta de video (Lógica robusta)
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    modalSlider.scrollLeft = slideIndex * modalSlider.clientWidth;
+                }, 100);
+            });
             
             const mod = document.getElementById('product-modal');
             mod.querySelectorAll('video').forEach(v => modalVideoObserver.observe(v));
