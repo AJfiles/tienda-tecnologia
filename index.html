@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5PDG8HB4');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -197,6 +204,10 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PDG8HB4"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <canvas id="trail-canvas" aria-hidden="true"></canvas>
     
     <div id="fomo-toast" class="fomo-top-toast" role="status" aria-live="polite"></div>
@@ -655,11 +666,24 @@
             });
         }, { root: modalSlider, threshold: 0.5 });
 
+        function updateMetaTags(product) {
+            if (!product) return;
+            document.querySelector('meta[property="og:title"]').setAttribute('content', `AJ-STORE | ${product.name}`);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', product.shortDesc);
+            
+            const firstImg = product.images.find(img => !img.endsWith('.mp4')) || product.images[0];
+            if (firstImg) {
+                document.querySelector('meta[property="og:image"]').setAttribute('content', new URL(product.folder + firstImg, window.location.href).href);
+            }
+        }
+
         function openModal(prodOrId, slideIndex = 0) {
             let product = typeof prodOrId === 'string' ? products.find(p => p.id === prodOrId) : prodOrId;
             if (!product) return;
             
             modalProduct = product;
+            updateMetaTags(product);
+            
             document.getElementById('modal-title').textContent = product.name;
             document.getElementById('modal-subtitle').textContent = product.category === 'Controles' ? 'Control Gamer Profesional' : 'Ventilador / Cooler para celular';
             document.getElementById('modal-reviews').innerHTML = getFakeReviews(product.id);
@@ -712,14 +736,7 @@
             const url = new URL(window.location.href);
             url.searchParams.set('p', modalProduct.id);
             
-            // Actualizar metaetiquetas dinámicamente antes de compartir
-            document.querySelector('meta[property="og:title"]').setAttribute('content', `AJ-STORE | ${modalProduct.name}`);
-            document.querySelector('meta[property="og:description"]').setAttribute('content', modalProduct.shortDesc);
-            
-            const firstImg = modalProduct.images.find(img => !img.endsWith('.mp4')) || modalProduct.images[0];
-            if (firstImg) {
-                document.querySelector('meta[property="og:image"]').setAttribute('content', new URL(modalProduct.folder + firstImg, window.location.href).href);
-            }
+            updateMetaTags(modalProduct);
             
             if (navigator.share) {
                 navigator.share({
